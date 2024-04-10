@@ -177,7 +177,8 @@ func _physics_process(delta: float) -> void:
 
 	if try_crouch and not is_crouching:
 		crouch()
-	else:
+	
+	if not try_crouch and is_crouching:
 		uncrouch()
 
 	move(delta)
