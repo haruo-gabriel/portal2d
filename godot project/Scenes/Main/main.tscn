@@ -21,3 +21,4 @@ scale = Vector2(7.62, 1.34)
 texture = ExtResource("1_k084f")
 
 [node name="Player" parent="." instance=ExtResource("2_rsmok")]
+position = Vector2(386, 798)

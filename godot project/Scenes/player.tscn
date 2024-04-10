@@ -17,10 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://fbsofodhxh1" path="res://Sprites/Player/Walk (Crouched)/player_walk(crouched)3.png" id="15_vi87d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbok6"]
-size = Vector2(112.5, 196.5)
+size = Vector2(112.5, 204)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bv35t"]
-size = Vector2(111, 151)
+size = Vector2(112.5, 151)
 
 [sub_resource type="Animation" id="Animation_ou7s0"]
 resource_name = "Fall"
@@ -135,16 +135,16 @@ _data = {
 script = ExtResource("1_u12dx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(426, 685)
+position = Vector2(-0.999999, -102.5)
 scale = Vector2(0.56, 0.51)
-texture = ExtResource("13_vyot3")
+texture = ExtResource("2_fouop")
 
 [node name="NormalHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(426.75, 683.25)
+position = Vector2(-0.250031, -102.5)
 shape = SubResource("RectangleShape2D_nbok6")
 
 [node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(426.5, 684.5)
+position = Vector2(-0.250031, -76.5)
 shape = SubResource("RectangleShape2D_bv35t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
