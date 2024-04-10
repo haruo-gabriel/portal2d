@@ -16,9 +16,6 @@ const BHOP_MULTIPLIER: float = 1.2
 # You move slower while crouched
 const CROUCH_SPEED_MULTIPLIER: float = .5
 
-# Ratio for the new hibox
-const CROUCH_HITBOX_SCALE: Vector2 = Vector2(1.05, .1)
-
 const JUMP_VELOCITY: float = -400.0
 
 const MAX_Y_SPEED: float = 1000.0 # In absolute value
@@ -101,6 +98,7 @@ func crouch() -> void:
 
 func uncrouch() -> void:
 	
+	# We want it to not collide with anything when undoing the hitbox change
 	if move_and_collide(-sprite_crouching_offset, true) != null:
 		return
 	
@@ -134,7 +132,7 @@ func move_vertical(delta: float) -> void:
 	if last_jumped > 0:
 		last_jumped -= 1
 
-func move_horizontal(delta: float) -> void:
+func move_horizontal(_delta: float) -> void:
 
 	# TODO: make this not so ulgy
 
