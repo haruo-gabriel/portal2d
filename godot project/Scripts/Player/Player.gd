@@ -16,6 +16,9 @@ const BHOP_MULTIPLIER: float = 1.2
 # You move slower while crouched
 const CROUCH_SPEED_MULTIPLIER: float = .5
 
+# Ratio for the new hibox
+const CROUCH_HITBOX_SCALE: Vector2 = Vector2(1.05, .1)
+
 const JUMP_VELOCITY: float = -400.0
 
 const MAX_Y_SPEED: float = 1000.0 # In absolute value
@@ -28,11 +31,14 @@ const JUMP_BUFFER_TIME: int = 10
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 
+@onready var main_hitbox: CollisionShape2D = $NormalHitbox
+@onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
+
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: float
-var last_jumped: int = 0 # Frames since last jump input
-var is_crouching: bool = false
+var last_jumped: int # Frames since last jump input
+var is_crouching: bool
 
 func set_animation() -> void:
 	"""
@@ -76,6 +82,11 @@ func set_sprite() -> void:
 		return
 	
 	sprite.flip_h = direction < 0
+
+func set_hitbox() -> void:
+	
+	main_hitbox.disabled = not is_crouching
+	crouched_hitbox.disabled = is_crouching
 
 func jump() -> void:
 
@@ -136,6 +147,15 @@ func move(delta: float) -> void:
 	velocity.x = max(-MAX_X_SPEED, min(MAX_X_SPEED, velocity.x))
 	velocity.y = max(-MAX_Y_SPEED, min(MAX_Y_SPEED, velocity.y))
 
+func _ready() -> void:
+	
+	direction = 1
+	last_jumped = 0
+	is_crouching = false
+
+	main_hitbox.disabled = false
+	crouched_hitbox.disabled = true
+
 func _physics_process(delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
@@ -145,5 +165,6 @@ func _physics_process(delta: float) -> void:
 
 	set_animation()
 	set_sprite()
+	set_hitbox()
 
 	move_and_slide()
