@@ -10,24 +10,39 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 
-func _physics_process(delta):
-	# Add the gravity.
+var direction: float
+
+func set_animation() -> void:
+	"""
+	Sets the animation for the player, according to it's 
+	direction and vertical speed.
+	"""
+	
+	if velocity.y > 0:
+		return animation.play("Fall") # Returns early so others don't affect it
+	elif velocity.y < 0:
+		return animation.play("Jump")
+
+	# This part should only be reached
+	# if the player is on the ground.
+	
+	if not direction:
+		animation.play("Idle")
+	else:
+		animation.play("Walk")
+	
+	
+func _physics_process(delta: float) -> void:
+
+	direction = Input.get_axis("move_left", "move_right")
+
+	set_animation()
+
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	var direction = Input.get_axis("move_left", "move_right")
-
-	if not direction and is_on_floor():
-		animation.play("Idle")
-	elif is_on_floor():
-		animation.play("Walk")
-
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		animation.play("Jump")
 		velocity.y = JUMP_VELOCITY
-
-	if velocity.y > 0:
-		animation.play("Fall")
 
 	if direction < 0:
 		sprite.flip_h = 1
