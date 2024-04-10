@@ -85,6 +85,8 @@ func move_vertical(delta: float) -> void:
 
 func move_horizontal(delta: float) -> void:
 
+	# TODO: make this not so ulgy
+
 	if direction:
 		
 		var step = HORIZONTAL_ACCELERATION
@@ -94,7 +96,8 @@ func move_horizontal(delta: float) -> void:
 			
 			step *= IN_AIR_MULTIPLIER
 			
-			# If you're going foward, you won't deaccelerate
+			# If you're going foward, you won't deaccelerate.
+			# If you wanna go backward, you still can.
 			if sign(velocity.x) == sign(direction):
 				new_speed = max(new_speed, velocity.x)
 		
@@ -102,8 +105,6 @@ func move_horizontal(delta: float) -> void:
 
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, GROUND_DRAG)
-
-	# Ensures velocity.x is within bounds
 
 func move(delta: float) -> void:
 	
