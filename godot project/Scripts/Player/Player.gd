@@ -6,6 +6,13 @@ const HORIZONTAL_ACCELERATION: float = 20.0 # Pixels per second per frame
 
 const GROUND_DRAG: float = 15.0 # Deacceleration on ground.
 
+# It's harder to change direction while on air
+const IN_AIR_MULTIPLIER: float = .3
+
+# Multiplies your speed upon jumping.
+# Set it to 1 to remove it.
+const BHOP_MULTIPLIER: float = 1.2
+
 const JUMP_VELOCITY: float = -600.0
 
 const MAX_Y_SPEED: float = 1000 # In absolute value
@@ -57,14 +64,16 @@ func jump() -> void:
 
 	velocity.y = JUMP_VELOCITY
 
+	velocity.x *= BHOP_MULTIPLIER
+
 	animation.play("Jump")
 
 func move_vertical(delta: float) -> void:
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump"):
 		last_jumped = JUMP_BUFFER_TIME
 
-	if last_jumped:
+	if last_jumped and is_on_floor():
 		last_jumped = 0
 		jump()
 
@@ -74,13 +83,21 @@ func move_vertical(delta: float) -> void:
 	# Ensures velocity.y is within bounds
 	velocity.y = min(MAX_Y_SPEED, max(-MAX_Y_SPEED, velocity.y))
 
+	if last_jumped > 0:
+		last_jumped -= 1
+
 func move_horizontal(delta: float) -> void:
 
 	if direction:
 		
-		velocity.x = move_toward(velocity.x, direction * WALKING_SPEED, HORIZONTAL_ACCELERATION)	
+		var step = HORIZONTAL_ACCELERATION
+		
+		if not is_on_floor():
+			step *= IN_AIR_MULTIPLIER
+		
+		velocity.x = move_toward(velocity.x, direction * WALKING_SPEED, step)	
 
-	else:
+	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, GROUND_DRAG)
 
 	# Ensures velocity.x is within bounds
@@ -90,7 +107,7 @@ func _physics_process(delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
 
-	move_vertical(delta)
+	move_vertical(delta) # This should go before `move_horizontal`, due to bhop
 	move_horizontal(delta)
 
 	set_animation()
