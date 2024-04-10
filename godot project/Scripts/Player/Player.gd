@@ -13,7 +13,7 @@ const IN_AIR_MULTIPLIER: float = .3
 # Set it to 1 to remove it.
 const BHOP_MULTIPLIER: float = 1.2
 
-const JUMP_VELOCITY: float = -600.0
+const JUMP_VELOCITY: float = -400.0
 
 const MAX_Y_SPEED: float = 1000.0 # In absolute value
 const MAX_X_SPEED: float = 600.0 # In absolute value
