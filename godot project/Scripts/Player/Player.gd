@@ -88,6 +88,20 @@ func set_hitbox() -> void:
 	main_hitbox.disabled = is_crouching
 	crouched_hitbox.disabled = not is_crouching
 
+func crouch() -> void:
+	
+	main_hitbox.disabled = true
+	crouched_hitbox.disabled = false
+	
+	is_crouching = true
+
+func uncrouch() -> void:
+	
+	main_hitbox.disabled = false
+	crouched_hitbox.disabled = true
+	
+	is_crouching = false
+
 func jump() -> void:
 
 	velocity.y = JUMP_VELOCITY
@@ -159,7 +173,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
-	is_crouching = Input.is_action_pressed("crouch")
+	var try_crouch = Input.is_action_pressed("crouch")
+
+	if try_crouch and not is_crouching:
+		crouch()
+	else:
+		uncrouch()
 
 	move(delta)
 
