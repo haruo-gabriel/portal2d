@@ -85,8 +85,8 @@ func set_sprite() -> void:
 
 func set_hitbox() -> void:
 	
-	main_hitbox.disabled = not is_crouching
-	crouched_hitbox.disabled = is_crouching
+	main_hitbox.disabled = is_crouching
+	crouched_hitbox.disabled = not is_crouching
 
 func jump() -> void:
 
