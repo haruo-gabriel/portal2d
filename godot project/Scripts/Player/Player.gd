@@ -15,8 +15,8 @@ const BHOP_MULTIPLIER: float = 1.2
 
 const JUMP_VELOCITY: float = -600.0
 
-const MAX_Y_SPEED: float = 1000 # In absolute value
-const MAX_X_SPEED: float = 400 # In absolute value
+const MAX_Y_SPEED: float = 1000.0 # In absolute value
+const MAX_X_SPEED: float = 600.0 # In absolute value
 
 # Frames a player can press jump before landing and still jump upon hitting ground.
 # To remove, set it to 1, NOT ZERO (the player won't be able to jump).
@@ -91,11 +91,16 @@ func move_horizontal(delta: float) -> void:
 	if direction:
 		
 		var step = HORIZONTAL_ACCELERATION
+		var new_speed = direction * WALKING_SPEED
 		
 		if not is_on_floor():
+			
 			step *= IN_AIR_MULTIPLIER
+			
+			# You don't deaccelerate while on air
+			new_speed = max(new_speed, velocity.x)
 		
-		velocity.x = move_toward(velocity.x, direction * WALKING_SPEED, step)	
+		velocity.x = move_toward(velocity.x, new_speed, step)	
 
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, GROUND_DRAG)
