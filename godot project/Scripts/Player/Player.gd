@@ -99,7 +99,7 @@ func move_horizontal(delta: float) -> void:
 			# If you're going foward, you won't deaccelerate.
 			# If you wanna go backward, you still can.
 			if sign(velocity.x) == sign(direction):
-				new_speed = max(new_speed, velocity.x)
+				new_speed = sign(new_speed) * max(abs(new_speed), abs(velocity.x))
 		
 		velocity.x = move_toward(velocity.x, new_speed, step)	
 
