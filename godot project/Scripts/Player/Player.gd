@@ -80,9 +80,6 @@ func move_vertical(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# Ensures velocity.y is within bounds
-	velocity.y = min(MAX_Y_SPEED, max(-MAX_Y_SPEED, velocity.y))
-
 	if last_jumped > 0:
 		last_jumped -= 1
 
@@ -106,14 +103,21 @@ func move_horizontal(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, GROUND_DRAG)
 
 	# Ensures velocity.x is within bounds
+
+func move(delta: float) -> void:
+	
+	move_horizontal(delta)
+	move_vertical(delta)
+	
+	# Ensures velocity is within bounds
 	velocity.x = max(-MAX_X_SPEED, min(MAX_X_SPEED, velocity.x))
+	velocity.y = max(-MAX_Y_SPEED, min(MAX_Y_SPEED, velocity.y))
 
 func _physics_process(delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
 
-	move_vertical(delta) # This should go before `move_horizontal`, due to bhop
-	move_horizontal(delta)
+	move(delta)
 
 	set_animation()
 	set_sprite()
