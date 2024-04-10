@@ -94,8 +94,9 @@ func move_horizontal(delta: float) -> void:
 			
 			step *= IN_AIR_MULTIPLIER
 			
-			# You don't deaccelerate while on air
-			new_speed = max(new_speed, velocity.x)
+			# If you're going foward, you won't deaccelerate
+			if sign(velocity.x) == sign(direction):
+				new_speed = max(new_speed, velocity.x)
 		
 		velocity.x = move_toward(velocity.x, new_speed, step)	
 
