@@ -1,7 +1,11 @@
 
 extends CharacterBody2D
 
-const SPEED: float = 300.0
+const WALKING_SPEED: float = 300.0
+const HORIZONTAL_ACCELERATION: float = 20.0 # Pixels per second per frame
+
+const GROUND_DRAG: float = 15.0 # Deacceleration on ground.
+
 const JUMP_VELOCITY: float = -600.0
 
 const MAX_Y_SPEED: float = 1000 # In absolute value
@@ -71,11 +75,13 @@ func move_vertical(delta: float) -> void:
 	velocity.y = min(MAX_Y_SPEED, max(-MAX_Y_SPEED, velocity.y))
 
 func move_horizontal(delta: float) -> void:
-	
+
 	if direction:
-		velocity.x = SPEED * direction
+		
+		velocity.x = move_toward(velocity.x, direction * WALKING_SPEED, HORIZONTAL_ACCELERATION)	
+
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED / 60)
+		velocity.x = move_toward(velocity.x, 0, GROUND_DRAG)
 
 	# Ensures velocity.x is within bounds
 	velocity.x = max(-MAX_X_SPEED, min(MAX_X_SPEED, velocity.x))
