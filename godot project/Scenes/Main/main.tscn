@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6fjyuywr5mou"]
+
+[ext_resource type="Texture2D" uid="uid://c2s2imqq1vfyt" path="res://Sprites/Terrain/ground.png" id="1_k084f"]
+[ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://Scenes/player.tscn" id="2_rsmok"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e83n2"]
+size = Vector2(1515, 131)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ax0lw"]
+size = Vector2(386, 137)
+
+[node name="Main" type="Node"]
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(1356, 745)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(-599.5, 127.5)
+shape = SubResource("RectangleShape2D_e83n2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform"]
+position = Vector2(-599, 129)
+scale = Vector2(7.62, 1.34)
+texture = ExtResource("1_k084f")
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2(1198, 475)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(-47.75, 100)
+shape = SubResource("RectangleShape2D_ax0lw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ceiling"]
+position = Vector2(-50, 101)
+scale = Vector2(1.85, 1.34)
+texture = ExtResource("1_k084f")
+
+[node name="Player" parent="." instance=ExtResource("2_rsmok")]
+position = Vector2(897, 803)
