@@ -101,6 +101,9 @@ func crouch() -> void:
 
 func uncrouch() -> void:
 	
+	if move_and_collide(-sprite_crouching_offset, true) != null:
+		return
+	
 	main_hitbox.disabled = false
 	crouched_hitbox.disabled = true
 	
