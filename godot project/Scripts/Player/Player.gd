@@ -2,13 +2,14 @@
 extends CharacterBody2D
 
 const SPEED: float = 300.0
-const JUMP_VELOCITY: float = -600.0 / 1
+const JUMP_VELOCITY: float = -600.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity") / 8
+const MAX_Y_SPEED: float = 1000 # In absolute value
 
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
+
+var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: float
 var jumped: bool
@@ -37,12 +38,22 @@ func set_animation() -> void:
 	else:
 		animation.play("Walk")
 
-
 func jump() -> void:
 
 	velocity.y = JUMP_VELOCITY
 	
 	animation.play("Jump")
+
+func move_vertical(delta: float) -> void:
+	
+	if jumped:
+		jump()
+
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	# Ensures velocity.y is within bounds
+	velocity.y = min(MAX_Y_SPEED, max(-MAX_Y_SPEED, velocity.y))
 
 
 func _physics_process(delta: float) -> void:
@@ -51,9 +62,7 @@ func _physics_process(delta: float) -> void:
 	jumped = Input.is_action_just_pressed("jump") and is_on_floor()
 
 	set_animation()
-	
-	if jumped:
-		jump()
+	move_vertical(delta)
 
 	if not is_on_floor():
 		velocity.y += gravity * delta
