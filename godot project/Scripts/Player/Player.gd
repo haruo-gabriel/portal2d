@@ -29,6 +29,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: float
 var last_jumped: int = 0 # Frames since last jump input
+var is_crouching: bool = false
 
 func set_animation() -> void:
 	"""
@@ -39,6 +40,16 @@ func set_animation() -> void:
 	# animation.play("Jump") is called in `jump`
 	# adding it here with a `velocity < 0` check would make the 
 	# animation restart while the player is in the air
+	
+	if is_crouching:
+		
+		if velocity.x:
+			animation.play("Walk (Crouched)")
+	
+		else:
+			animation.play("Idle (Crouched)")
+			
+		return
 	
 	if velocity.y > 0:
 		animation.play("Fall")
@@ -118,6 +129,7 @@ func move(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
+	is_crouching = Input.is_action_pressed("crouch")
 
 	move(delta)
 
