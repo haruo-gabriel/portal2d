@@ -13,6 +13,9 @@ const IN_AIR_MULTIPLIER: float = .3
 # Set it to 1 to remove it.
 const BHOP_MULTIPLIER: float = 1.2
 
+# You move slower while crouched
+const CROUCH_SPEED_MULTIPLIER: float = .5
+
 const JUMP_VELOCITY: float = -400.0
 
 const MAX_Y_SPEED: float = 1000.0 # In absolute value
@@ -42,12 +45,15 @@ func set_animation() -> void:
 	# animation restart while the player is in the air
 	
 	if is_crouching:
-		
-		if velocity.x:
-			animation.play("Walk (Crouched)")
+
+		# While on air and crouching, we play the idle animation.
+		# I'm taking this from Mario, as it seems like too much work
+		# to add a bunch of sprites for this very specific case.
+		if not velocity.x or not is_on_floor():
+			animation.play("Idle (Crouched)")
 	
 		else:
-			animation.play("Idle (Crouched)")
+			animation.play("Walk (Crouched)")
 			
 		return
 	
@@ -103,6 +109,10 @@ func move_horizontal(delta: float) -> void:
 		var step = HORIZONTAL_ACCELERATION
 		var new_speed = direction * WALKING_SPEED
 		
+		# You won't be slowed while on air
+		if is_crouching and is_on_floor():
+			new_speed *= CROUCH_SPEED_MULTIPLIER
+			
 		if not is_on_floor():
 			
 			step *= IN_AIR_MULTIPLIER
