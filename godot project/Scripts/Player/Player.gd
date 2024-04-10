@@ -40,6 +40,8 @@ var direction: float
 var last_jumped: int # Frames since last jump input
 var is_crouching: bool
 
+var sprite_crouching_offset: Vector2 # Is constant and set at start
+
 func set_animation() -> void:
 	"""
 	Sets the animation for the player, according to it's 
@@ -94,6 +96,8 @@ func crouch() -> void:
 	crouched_hitbox.disabled = false
 	
 	is_crouching = true
+	
+	sprite.offset = sprite_crouching_offset
 
 func uncrouch() -> void:
 	
@@ -101,6 +105,8 @@ func uncrouch() -> void:
 	crouched_hitbox.disabled = true
 	
 	is_crouching = false
+
+	sprite.offset = Vector2.ZERO
 
 func jump() -> void:
 
@@ -169,6 +175,8 @@ func _ready() -> void:
 
 	main_hitbox.disabled = false
 	crouched_hitbox.disabled = true
+
+	sprite_crouching_offset = main_hitbox.shape.get_rect().size - crouched_hitbox.shape.get_rect().size
 
 func _physics_process(delta: float) -> void:
 
