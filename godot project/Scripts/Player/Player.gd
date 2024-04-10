@@ -55,6 +55,12 @@ func move_vertical(delta: float) -> void:
 	# Ensures velocity.y is within bounds
 	velocity.y = min(MAX_Y_SPEED, max(-MAX_Y_SPEED, velocity.y))
 
+func move_horizontal(delta: float) -> void:
+	
+	if direction:
+		velocity.x = SPEED * direction
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED / 60)
 
 func _physics_process(delta: float) -> void:
 
@@ -63,19 +69,11 @@ func _physics_process(delta: float) -> void:
 
 	set_animation()
 	move_vertical(delta)
+	move_horizontal(delta)
 
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	
 	if direction < 0:
 		sprite.flip_h = 1
 	else:
 		sprite.flip_h = 0
 
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
 	move_and_slide()
