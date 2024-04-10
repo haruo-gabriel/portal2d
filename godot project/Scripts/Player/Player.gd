@@ -7,13 +7,17 @@ const JUMP_VELOCITY: float = -600.0
 const MAX_Y_SPEED: float = 1000 # In absolute value
 const MAX_X_SPEED: float = 400 # In absolute value
 
+# Frames a player can press jump before landing and still jump upon hitting ground.
+# To remove, set it to 1, NOT ZERO (the player won't be able to jump).
+const JUMP_BUFFER_TIME: int = 10
+
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: float
-var jumped: bool
+var last_jumped: int = 0 # Frames since last jump input
 
 func set_animation() -> void:
 	"""
@@ -26,13 +30,11 @@ func set_animation() -> void:
 	# animation restart while the player is in the air
 	
 	if velocity.y > 0:
-		return animation.play("Fall") # Returns early so others don't affect it
-	
-	if not is_on_floor():
+		animation.play("Fall")
+
+	# Return eaarly if the player is in the air or about to jump	
+	if velocity.y:
 		return
-	
-	# This part should only be reached
-	# if the player is on the ground.
 	
 	if not velocity.x:
 		animation.play("Idle")
@@ -50,12 +52,16 @@ func set_sprite() -> void:
 func jump() -> void:
 
 	velocity.y = JUMP_VELOCITY
-	
+
 	animation.play("Jump")
 
 func move_vertical(delta: float) -> void:
 	
-	if jumped:
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		last_jumped = JUMP_BUFFER_TIME
+
+	if last_jumped:
+		last_jumped = 0
 		jump()
 
 	if not is_on_floor():
@@ -77,11 +83,11 @@ func move_horizontal(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
-	jumped = Input.is_action_just_pressed("jump") and is_on_floor()
+
+	move_vertical(delta)
+	move_horizontal(delta)
 
 	set_animation()
 	set_sprite()
-	move_vertical(delta)
-	move_horizontal(delta)
 
 	move_and_slide()
