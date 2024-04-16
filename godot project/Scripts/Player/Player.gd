@@ -168,7 +168,7 @@ func move(delta: float) -> void:
 	velocity.y = max( - MAX_Y_SPEED, min(MAX_Y_SPEED, velocity.y))
 
 func _ready() -> void:
-	
+
 	direction = 1
 	last_jumped = 0
 	is_crouching = false

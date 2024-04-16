@@ -40,4 +40,7 @@ texture = ExtResource("1_k084f")
 position = Vector2(897, 803)
 
 [node name="Portal" parent="." instance=ExtResource("3_u32es")]
-position = Vector2(154, 704)
+position = Vector2(82, 690)
+
+[node name="Portal2" parent="." instance=ExtResource("3_u32es")]
+position = Vector2(1301, 390)
