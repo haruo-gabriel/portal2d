@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6fjyuywr5mou"]
+[gd_scene load_steps=6 format=3 uid="uid://c6fjyuywr5mou"]
 
 [ext_resource type="Texture2D" uid="uid://c2s2imqq1vfyt" path="res://Sprites/Terrain/ground.png" id="1_k084f"]
 [ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://Scenes/player.tscn" id="2_rsmok"]
+[ext_resource type="PackedScene" uid="uid://dy6m25cbos0mk" path="res://Scenes/portal.tscn" id="3_u32es"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e83n2"]
 size = Vector2(1515, 131)
@@ -37,3 +38,6 @@ texture = ExtResource("1_k084f")
 
 [node name="Player" parent="." instance=ExtResource("2_rsmok")]
 position = Vector2(897, 803)
+
+[node name="Portal" parent="." instance=ExtResource("3_u32es")]
+position = Vector2(154, 704)
