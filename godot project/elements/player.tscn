@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdva3aqytyv0w"]
+
+[ext_resource type="Texture2D" uid="uid://dh7yigc5sco3e" path="res://icon.svg" id="2_shmf4"]
+
+[sub_resource type="GDScript" id="GDScript_v3ifi"]
+script/source = "extends Area2D
+
+@export var speed = 400 # How fast the player will move (pixels/sec).
+var screen_size # Size of the game window.
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	screen_size = get_viewport_rect().size
+
+
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var velocity = Vector2.ZERO # The player's movement vector.
+	if Input.is_action_pressed(\"move_right\"):
+		velocity.x += 1
+	if Input.is_action_pressed(\"move_left\"):
+		velocity.x -= 1
+	if Input.is_action_pressed(\"move_down\"):
+		velocity.y += 1
+	if Input.is_action_pressed(\"move_up\"):
+		velocity.y -= 1
+
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * speed
+		
+	position += velocity * delta
+	position = position.clamp(Vector2.ZERO, screen_size)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0gvo"]
+
+[node name="Player" type="Area2D"]
+script = SubResource("GDScript_v3ifi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g0gvo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_shmf4")
+
+[node name="Marker2D" type="Marker2D" parent="."]

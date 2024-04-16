@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy6m25cbos0mk"]
+
+[ext_resource type="Script" path="res://elements/portal.gd" id="1_gdt78"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yaa3o"]
+
+[node name="Portal" type="Area2D" groups=["Portal"]]
+script = ExtResource("1_gdt78")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_yaa3o")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

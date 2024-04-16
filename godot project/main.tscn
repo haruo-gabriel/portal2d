@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy8kvpn6b4ugn"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_8a0l0"]
+[ext_resource type="PackedScene" uid="uid://dy6m25cbos0mk" path="res://elements/portal.tscn" id="2_yijhp"]
+[ext_resource type="PackedScene" uid="uid://cdva3aqytyv0w" path="res://elements/player.tscn" id="3_iarnk"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_8a0l0")
+
+[node name="Portal" parent="." instance=ExtResource("2_yijhp")]
+
+[node name="Player" parent="." instance=ExtResource("3_iarnk")]
+position = Vector2(101, 0)
