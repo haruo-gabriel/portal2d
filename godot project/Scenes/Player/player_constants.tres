@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="PlayerConstants" load_steps=2 format=3 uid="uid://b4xv4neetc43i"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Resources/player_constants.gd" id="1_sr8b1"]
+
+[resource]
+script = ExtResource("1_sr8b1")

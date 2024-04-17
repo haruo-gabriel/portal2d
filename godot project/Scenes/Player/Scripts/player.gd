@@ -1,29 +1,8 @@
 
 extends CharacterBody2D
 
-const WALKING_SPEED: float = 300.0
-const HORIZONTAL_ACCELERATION: float = 20.0 # Pixels per second per frame
-
-const GROUND_DRAG: float = 15.0 # Deacceleration on ground.
-
-# It's harder to change direction while on air
-const IN_AIR_MULTIPLIER: float = .3
-
-# Multiplies your speed upon jumping.
-# Set it to 1 to remove it.
-const BHOP_MULTIPLIER: float = 1.2
-
-# You move slower while crouched
-const CROUCH_SPEED_MULTIPLIER: float = .5
-
-const JUMP_VELOCITY: float = -400.0
-
-const MAX_Y_SPEED: float = 1000.0 # In absolute value
-const MAX_X_SPEED: float = 600.0 # In absolute value
-
-# Frames a player can press jump before landing and still jump upon hitting ground.
-# To remove, set it to 1, NOT ZERO (the player won't be able to jump).
-const JUMP_BUFFER_TIME: int = 10
+@onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
+@onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
 @onready var main_hitbox: CollisionShape2D = $NormalHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
@@ -36,8 +15,6 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var last_jumped: int # Frames since last jump input
 
 var sprite_crouching_offset: Vector2 # Is constant and set at start
-
-@onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 
 signal jumped
 
@@ -81,16 +58,16 @@ func uncrouch() -> void:
 
 func jump() -> void:
 
-	velocity.y = JUMP_VELOCITY
+	velocity.y = constants.JUMP_VELOCITY
 
-	velocity.x *= BHOP_MULTIPLIER
+	velocity.x *= constants.BHOP_MULTIPLIER
 
 	jumped.emit()
 
 func move_vertical(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump"):
-		last_jumped = JUMP_BUFFER_TIME
+		last_jumped = constants.JUMP_BUFFER_TIME
 
 	if last_jumped and is_on_floor():
 		last_jumped = 0
@@ -108,16 +85,16 @@ func move_horizontal(_delta: float) -> void:
 
 	if stats.direction:
 		
-		var step = HORIZONTAL_ACCELERATION
-		var new_speed = stats.direction * WALKING_SPEED
+		var step = constants.HORIZONTAL_ACCELERATION
+		var new_speed = stats.direction * constants.WALKING_SPEED
 		
 		# You won't be slowed while on air
 		if stats.is_crouching and is_on_floor():
-			new_speed *= CROUCH_SPEED_MULTIPLIER
+			new_speed *= constants.CROUCH_SPEED_MULTIPLIER
 			
 		if not is_on_floor():
 			
-			step *= IN_AIR_MULTIPLIER
+			step *= constants.IN_AIR_MULTIPLIER
 			
 			# If you're going foward, you won't deaccelerate.
 			# If you wanna go backward, you still can.
@@ -127,7 +104,7 @@ func move_horizontal(_delta: float) -> void:
 		velocity.x = move_toward(velocity.x, new_speed, step)	
 
 	elif is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, GROUND_DRAG)
+		velocity.x = move_toward(velocity.x, 0, constants.GROUND_DRAG)
 
 func move(delta: float) -> void:
 	
@@ -135,8 +112,8 @@ func move(delta: float) -> void:
 	move_vertical(delta)
 	
 	# Ensures velocity is within bounds
-	velocity.x = max(-MAX_X_SPEED, min(MAX_X_SPEED, velocity.x))
-	velocity.y = max(-MAX_Y_SPEED, min(MAX_Y_SPEED, velocity.y))
+	velocity.x = max(-constants.MAX_X_SPEED, min(constants.MAX_X_SPEED, velocity.x))
+	velocity.y = max(-constants.MAX_Y_SPEED, min(constants.MAX_Y_SPEED, velocity.y))
 
 func _ready() -> void:
 	
@@ -163,9 +140,7 @@ func _physics_process(delta: float) -> void:
 	move(delta)
 
 	set_hitbox()
-
 	set_angle()
-
 	set_stats()
 
 	move_and_slide()
