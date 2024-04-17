@@ -38,7 +38,6 @@ func toggle_crouch(to_crouch: bool) -> void:
 	if move_and_collide(Vector2.ZERO, true):
 		toggle_hitbox(not to_crouch)
 
-
 func move_vertical(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump"):

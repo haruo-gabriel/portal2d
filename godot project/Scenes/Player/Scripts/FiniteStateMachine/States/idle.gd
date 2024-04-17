@@ -7,7 +7,7 @@ func enter() -> void:
 
 func physics_update(delta: float) -> void:
 	
-	if player_stats.direction:
+	if player_stats.direction and not player.move_and_collide(Vector2(player_stats.direction, 0), true):
 		transitioned.emit(self, "walking")
 		return 
 
