@@ -27,7 +27,7 @@ scale = Vector2(7.62, 1.34)
 texture = ExtResource("1_k084f")
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
-position = Vector2(1198, 475)
+position = Vector2(1201, 479)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
 position = Vector2(-47.75, 100)

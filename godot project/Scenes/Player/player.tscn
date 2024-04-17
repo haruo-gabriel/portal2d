@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cfynhk1ysl5od" path="res://Scenes/Player/Sprites/Gun/gun_idle.png" id="3_swsmt"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/player_sprite.gd" id="3_ysinc"]
 [ext_resource type="Texture2D" uid="uid://sgothh3kcjwn" path="res://Scenes/Player/Sprites/Idle/player_idle3.png" id="4_paee3"]
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/crouching_sprite.gd" id="4_w8j8u"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/gun_sprite.gd" id="5_1wtye"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/CrouchingSprite.gd" id="5_iyvj2"]
 [ext_resource type="Texture2D" uid="uid://k80msixm5poc" path="res://Scenes/Player/Sprites/Jump/player_jump1.png" id="5_ybnh7"]
 [ext_resource type="Texture2D" uid="uid://crc0yduttu2ap" path="res://Scenes/Player/Sprites/Jump/player_jump2.png" id="6_fdadd"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/main_hitbox.gd" id="6_gbb4j"]
@@ -198,7 +198,7 @@ script = ExtResource("3_ysinc")
 [node name="CrouchingSprite" type="Sprite2D" parent="."]
 position = Vector2(-0.999996, -75)
 scale = Vector2(0.55, 0.5)
-script = ExtResource("5_iyvj2")
+script = ExtResource("4_w8j8u")
 
 [node name="GunSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -111)

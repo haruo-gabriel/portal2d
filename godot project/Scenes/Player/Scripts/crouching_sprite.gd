@@ -6,7 +6,7 @@ extends Sprite2D
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 
 	if player_stats.direction:
 		flip_h = player_stats.direction > 0
