@@ -26,7 +26,7 @@ const MAX_X_SPEED: float = 600.0 # In absolute value
 const JUMP_BUFFER_TIME: int = 10
 
 @onready var animation: AnimationPlayer = $AnimationPlayer
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $PlayerSprite
 
 @onready var main_hitbox: CollisionShape2D = $NormalHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
