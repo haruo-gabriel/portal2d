@@ -6,7 +6,7 @@ signal jumped
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
-@onready var main_hitbox: CollisionShape2D = $NormalHitbox
+@onready var main_hitbox: CollisionShape2D = $MainHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 
 @onready var sprite: Sprite2D = $PlayerSprite
@@ -34,9 +34,6 @@ func set_hitbox() -> void:
 
 func crouch() -> void:
 	
-	main_hitbox.disabled = true
-	crouched_hitbox.disabled = false
-	
 	stats.is_crouching = true	
 	sprite.offset = sprite_crouching_offset
 
@@ -45,9 +42,6 @@ func uncrouch() -> void:
 	# We want it to not collide with anything when undoing the hitbox change
 	if move_and_collide(-sprite_crouching_offset, true) != null:
 		return
-	
-	main_hitbox.disabled = false
-	crouched_hitbox.disabled = true
 	
 	stats.is_crouching = false
 
@@ -111,9 +105,6 @@ func move(delta: float) -> void:
 	velocity.y = clamp(velocity.y, -constants.MAX_Y_SPEED, constants.MAX_Y_SPEED)
 
 func _ready() -> void:
-	
-	main_hitbox.disabled = false
-	crouched_hitbox.disabled = true
 
 	sprite_crouching_offset = main_hitbox.shape.get_rect().size - crouched_hitbox.shape.get_rect().size
 
