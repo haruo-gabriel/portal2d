@@ -2,7 +2,6 @@
 class_name Player
 extends CharacterBody2D
 
-
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
@@ -37,6 +36,7 @@ func toggle_crouch(to_crouch: bool) -> void:
 	# We want it to not collide with anything after changin the hitbox
 	if move_and_collide(Vector2.ZERO, true):
 		toggle_hitbox(not to_crouch)
+		return
 
 func move_vertical(delta: float) -> void:
 	

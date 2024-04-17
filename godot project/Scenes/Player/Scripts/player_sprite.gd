@@ -13,4 +13,5 @@ func _process(_delta: float) -> void:
 	if player_stats.direction:
 		flip_h = player_stats.direction < 0
 	
-	offset = crouched_offset if player_stats.is_crouching else Vector2.ZERO
+	if player_stats.is_crouching: hide()
+	else: show()
