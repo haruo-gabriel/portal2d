@@ -25,82 +25,44 @@ const MAX_X_SPEED: float = 600.0 # In absolute value
 # To remove, set it to 1, NOT ZERO (the player won't be able to jump).
 const JUMP_BUFFER_TIME: int = 10
 
-@onready var animation: AnimationPlayer = $AnimationPlayer
-@onready var sprite: Sprite2D = $PlayerSprite
-
 @onready var main_hitbox: CollisionShape2D = $NormalHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 
-@onready var gun_sprite: Sprite2D = $GunSprite
+@onready var sprite: Sprite2D = $PlayerSprite
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var last_jumped: int # Frames since last jump input
-var is_crouching: bool
 
 var sprite_crouching_offset: Vector2 # Is constant and set at start
 
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
+
+signal jumped
 
 func set_stats() -> void:
 
 	stats.position = position
 	stats.velocity = velocity
 
-func set_gun_angle() -> void:
+func set_angle() -> void:
 	
 	var difference: Vector2 = get_global_mouse_position() - global_position
 
 	if difference: 
 		stats.angle = atan2(difference.y, difference.x)
 
-
-func set_animation() -> void:
-	"""
-	Sets the animation for the player, according to it's 
-	direction and vertical speed.
-	"""
-	
-	# animation.play("Jump") is called in `jump`
-	# adding it here with a `velocity < 0` check would make the 
-	# animation restart while the player is in the air
-	
-	if is_crouching:
-
-		# While on air and crouching, we play the idle animation.
-		# I'm taking this from Mario, as it seems like too much work
-		# to add a bunch of sprites for this very specific case.
-		if not velocity.x or not is_on_floor():
-			animation.play("Idle (Crouched)")
-	
-		else:
-			animation.play("Walk (Crouched)")
-			
-		return
-	
-	if velocity.y > 0:
-		animation.play("Fall")
-
-	# Return eaarly if the player is in the air or about to jump	
-	if velocity.y:
-		return
-	
-	if not velocity.x:
-		animation.play("Idle")
-	else:
-		animation.play("Walk")
-
 func set_hitbox() -> void:
 	
-	main_hitbox.disabled = is_crouching
-	crouched_hitbox.disabled = not is_crouching
+	main_hitbox.disabled = stats.is_crouching
+	crouched_hitbox.disabled = not stats.is_crouching
 
 func crouch() -> void:
 	
 	main_hitbox.disabled = true
 	crouched_hitbox.disabled = false
 	
-	is_crouching = true
+	stats.is_crouching = true
 	
 	sprite.offset = sprite_crouching_offset
 
@@ -113,7 +75,7 @@ func uncrouch() -> void:
 	main_hitbox.disabled = false
 	crouched_hitbox.disabled = true
 	
-	is_crouching = false
+	stats.is_crouching = false
 
 	sprite.offset = Vector2.ZERO
 
@@ -123,7 +85,7 @@ func jump() -> void:
 
 	velocity.x *= BHOP_MULTIPLIER
 
-	animation.play("Jump")
+	jumped.emit()
 
 func move_vertical(delta: float) -> void:
 	
@@ -150,7 +112,7 @@ func move_horizontal(_delta: float) -> void:
 		var new_speed = stats.direction * WALKING_SPEED
 		
 		# You won't be slowed while on air
-		if is_crouching and is_on_floor():
+		if stats.is_crouching and is_on_floor():
 			new_speed *= CROUCH_SPEED_MULTIPLIER
 			
 		if not is_on_floor():
@@ -179,8 +141,7 @@ func move(delta: float) -> void:
 func _ready() -> void:
 	
 	last_jumped = 0
-	is_crouching = false
-
+	
 	main_hitbox.disabled = false
 	crouched_hitbox.disabled = true
 
@@ -188,21 +149,22 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 
+	stats.is_on_floor = is_on_floor()
+
 	stats.direction = Input.get_axis("move_left", "move_right")
 	var try_crouch = Input.is_action_pressed("crouch")
 
-	if try_crouch and not is_crouching:
+	if try_crouch and not stats.is_crouching:
 		crouch()
 	
-	if not try_crouch and is_crouching:
+	if not try_crouch and stats.is_crouching:
 		uncrouch()
 
 	move(delta)
 
-	set_animation()
 	set_hitbox()
 
-	set_gun_angle()
+	set_angle()
 
 	set_stats()
 

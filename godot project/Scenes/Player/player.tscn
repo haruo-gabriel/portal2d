@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=29 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/player.gd" id="1_isvi5"]
 [ext_resource type="Texture2D" uid="uid://ck8lvvm2eut0b" path="res://Scenes/Player/Sprites/Idle (Crouched)/player_idle(crouched)1.png" id="2_fouop"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cfynhk1ysl5od" path="res://Scenes/Player/Sprites/Gun/gun_idle.png" id="3_swsmt"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/player_sprite.gd" id="3_ysinc"]
 [ext_resource type="Texture2D" uid="uid://sgothh3kcjwn" path="res://Scenes/Player/Sprites/Idle/player_idle3.png" id="4_paee3"]
-[ext_resource type="Script" path="res://Scenes/Player/gun_sprite.gd" id="5_u1p7v"]
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/gun_sprite.gd" id="5_1wtye"]
 [ext_resource type="Texture2D" uid="uid://k80msixm5poc" path="res://Scenes/Player/Sprites/Jump/player_jump1.png" id="5_ybnh7"]
 [ext_resource type="Texture2D" uid="uid://crc0yduttu2ap" path="res://Scenes/Player/Sprites/Jump/player_jump2.png" id="6_fdadd"]
 [ext_resource type="Texture2D" uid="uid://bqkl7mcyv4oii" path="res://Scenes/Player/Sprites/Jump/player_jump3.png" id="7_s2f2m"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bif3nwnv01hoo" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)1.png" id="13_vyot3"]
 [ext_resource type="Texture2D" uid="uid://cbfyf2aojv6xq" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)2.png" id="14_k85mr"]
 [ext_resource type="Texture2D" uid="uid://fbsofodhxh1" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)3.png" id="15_vi87d"]
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/animation_player.gd" id="19_33oij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbok6"]
 size = Vector2(112.5, 204)
@@ -147,7 +148,7 @@ script = ExtResource("3_ysinc")
 position = Vector2(-1.99998, -111)
 scale = Vector2(0.825, 0.74)
 texture = ExtResource("3_swsmt")
-script = ExtResource("5_u1p7v")
+script = ExtResource("5_1wtye")
 
 [node name="NormalHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.250031, -102.5)
@@ -161,3 +162,6 @@ shape = SubResource("RectangleShape2D_bv35t")
 libraries = {
 "": SubResource("AnimationLibrary_auc0t")
 }
+script = ExtResource("19_33oij")
+
+[connection signal="jumped" from="." to="AnimationPlayer" method="_on_player_jumped"]

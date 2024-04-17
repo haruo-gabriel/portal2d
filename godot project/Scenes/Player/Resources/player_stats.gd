@@ -8,3 +8,6 @@ var velocity: Vector2 = Vector2.ZERO
 var direction: float = 1.0
 
 var angle: float = 0.0
+
+var is_crouching: bool = false
+var is_on_floor: bool = false # Initial value does not matter
