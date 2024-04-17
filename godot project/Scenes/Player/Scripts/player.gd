@@ -7,6 +7,7 @@ signal jumped
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
+
 @onready var sprite: Sprite2D = $PlayerSprite
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
@@ -37,7 +38,6 @@ func uncrouch() -> void:
 		return
 	
 	stats.is_crouching = false
-
 	sprite.offset = Vector2.ZERO
 
 func jump() -> void:
@@ -99,6 +99,7 @@ func move(delta: float) -> void:
 
 func _ready() -> void:
 	
+	# Only ever used here
 	var main_hitbox: CollisionShape2D = $MainHitbox
 	var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 

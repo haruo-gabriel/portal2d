@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6fjyuywr5mou"]
+[gd_scene load_steps=6 format=3 uid="uid://c6fjyuywr5mou"]
 
 [ext_resource type="Texture2D" uid="uid://c2s2imqq1vfyt" path="res://Sprites/Terrain/ground.png" id="1_k084f"]
 [ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://Scenes/Player/player.tscn" id="2_rsmok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e83n2"]
-size = Vector2(1515, 131)
+size = Vector2(1515, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ax0lw"]
 size = Vector2(386, 137)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1q85x"]
+size = Vector2(92, 754.5)
 
 [node name="Main" type="Node"]
 
@@ -15,7 +18,7 @@ size = Vector2(386, 137)
 position = Vector2(1356, 745)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
-position = Vector2(-599.5, 127.5)
+position = Vector2(-599.5, 128)
 shape = SubResource("RectangleShape2D_e83n2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Platform"]
@@ -35,5 +38,17 @@ position = Vector2(-50, 101)
 scale = Vector2(1.85, 1.34)
 texture = ExtResource("1_k084f")
 
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(350, 294)
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall"]
+position = Vector2(-303, 150.75)
+scale = Vector2(0.435, 8.105)
+texture = ExtResource("1_k084f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(-304, 123.75)
+shape = SubResource("RectangleShape2D_1q85x")
+
 [node name="Player" parent="." instance=ExtResource("2_rsmok")]
-position = Vector2(897, 803)
+position = Vector2(786, 785)
