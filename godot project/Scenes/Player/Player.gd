@@ -31,6 +31,8 @@ const JUMP_BUFFER_TIME: int = 10
 @onready var main_hitbox: CollisionShape2D = $NormalHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 
+@onready var gun_sprite: Sprite2D = $GunSprite
+
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var direction: float
@@ -38,6 +40,17 @@ var last_jumped: int # Frames since last jump input
 var is_crouching: bool
 
 var sprite_crouching_offset: Vector2 # Is constant and set at start
+
+var angle: float # Player angle with respect to mouse
+
+
+func set_gun_angle() -> void:
+	
+	var difference: Vector2 = get_global_mouse_position() - global_position
+
+	if difference: angle = atan2(difference.y, difference.x)
+
+	gun_sprite.rotation = angle
 
 func set_animation() -> void:
 	"""
@@ -179,6 +192,8 @@ func _ready() -> void:
 
 	sprite_crouching_offset = main_hitbox.shape.get_rect().size - crouched_hitbox.shape.get_rect().size
 
+	angle = 0
+
 func _physics_process(delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
@@ -195,5 +210,7 @@ func _physics_process(delta: float) -> void:
 	set_animation()
 	set_sprite()
 	set_hitbox()
+
+	set_gun_angle()
 
 	move_and_slide()
