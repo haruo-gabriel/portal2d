@@ -35,22 +35,25 @@ const JUMP_BUFFER_TIME: int = 10
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var direction: float
 var last_jumped: int # Frames since last jump input
 var is_crouching: bool
 
 var sprite_crouching_offset: Vector2 # Is constant and set at start
 
-var angle: float # Player angle with respect to mouse
+@onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 
+func set_stats() -> void:
+
+	stats.position = position
+	stats.velocity = velocity
 
 func set_gun_angle() -> void:
 	
 	var difference: Vector2 = get_global_mouse_position() - global_position
 
-	if difference: angle = atan2(difference.y, difference.x)
+	if difference: stats.angle = atan2(difference.y, difference.x)
 
-	gun_sprite.rotation = angle
+	gun_sprite.rotation = stats.angle
 
 func set_animation() -> void:
 	"""
@@ -90,10 +93,10 @@ func set_animation() -> void:
 func set_sprite() -> void:
 	
 	# We don't flip if we aren't moving
-	if not direction: 
+	if not stats.direction: 
 		return
 	
-	sprite.flip_h = direction < 0
+	sprite.flip_h = stats.direction < 0
 
 func set_hitbox() -> void:
 	
@@ -149,10 +152,10 @@ func move_horizontal(_delta: float) -> void:
 
 	# TODO: make this not so ulgy
 
-	if direction:
+	if stats.direction:
 		
 		var step = HORIZONTAL_ACCELERATION
-		var new_speed = direction * WALKING_SPEED
+		var new_speed = stats.direction * WALKING_SPEED
 		
 		# You won't be slowed while on air
 		if is_crouching and is_on_floor():
@@ -164,7 +167,7 @@ func move_horizontal(_delta: float) -> void:
 			
 			# If you're going foward, you won't deaccelerate.
 			# If you wanna go backward, you still can.
-			if sign(velocity.x) == sign(direction):
+			if sign(velocity.x) == sign(stats.direction):
 				new_speed = sign(new_speed) * max(abs(new_speed), abs(velocity.x))
 		
 		velocity.x = move_toward(velocity.x, new_speed, step)	
@@ -183,7 +186,6 @@ func move(delta: float) -> void:
 
 func _ready() -> void:
 	
-	direction = 1
 	last_jumped = 0
 	is_crouching = false
 
@@ -192,11 +194,9 @@ func _ready() -> void:
 
 	sprite_crouching_offset = main_hitbox.shape.get_rect().size - crouched_hitbox.shape.get_rect().size
 
-	angle = 0
-
 func _physics_process(delta: float) -> void:
 
-	direction = Input.get_axis("move_left", "move_right")
+	stats.direction = Input.get_axis("move_left", "move_right")
 	var try_crouch = Input.is_action_pressed("crouch")
 
 	if try_crouch and not is_crouching:
@@ -212,5 +212,7 @@ func _physics_process(delta: float) -> void:
 	set_hitbox()
 
 	set_gun_angle()
+
+	set_stats()
 
 	move_and_slide()
