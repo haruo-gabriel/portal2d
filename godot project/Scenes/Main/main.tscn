@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6fjyuywr5mou"]
 
 [ext_resource type="Texture2D" uid="uid://c2s2imqq1vfyt" path="res://Sprites/Terrain/ground.png" id="1_k084f"]
-[ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://Scenes/player.tscn" id="2_rsmok"]
+[ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://Scenes/Player/player.tscn" id="2_rsmok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e83n2"]
 size = Vector2(1515, 131)
