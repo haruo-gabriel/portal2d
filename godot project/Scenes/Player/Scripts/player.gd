@@ -31,18 +31,23 @@ func toggle_hitbox(to_crouch: bool) -> void:
 	main_hitbox.disabled = to_crouch
 	crouched_hitbox.disabled =  not to_crouch
 
+	stats.is_crouching = to_crouch
+
 func crouch() -> void:
-	stats.is_crouching = true
+	
+	toggle_hitbox(true)
+	
+	if move_and_collide(Vector2.ZERO, true):
+		toggle_hitbox(false)
 
 func uncrouch() -> void:
 
 	toggle_hitbox(false)
 	
 	# We want it to not collide with anything when undoing the hitbox change
-	if move_and_collide(Vector2.ZERO, true):
-		return toggle_hitbox(true)
+	if move_and_collide(Vector2.ZERO, true): 
+		toggle_hitbox(true)
 
-	stats.is_crouching = false
 
 func jump() -> void:
 
