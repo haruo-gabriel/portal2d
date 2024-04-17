@@ -7,12 +7,12 @@ signal jumped
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
-
-@onready var sprite: Sprite2D = $PlayerSprite
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
+@onready var main_hitbox: CollisionShape2D = $MainHitbox
+@onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
+
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
-var sprite_crouching_offset: Vector2 # Is constant and set at start
 
 func set_stats() -> void:
 
@@ -26,19 +26,23 @@ func set_angle() -> void:
 	if difference: 
 		stats.angle = atan2(difference.y, difference.x)
 
+func toggle_hitbox(to_crouch: bool) -> void:
+
+	main_hitbox.disabled = to_crouch
+	crouched_hitbox.disabled =  not to_crouch
+
 func crouch() -> void:
-	
-	stats.is_crouching = true	
-	sprite.offset = sprite_crouching_offset
+	stats.is_crouching = true
 
 func uncrouch() -> void:
+
+	toggle_hitbox(false)
 	
 	# We want it to not collide with anything when undoing the hitbox change
-	if move_and_collide(-sprite_crouching_offset, true) != null:
-		return
-	
+	if move_and_collide(Vector2.ZERO, true):
+		return toggle_hitbox(true)
+
 	stats.is_crouching = false
-	sprite.offset = Vector2.ZERO
 
 func jump() -> void:
 
@@ -97,12 +101,7 @@ func move(delta: float) -> void:
 	velocity.y = clamp(velocity.y, -constants.MAX_Y_SPEED, constants.MAX_Y_SPEED)
 
 func _ready() -> void:
-	
-	# Only ever used here
-	var main_hitbox: CollisionShape2D = $MainHitbox
-	var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
-
-	sprite_crouching_offset = main_hitbox.shape.get_rect().size - crouched_hitbox.shape.get_rect().size
+	pass
 
 func _physics_process(delta: float) -> void:
 
