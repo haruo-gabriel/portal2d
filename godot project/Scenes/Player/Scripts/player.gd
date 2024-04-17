@@ -90,14 +90,6 @@ func set_animation() -> void:
 	else:
 		animation.play("Walk")
 
-func set_sprite() -> void:
-	
-	# We don't flip if we aren't moving
-	if not stats.direction: 
-		return
-	
-	sprite.flip_h = stats.direction < 0
-
 func set_hitbox() -> void:
 	
 	main_hitbox.disabled = is_crouching
@@ -208,7 +200,6 @@ func _physics_process(delta: float) -> void:
 	move(delta)
 
 	set_animation()
-	set_sprite()
 	set_hitbox()
 
 	set_gun_angle()

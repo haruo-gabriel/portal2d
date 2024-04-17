@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=27 format=3 uid="uid://wgnluw24avir"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_u12dx"]
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/player.gd" id="1_isvi5"]
 [ext_resource type="Texture2D" uid="uid://ck8lvvm2eut0b" path="res://Scenes/Player/Sprites/Idle (Crouched)/player_idle(crouched)1.png" id="2_fouop"]
 [ext_resource type="Texture2D" uid="uid://bmsafrsjyyyyk" path="res://Scenes/Player/Sprites/Idle/player_idle1.png" id="2_q7oxd"]
 [ext_resource type="Texture2D" uid="uid://dwv0cckmi725n" path="res://Scenes/Player/Sprites/Idle/player_idle2.png" id="3_0ku4g"]
 [ext_resource type="Texture2D" uid="uid://cfynhk1ysl5od" path="res://Scenes/Player/Sprites/Gun/gun_idle.png" id="3_swsmt"]
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/player_sprite.gd" id="3_ysinc"]
 [ext_resource type="Texture2D" uid="uid://sgothh3kcjwn" path="res://Scenes/Player/Sprites/Idle/player_idle3.png" id="4_paee3"]
 [ext_resource type="Texture2D" uid="uid://k80msixm5poc" path="res://Scenes/Player/Sprites/Jump/player_jump1.png" id="5_ybnh7"]
 [ext_resource type="Texture2D" uid="uid://crc0yduttu2ap" path="res://Scenes/Player/Sprites/Jump/player_jump2.png" id="6_fdadd"]
@@ -133,12 +134,13 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_u12dx")
+script = ExtResource("1_isvi5")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(-0.999999, -102.5)
 scale = Vector2(0.56, 0.51)
 texture = ExtResource("2_fouop")
+script = ExtResource("3_ysinc")
 
 [node name="GunSprite" type="Sprite2D" parent="."]
 position = Vector2(-1.99998, -111)
