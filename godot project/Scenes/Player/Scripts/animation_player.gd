@@ -6,7 +6,7 @@ extends AnimationPlayer
 func _ready() -> void:
 	pass
 
-func _process(_delta: float) -> void:
+func set_animation() -> void:
 
 	# animation.play("Jump") is called in `jump`
 	# adding it here with a `velocity < 0` check would make the 
@@ -37,6 +37,9 @@ func _process(_delta: float) -> void:
 	else:
 		play("Walk")
 
+
+func _process(_delta: float) -> void:
+	pass
 
 func _on_player_jumped() -> void:
 	

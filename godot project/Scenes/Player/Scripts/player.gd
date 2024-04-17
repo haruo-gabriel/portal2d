@@ -29,6 +29,7 @@ const JUMP_BUFFER_TIME: int = 10
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 
 @onready var sprite: Sprite2D = $PlayerSprite
+@onready var animation: AnimationPlayer = $AnimationPlayer
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -62,8 +63,7 @@ func crouch() -> void:
 	main_hitbox.disabled = true
 	crouched_hitbox.disabled = false
 	
-	stats.is_crouching = true
-	
+	stats.is_crouching = true	
 	sprite.offset = sprite_crouching_offset
 
 func uncrouch() -> void:
@@ -169,3 +169,5 @@ func _physics_process(delta: float) -> void:
 	set_stats()
 
 	move_and_slide()
+	
+	animation.set_animation()
