@@ -124,4 +124,4 @@ func _physics_process(delta: float) -> void:
 
 	animation.set_animation()
 
-	move_and_slide()	
+	move_and_slide()
