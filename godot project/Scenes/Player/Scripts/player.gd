@@ -7,10 +7,6 @@ signal jumped
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
-
-@onready var main_hitbox: CollisionShape2D = $MainHitbox
-@onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
-
 @onready var sprite: Sprite2D = $PlayerSprite
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
@@ -28,11 +24,6 @@ func set_angle() -> void:
 
 	if difference: 
 		stats.angle = atan2(difference.y, difference.x)
-
-func set_hitbox() -> void:
-	
-	main_hitbox.disabled = stats.is_crouching
-	crouched_hitbox.disabled = not stats.is_crouching
 
 func crouch() -> void:
 	
@@ -107,6 +98,10 @@ func move(delta: float) -> void:
 	velocity.y = clamp(velocity.y, -constants.MAX_Y_SPEED, constants.MAX_Y_SPEED)
 
 func _ready() -> void:
+	
+	var main_hitbox: CollisionShape2D = $MainHitbox
+	var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
+
 	sprite_crouching_offset = main_hitbox.shape.get_rect().size - crouched_hitbox.shape.get_rect().size
 
 func _physics_process(delta: float) -> void:
@@ -124,7 +119,6 @@ func _physics_process(delta: float) -> void:
 
 	move(delta)
 
-	set_hitbox()
 	set_angle()
 	set_stats()
 
