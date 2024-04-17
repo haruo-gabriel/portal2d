@@ -33,21 +33,13 @@ func toggle_hitbox(to_crouch: bool) -> void:
 
 	stats.is_crouching = to_crouch
 
-func crouch() -> void:
-	
-	toggle_hitbox(true)
-	
+func toggle_crouch(to_crouch: bool) -> void:
+
+	toggle_hitbox(to_crouch)
+
+	# We want it to not collide with anything after changin the hitbox
 	if move_and_collide(Vector2.ZERO, true):
-		toggle_hitbox(false)
-
-func uncrouch() -> void:
-
-	toggle_hitbox(false)
-	
-	# We want it to not collide with anything when undoing the hitbox change
-	if move_and_collide(Vector2.ZERO, true): 
-		toggle_hitbox(true)
-
+		toggle_hitbox(not to_crouch)
 
 func jump() -> void:
 
@@ -116,10 +108,10 @@ func _physics_process(delta: float) -> void:
 	var try_crouch = Input.is_action_pressed("crouch")
 
 	if try_crouch and not stats.is_crouching:
-		crouch()
+		toggle_crouch(true)
 	
 	if not try_crouch and stats.is_crouching:
-		uncrouch()
+		toggle_crouch(false)
 
 	move(delta)
 
