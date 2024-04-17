@@ -11,3 +11,5 @@ var angle: float = 0.0
 
 var is_crouching: bool = false
 var is_on_floor: bool = false # Initial value does not matter
+
+var last_jumped: int = 0 # Frames since last jump input

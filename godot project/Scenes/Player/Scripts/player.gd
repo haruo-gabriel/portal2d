@@ -15,8 +15,6 @@ signal jumped
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var sprite_crouching_offset: Vector2 # Is constant and set at start
 
-var last_jumped: int = 0 # Frames since last jump input
-
 func set_stats() -> void:
 
 	stats.position = position
@@ -66,17 +64,16 @@ func jump() -> void:
 func move_vertical(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump"):
-		last_jumped = constants.JUMP_BUFFER_TIME
+		stats.last_jumped = constants.JUMP_BUFFER_TIME
 
-	if last_jumped and is_on_floor():
-		last_jumped = 0
+	if stats.last_jumped and is_on_floor():
+		stats.last_jumped = 0
 		jump()
 
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	if last_jumped > 0:
-		last_jumped -= 1
+	stats.last_jumped = max(0, stats.last_jumped - 1)
 
 func move_horizontal(_delta: float) -> void:
 
@@ -109,10 +106,9 @@ func move(delta: float) -> void:
 	
 	move_horizontal(delta)
 	move_vertical(delta)
-	
-	# Ensures velocity is within bounds
-	velocity.x = max(-constants.MAX_X_SPEED, min(constants.MAX_X_SPEED, velocity.x))
-	velocity.y = max(-constants.MAX_Y_SPEED, min(constants.MAX_Y_SPEED, velocity.y))
+
+	velocity.x = clamp(velocity.x, -constants.MAX_X_SPEED, constants.MAX_X_SPEED)
+	velocity.y = clamp(velocity.y, -constants.MAX_Y_SPEED, constants.MAX_Y_SPEED)
 
 func _ready() -> void:
 	
