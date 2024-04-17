@@ -1,4 +1,5 @@
 
+class_name Player
 extends CharacterBody2D
 
 signal jumped
@@ -84,7 +85,7 @@ func move_horizontal(_delta: float) -> void:
 			if sign(velocity.x) == sign(stats.direction):
 				new_speed = sign(new_speed) * max(abs(new_speed), abs(velocity.x))
 		
-		velocity.x = move_toward(velocity.x, new_speed, step)	
+		velocity.x = move_toward(velocity.x, new_speed, step)
 
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, constants.GROUND_DRAG)

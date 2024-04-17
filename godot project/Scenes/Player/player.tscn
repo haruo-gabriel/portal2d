@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=35 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/player.gd" id="1_isvi5"]
 [ext_resource type="Texture2D" uid="uid://ck8lvvm2eut0b" path="res://Scenes/Player/Sprites/Idle (Crouched)/player_idle(crouched)1.png" id="2_fouop"]
@@ -23,6 +23,8 @@
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/animation_player.gd" id="19_33oij"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/ray_cast.gd" id="22_728ld"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/FiniteStateMachine/state_machine.gd" id="23_3uh3y"]
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/FiniteStateMachine/States/idle.gd" id="24_wit4e"]
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/FiniteStateMachine/States/walking.gd" id="25_brkpg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbok6"]
 size = Vector2(112.5, 204)
@@ -176,7 +178,14 @@ exclude_parent = false
 target_position = Vector2(-168, -8)
 script = ExtResource("22_728ld")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("23_3uh3y")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("24_wit4e")
+
+[node name="Walking" type="Node" parent="StateMachine"]
+script = ExtResource("25_brkpg")
 
 [connection signal="jumped" from="." to="AnimationPlayer" method="_on_player_jumped"]
