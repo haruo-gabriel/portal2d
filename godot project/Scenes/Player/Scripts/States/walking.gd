@@ -1,6 +1,6 @@
 
 class_name Walking
-extends State
+extends PlayerState
 
 func enter() -> void:
 	animation.play("Walk")

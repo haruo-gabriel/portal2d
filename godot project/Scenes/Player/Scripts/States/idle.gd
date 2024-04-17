@@ -1,6 +1,6 @@
 
 class_name Idle
-extends State
+extends PlayerState
 
 func enter() -> void:
 	animation.play("Idle")

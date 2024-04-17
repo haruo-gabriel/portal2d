@@ -1,8 +1,6 @@
 
-class_name State
-extends Node
-
-signal transitioned(state: State, new_state_name: String)
+class_name PlayerState
+extends State
 
 @onready var player: CharacterBody2D = get_parent().get_parent()
 @onready var animation: AnimationPlayer = player.get_node("AnimationPlayer")

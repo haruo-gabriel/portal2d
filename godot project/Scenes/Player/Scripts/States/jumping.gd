@@ -1,6 +1,6 @@
 
 class_name Jumping
-extends State
+extends PlayerState
 
 func enter() -> void:
 

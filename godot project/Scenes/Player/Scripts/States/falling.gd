@@ -1,6 +1,6 @@
 
 class_name Falling
-extends State
+extends PlayerState
 
 func enter() -> void:
 	
