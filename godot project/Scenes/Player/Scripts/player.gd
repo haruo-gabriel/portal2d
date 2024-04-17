@@ -43,7 +43,6 @@ func uncrouch() -> void:
 func jump() -> void:
 
 	velocity.y = constants.JUMP_VELOCITY
-
 	velocity.x *= constants.BHOP_MULTIPLIER
 
 	jumped.emit()
@@ -123,6 +122,6 @@ func _physics_process(delta: float) -> void:
 	set_angle()
 	set_stats()
 
-	move_and_slide()
-	
 	animation.set_animation()
+
+	move_and_slide()	
