@@ -8,5 +8,4 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	
-	if player_stats.direction:
-		flip_h = player_stats.direction < 0
+	rotation = player_stats.angle

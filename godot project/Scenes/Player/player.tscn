@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=28 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/player.gd" id="1_isvi5"]
 [ext_resource type="Texture2D" uid="uid://ck8lvvm2eut0b" path="res://Scenes/Player/Sprites/Idle (Crouched)/player_idle(crouched)1.png" id="2_fouop"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cfynhk1ysl5od" path="res://Scenes/Player/Sprites/Gun/gun_idle.png" id="3_swsmt"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/player_sprite.gd" id="3_ysinc"]
 [ext_resource type="Texture2D" uid="uid://sgothh3kcjwn" path="res://Scenes/Player/Sprites/Idle/player_idle3.png" id="4_paee3"]
+[ext_resource type="Script" path="res://Scenes/Player/gun_sprite.gd" id="5_u1p7v"]
 [ext_resource type="Texture2D" uid="uid://k80msixm5poc" path="res://Scenes/Player/Sprites/Jump/player_jump1.png" id="5_ybnh7"]
 [ext_resource type="Texture2D" uid="uid://crc0yduttu2ap" path="res://Scenes/Player/Sprites/Jump/player_jump2.png" id="6_fdadd"]
 [ext_resource type="Texture2D" uid="uid://bqkl7mcyv4oii" path="res://Scenes/Player/Sprites/Jump/player_jump3.png" id="7_s2f2m"]
@@ -146,6 +147,7 @@ script = ExtResource("3_ysinc")
 position = Vector2(-1.99998, -111)
 scale = Vector2(0.825, 0.74)
 texture = ExtResource("3_swsmt")
+script = ExtResource("5_u1p7v")
 
 [node name="NormalHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.250031, -102.5)

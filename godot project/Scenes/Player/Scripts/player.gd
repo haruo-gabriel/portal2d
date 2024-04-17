@@ -51,9 +51,9 @@ func set_gun_angle() -> void:
 	
 	var difference: Vector2 = get_global_mouse_position() - global_position
 
-	if difference: stats.angle = atan2(difference.y, difference.x)
+	if difference: 
+		stats.angle = atan2(difference.y, difference.x)
 
-	gun_sprite.rotation = stats.angle
 
 func set_animation() -> void:
 	"""
