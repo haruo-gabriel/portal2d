@@ -3,8 +3,10 @@ extends CharacterBody2D
 
 signal jumped
 
+
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
+
 
 @onready var main_hitbox: CollisionShape2D = $MainHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
@@ -105,7 +107,6 @@ func move(delta: float) -> void:
 	velocity.y = clamp(velocity.y, -constants.MAX_Y_SPEED, constants.MAX_Y_SPEED)
 
 func _ready() -> void:
-
 	sprite_crouching_offset = main_hitbox.shape.get_rect().size - crouched_hitbox.shape.get_rect().size
 
 func _physics_process(delta: float) -> void:
