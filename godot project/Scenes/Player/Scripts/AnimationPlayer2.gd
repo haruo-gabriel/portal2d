@@ -6,7 +6,7 @@ extends AnimationPlayer
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if player_stats.velocity.x and player_stats.is_on_floor: play("Walk (Crouched)")
 	else: play("Idle (Crouched)")
