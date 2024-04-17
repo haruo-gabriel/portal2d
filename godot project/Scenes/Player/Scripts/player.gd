@@ -1,6 +1,8 @@
 
 extends CharacterBody2D
 
+signal jumped
+
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
@@ -11,12 +13,9 @@ extends CharacterBody2D
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-var last_jumped: int # Frames since last jump input
-
 var sprite_crouching_offset: Vector2 # Is constant and set at start
 
-signal jumped
+var last_jumped: int = 0 # Frames since last jump input
 
 func set_stats() -> void:
 
@@ -116,8 +115,6 @@ func move(delta: float) -> void:
 	velocity.y = max(-constants.MAX_Y_SPEED, min(constants.MAX_Y_SPEED, velocity.y))
 
 func _ready() -> void:
-	
-	last_jumped = 0
 	
 	main_hitbox.disabled = false
 	crouched_hitbox.disabled = true
