@@ -103,8 +103,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 
 	stats.is_on_floor = is_on_floor()
-
 	stats.direction = Input.get_axis("move_left", "move_right")
+
 	var try_crouch = Input.is_action_pressed("crouch")
 
 	if try_crouch and not stats.is_crouching:
