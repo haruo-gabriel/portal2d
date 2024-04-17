@@ -148,7 +148,7 @@ texture = ExtResource("2_fouop")
 script = ExtResource("3_ysinc")
 
 [node name="GunSprite" type="Sprite2D" parent="."]
-position = Vector2(-1.99998, -111)
+position = Vector2(0, -111)
 scale = Vector2(0.825, 0.74)
 texture = ExtResource("3_swsmt")
 script = ExtResource("5_1wtye")

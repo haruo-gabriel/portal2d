@@ -21,7 +21,7 @@ func set_stats() -> void:
 
 func set_angle() -> void:
 	
-	var difference: Vector2 = get_global_mouse_position() - global_position
+	var difference: Vector2 = get_global_mouse_position() - (global_position + constants.PLAYER_CENTER)
 
 	if difference: 
 		stats.angle = atan2(difference.y, difference.x)
