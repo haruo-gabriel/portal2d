@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=32 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/player.gd" id="1_isvi5"]
 [ext_resource type="Texture2D" uid="uid://ck8lvvm2eut0b" path="res://Scenes/Player/Sprites/Idle (Crouched)/player_idle(crouched)1.png" id="2_fouop"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cbfyf2aojv6xq" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)2.png" id="14_k85mr"]
 [ext_resource type="Texture2D" uid="uid://fbsofodhxh1" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)3.png" id="15_vi87d"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/animation_player.gd" id="19_33oij"]
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/ray_cast.gd" id="22_728ld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbok6"]
 size = Vector2(112.5, 204)
@@ -167,5 +168,11 @@ libraries = {
 "": SubResource("AnimationLibrary_auc0t")
 }
 script = ExtResource("19_33oij")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(3, -108)
+exclude_parent = false
+target_position = Vector2(-168, -8)
+script = ExtResource("22_728ld")
 
 [connection signal="jumped" from="." to="AnimationPlayer" method="_on_player_jumped"]
