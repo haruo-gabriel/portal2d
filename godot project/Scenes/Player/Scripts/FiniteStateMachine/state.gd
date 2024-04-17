@@ -27,6 +27,10 @@ func physics_update(delta: float) -> void:
 		transitioned.emit(self, "jumping")
 		return
 
+	if not player_stats.is_falling and player_stats.velocity.y < 0:
+		transitioned.emit(self, "falling")
+		return
+
 	if not player_stats.velocity.x and player_stats.is_on_floor:
 		transitioned.emit(self, "idle")
 		return
