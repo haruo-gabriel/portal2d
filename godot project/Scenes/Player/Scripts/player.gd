@@ -50,6 +50,9 @@ func move() -> void:
 	velocity.x = clamp(velocity.x, -constants.MAX_X_SPEED, constants.MAX_X_SPEED)
 	velocity.y = clamp(velocity.y, -constants.MAX_Y_SPEED, constants.MAX_Y_SPEED)
 
+	position = stats.position
+	velocity = stats.velocity
+
 	move_and_slide()
 
 	stats.position = position

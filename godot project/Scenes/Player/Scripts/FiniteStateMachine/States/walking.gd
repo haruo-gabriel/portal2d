@@ -14,6 +14,9 @@ func physics_update(delta: float) -> void:
 		var step = constants.HORIZONTAL_ACCELERATION
 		var new_speed = player_stats.direction * constants.WALKING_SPEED
 		
+		if player_stats.is_crouching:
+			new_speed *= constants.CROUCH_SPEED_MULTIPLIER
+		
 		player_stats.velocity.x = move_toward(player_stats.velocity.x, new_speed, step)
 
 	else:
