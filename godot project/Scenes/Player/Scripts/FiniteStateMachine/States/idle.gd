@@ -6,9 +6,9 @@ func enter() -> void:
 	animation.play("Idle")
 
 func physics_update(delta: float) -> void:
-
+	
 	if player_stats.direction:
 		transitioned.emit(self, "walking")
+		return 
 
-	if player_stats.jumped:
-		transitioned.emit(self, "jumping")
+	super(delta)

@@ -2,8 +2,6 @@
 class_name Player
 extends CharacterBody2D
 
-signal jumped
-
 
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
@@ -12,8 +10,6 @@ signal jumped
 
 @onready var main_hitbox: CollisionShape2D = $MainHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
-
-var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func set_stats() -> void:
 
@@ -42,27 +38,17 @@ func toggle_crouch(to_crouch: bool) -> void:
 	if move_and_collide(Vector2.ZERO, true):
 		toggle_hitbox(not to_crouch)
 
-func jump() -> void:
-
-	velocity.y = constants.JUMP_VELOCITY
-	velocity.x *= constants.BHOP_MULTIPLIER
-
-	jumped.emit()
-	stats.jumped = true
 
 func move_vertical(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump"):
 		stats.last_jumped = constants.JUMP_BUFFER_TIME
 
-	if stats.last_jumped and is_on_floor():
+	if stats.last_jumped and stats.is_on_floor:
 		stats.last_jumped = 0
-		jump()
+		stats.jumped = true
 	else:
 		stats.jumped = false
-
-	if not is_on_floor():
-		velocity.y += gravity * delta
 
 	stats.last_jumped = max(0, stats.last_jumped - 1)
 
@@ -119,6 +105,7 @@ func _physics_process(delta: float) -> void:
 	if not try_crouch and stats.is_crouching:
 		toggle_crouch(false)
 
+	move_vertical(delta)
 	# move(delta)
 
 	set_angle()

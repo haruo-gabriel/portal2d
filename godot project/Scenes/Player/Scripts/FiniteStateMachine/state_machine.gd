@@ -30,6 +30,7 @@ func _physics_process(delta: float) -> void:
 func _on_child_transitioned(state: State, new_state_name: String) -> void:
 
 	if state != current_state:
+		print(state, " ", current_state, " ", new_state_name)
 		return print("Invalid Caller, must be the same as current")
 
 	if new_state_name.to_lower() not in states:

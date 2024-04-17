@@ -2,12 +2,11 @@
 class_name Walking
 extends State
 
-@onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
-
 func enter() -> void:
 	animation.play("Walk")
 
 func physics_update(delta: float) -> void:
+	
 	super(delta)
 
 	if player_stats.direction:

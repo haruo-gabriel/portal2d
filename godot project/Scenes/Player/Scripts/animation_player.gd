@@ -40,8 +40,3 @@ func set_animation() -> void:
 
 func _process(_delta: float) -> void:
 	pass
-
-func _on_player_jumped() -> void:
-	
-	if not player_stats.is_crouching:
-		play("Jump")
