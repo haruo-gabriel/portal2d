@@ -222,7 +222,7 @@ libraries = {
 }
 script = ExtResource("19_33oij")
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerCrouching" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_l13df")
 }

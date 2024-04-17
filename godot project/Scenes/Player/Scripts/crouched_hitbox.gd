@@ -7,4 +7,4 @@ func _ready() -> void:
 	disabled = true
 
 func _process(_delta: float) -> void:
-	disabled = not player_stats.is_crouching
+	pass

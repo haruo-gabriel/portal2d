@@ -5,8 +5,6 @@ extends CharacterBody2D
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
-@onready var animation: AnimationPlayer = $AnimationPlayer
-
 @onready var main_hitbox: CollisionShape2D = $MainHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 
@@ -36,7 +34,7 @@ func toggle_crouch(to_crouch: bool) -> void:
 	# We want it to not collide with anything after changin the hitbox
 	if move_and_collide(Vector2.ZERO, true):
 		toggle_hitbox(not to_crouch)
-		return
+
 
 func move_vertical(delta: float) -> void:
 	
@@ -109,8 +107,6 @@ func _physics_process(delta: float) -> void:
 
 	set_angle()
 	set_stats()
-
-	# animation.set_animation()
 
 	move_and_slide()
 
