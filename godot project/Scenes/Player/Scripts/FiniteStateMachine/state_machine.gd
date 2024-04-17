@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 		current_state.update(delta)
 
 func _physics_process(delta: float) -> void:
-	
+
 	if current_state != null:
 		current_state.physics_update(delta)
 

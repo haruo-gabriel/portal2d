@@ -17,8 +17,8 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func set_stats() -> void:
 
-	stats.position = position
-	stats.velocity = velocity
+	position = stats.position
+	velocity = stats.velocity
 
 func set_angle() -> void:
 	
@@ -48,6 +48,7 @@ func jump() -> void:
 	velocity.x *= constants.BHOP_MULTIPLIER
 
 	jumped.emit()
+	stats.jumped = true
 
 func move_vertical(delta: float) -> void:
 	
@@ -57,6 +58,8 @@ func move_vertical(delta: float) -> void:
 	if stats.last_jumped and is_on_floor():
 		stats.last_jumped = 0
 		jump()
+	else:
+		stats.jumped = false
 
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -99,7 +102,9 @@ func move(delta: float) -> void:
 	velocity.y = clamp(velocity.y, -constants.MAX_Y_SPEED, constants.MAX_Y_SPEED)
 
 func _ready() -> void:
-	pass
+	
+	stats.position = position
+	stats.velocity = velocity
 
 func _physics_process(delta: float) -> void:
 
@@ -114,11 +119,14 @@ func _physics_process(delta: float) -> void:
 	if not try_crouch and stats.is_crouching:
 		toggle_crouch(false)
 
-	move(delta)
+	# move(delta)
 
 	set_angle()
 	set_stats()
 
-	animation.set_animation()
+	# animation.set_animation()
 
 	move_and_slide()
+
+	stats.position = position
+	stats.velocity = velocity
