@@ -6,12 +6,5 @@ extends RayCast2D
 func _ready() -> void:
 	pass
 
-func _draw():
-
-	draw_circle(global_position, 100, Color.RED)
-
 func _process(_delta: float) -> void:
-
-	print(is_colliding())
-
-	target_position = Vector2(-100, 0)
+	target_position = 1000 * Vector2(cos(player_stats.angle), sin(player_stats.angle))
