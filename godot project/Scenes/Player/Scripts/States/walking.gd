@@ -4,10 +4,15 @@ extends PlayerState
 
 func enter() -> void:
 	animation.play("Walk")
+	player_stats.velocity += Vector2(.001, 0)
 
 func physics_update(delta: float) -> void:
 	
-	super(delta)
+	var new_state: String = check_basic_change()
+	
+	if new_state != "" and new_state != "walking":
+		transitioned.emit(self, new_state)
+		return
 
 	if player_stats.direction:
 

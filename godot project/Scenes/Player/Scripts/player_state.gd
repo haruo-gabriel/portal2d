@@ -10,6 +10,22 @@ extends State
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func check_basic_change() -> String:
+	
+	if player_stats.jumped:
+		return "jumping"
+	
+	if not player_stats.velocity.x and player_stats.is_on_floor:
+		return "idle"
+	
+	if player_stats.velocity.x and player_stats.is_on_floor:
+		return "walking"
+	
+	if player_stats.velocity.y < 0: # If current state is "falling", this should be ignored
+		return "falling"
+	
+	return ""
+
 func enter() -> void:
 	pass
 
@@ -20,22 +36,4 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-
-	if player_stats.jumped:
-		transitioned.emit(self, "jumping")
-		return
-
-	if not player_stats.is_falling and player_stats.velocity.y < 0:
-		transitioned.emit(self, "falling")
-		return
-
-	if not player_stats.velocity.x and player_stats.is_on_floor:
-		transitioned.emit(self, "idle")
-		return
-	
-	if not player_stats.is_on_floor:
-		player_stats.velocity.y += gravity * delta
-
-	else:
-		if player_stats.velocity.x: transitioned.emit(self, "walking")
-		else: transitioned.emit(self, "idle")
+	pass
