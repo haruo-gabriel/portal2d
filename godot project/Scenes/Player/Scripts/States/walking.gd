@@ -8,10 +8,7 @@ func enter() -> void:
 
 func physics_update(delta: float) -> void:
 	
-	var new_state: String = check_basic_change()
-	
-	if new_state != "" and new_state != "walking":
-		transitioned.emit(self, new_state)
+	if try_basic_change():
 		return
 
 	if player_stats.direction:

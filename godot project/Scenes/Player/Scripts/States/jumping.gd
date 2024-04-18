@@ -21,10 +21,7 @@ func enter() -> void:
 
 func physics_update(delta: float) -> void:
 	
-	var new_state: String = check_basic_change()
-	
-	if new_state != "":
-		transitioned.emit(self, new_state)
+	if try_basic_change():
 		return
 	
 	player_stats.velocity.y += gravity * delta

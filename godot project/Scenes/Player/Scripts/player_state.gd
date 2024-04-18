@@ -26,6 +26,17 @@ func check_basic_change() -> String:
 	
 	return ""
 
+func try_basic_change() -> bool:
+	
+	var new_state: String = check_basic_change()
+
+	if new_state == "" or new_state.to_lower() == self.name.to_lower():
+		return false
+
+	transitioned.emit(self, new_state)
+
+	return true
+
 func enter() -> void:
 	pass
 
