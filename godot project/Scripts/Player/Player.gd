@@ -1,4 +1,3 @@
-
 extends CharacterBody2D
 
 const WALKING_SPEED: float = 300.0
@@ -41,7 +40,7 @@ var sprite_crouching_offset: Vector2 # Is constant and set at start
 
 func set_animation() -> void:
 	"""
-	Sets the animation for the player, according to it's 
+	Sets the animation for the player, according to it's
 	direction and vertical speed.
 	"""
 	
@@ -77,7 +76,7 @@ func set_animation() -> void:
 func set_sprite() -> void:
 	
 	# We don't flip if we aren't moving
-	if not direction: 
+	if not direction:
 		return
 	
 	sprite.flip_h = direction < 0
@@ -99,7 +98,7 @@ func crouch() -> void:
 func uncrouch() -> void:
 	
 	# We want it to not collide with anything when undoing the hitbox change
-	if move_and_collide(-sprite_crouching_offset, true) != null:
+	if move_and_collide( - sprite_crouching_offset, true) != null:
 		return
 	
 	main_hitbox.disabled = false
@@ -154,7 +153,7 @@ func move_horizontal(_delta: float) -> void:
 			if sign(velocity.x) == sign(direction):
 				new_speed = sign(new_speed) * max(abs(new_speed), abs(velocity.x))
 		
-		velocity.x = move_toward(velocity.x, new_speed, step)	
+		velocity.x = move_toward(velocity.x, new_speed, step)
 
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, GROUND_DRAG)
@@ -165,11 +164,11 @@ func move(delta: float) -> void:
 	move_vertical(delta)
 	
 	# Ensures velocity is within bounds
-	velocity.x = max(-MAX_X_SPEED, min(MAX_X_SPEED, velocity.x))
-	velocity.y = max(-MAX_Y_SPEED, min(MAX_Y_SPEED, velocity.y))
+	velocity.x = max( - MAX_X_SPEED, min(MAX_X_SPEED, velocity.x))
+	velocity.y = max( - MAX_Y_SPEED, min(MAX_Y_SPEED, velocity.y))
 
 func _ready() -> void:
-	
+
 	direction = 1
 	last_jumped = 0
 	is_crouching = false
