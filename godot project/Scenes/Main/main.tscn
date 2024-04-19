@@ -1,18 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6fjyuywr5mou"]
+[gd_scene load_steps=9 format=3 uid="uid://c6fjyuywr5mou"]
 
 [ext_resource type="Texture2D" uid="uid://c2s2imqq1vfyt" path="res://Sprites/Terrain/ground.png" id="1_k084f"]
+[ext_resource type="Texture2D" path="res://TileMap/TileSheet/tilesheet.png" id="1_quhuf"]
 [ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://Scenes/Player/player.tscn" id="2_rsmok"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xn803"]
+texture = ExtResource("1_quhuf")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_7teep"]
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+sources/0 = SubResource("TileSetAtlasSource_xn803")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e83n2"]
 size = Vector2(1515, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ax0lw"]
-size = Vector2(386, 137)
+size = Vector2(574.75, 137)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1q85x"]
 size = Vector2(92, 754.5)
 
 [node name="Main" type="Node"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_7teep")
+format = 2
 
 [node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2(1356, 745)
@@ -27,15 +47,15 @@ scale = Vector2(7.62, 1.34)
 texture = ExtResource("1_k084f")
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
-position = Vector2(1201, 479)
+position = Vector2(1215, 463)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
-position = Vector2(-47.75, 100)
+position = Vector2(46.625, 100)
 shape = SubResource("RectangleShape2D_ax0lw")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ceiling"]
-position = Vector2(-50, 101)
-scale = Vector2(1.85, 1.34)
+position = Vector2(48.5, 101)
+scale = Vector2(2.835, 1.34)
 texture = ExtResource("1_k084f")
 
 [node name="Wall" type="StaticBody2D" parent="."]

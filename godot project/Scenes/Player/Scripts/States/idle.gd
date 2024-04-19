@@ -5,7 +5,7 @@ extends PlayerState
 func enter() -> void:
 	animation.play("Idle")
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 
 	if try_basic_change():
 		return

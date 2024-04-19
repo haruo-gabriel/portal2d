@@ -6,7 +6,7 @@ func enter() -> void:
 	animation.play("Walk")
 	player_stats.velocity += Vector2(.001, 0)
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	
 	if try_basic_change():
 		return
