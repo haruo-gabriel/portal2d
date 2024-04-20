@@ -6,10 +6,13 @@ func enter() -> void:
 	animation.play("Walk")
 	player_stats.velocity += Vector2(.001, 0)
 
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
 	
 	if try_basic_change():
 		return
+
+	if not player_stats.is_on_floor:
+		player_stats.velocity.y += delta * gravity
 
 	if player_stats.direction:
 

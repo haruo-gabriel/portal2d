@@ -12,6 +12,8 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func check_basic_change() -> String:
 	
+	print(player_stats.is_on_floor, player.velocity)
+	
 	if player_stats.jumped:
 		return "jumping"
 	
@@ -21,7 +23,7 @@ func check_basic_change() -> String:
 	if player_stats.velocity.x and player_stats.is_on_floor:
 		return "walking"
 	
-	if player_stats.velocity.y < 0: # If current state is "falling", this should be ignored
+	if not player_stats.is_on_floor and player_stats.velocity.y >= 0: # If current state is "falling", this should be ignored
 		return "falling"
 	
 	return ""
