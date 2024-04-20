@@ -9,7 +9,6 @@ extends CharacterBody2D
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 
 @onready var raycast: RayCast2D = $RayCast2D
-
 @onready var tile_map: TileMap = get_parent().get_node("TileMap")
 
 const TILE_SIZE: float = 64.0
@@ -34,7 +33,7 @@ func shoot() -> void:
 	var coords: Vector2i = get_coords()
 	var tile: TileData = tile_map.get_cell_tile_data(0, coords)
 
-	print(tile.get_custom_data("CanPortal"))
+	var can_portal: bool = tile.get_custom_data("CanPortal")
 	
 func set_angle() -> void:
 	
