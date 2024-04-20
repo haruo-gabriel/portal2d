@@ -189,6 +189,9 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_isvi5")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -111)
+
 [node name="MainSprite" type="Sprite2D" parent="."]
 position = Vector2(-0.999999, -102.5)
 scale = Vector2(0.56, 0.51)
