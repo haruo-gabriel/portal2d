@@ -22,6 +22,8 @@ func get_coords() -> Vector2i:
 	if hit == null or normal == null:
 		return Vector2i(-999, -999)
 	
+	hit -= tile_map.position
+	
 	var x: int = floor((hit.x - TILE_SIZE * normal.x / 2.0) / TILE_SIZE)
 	var y: int = floor((hit.y - TILE_SIZE * normal.y / 2.0) / TILE_SIZE)
 
@@ -32,6 +34,7 @@ func shoot() -> void:
 	var coord: Vector2i = get_coords()
 
 	print(coord)
+	
 func set_angle() -> void:
 	
 	var difference: Vector2 = get_global_mouse_position() - (global_position + constants.PLAYER_CENTER)
