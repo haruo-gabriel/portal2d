@@ -63,7 +63,7 @@ func _ready() -> void:
 	stats.position = position
 	stats.velocity = velocity
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 
 	stats.is_on_floor = is_on_floor()
 	stats.direction = Input.get_axis("move_left", "move_right")
@@ -77,4 +77,6 @@ func _physics_process(_delta: float) -> void:
 		toggle_crouch(false)
 
 	set_angle()
+
+func _physics_process(_delta: float) -> void:
 	move()
