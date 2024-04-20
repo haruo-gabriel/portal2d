@@ -31,9 +31,10 @@ func get_coords() -> Vector2i:
 
 func shoot() -> void:
 	
-	var coord: Vector2i = get_coords()
+	var coords: Vector2i = get_coords()
+	var tile: TileData = tile_map.get_cell_tile_data(0, coords)
 
-	print(coord)
+	print(tile.get_custom_data("CanPortal"))
 	
 func set_angle() -> void:
 	
