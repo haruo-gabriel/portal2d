@@ -8,6 +8,30 @@ extends CharacterBody2D
 @onready var main_hitbox: CollisionShape2D = $MainHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 
+@onready var raycast: RayCast2D = $RayCast2D
+
+@onready var tile_map: TileMap = get_parent().get_node("TileMap")
+
+const TILE_SIZE: float = 64.0
+
+func get_coords() -> Vector2i:
+	
+	var hit: Vector2 = raycast.get_collision_point()
+	var normal: Vector2 = raycast.get_collision_normal()
+	
+	if hit == null or normal == null:
+		return Vector2i(-999, -999)
+	
+	var x: int = floor((hit.x - TILE_SIZE * normal.x / 2.0) / TILE_SIZE)
+	var y: int = floor((hit.y - TILE_SIZE * normal.y / 2.0) / TILE_SIZE)
+
+	return Vector2i(x, y)
+
+func shoot() -> void:
+	
+	var coord: Vector2i = get_coords()
+
+	print(coord)
 func set_angle() -> void:
 	
 	var difference: Vector2 = get_global_mouse_position() - (global_position + constants.PLAYER_CENTER)
@@ -75,6 +99,9 @@ func _process(_delta: float) -> void:
 	
 	if not try_crouch and stats.is_crouching:
 		toggle_crouch(false)
+
+	if Input.is_action_just_pressed("shoot_portal1"):
+		shoot()
 
 	set_angle()
 
