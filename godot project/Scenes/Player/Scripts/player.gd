@@ -23,8 +23,11 @@ func get_coords() -> Vector2i:
 	
 	hit -= tile_map.position
 	
-	var x: int = floor((hit.x - TILE_SIZE * normal.x / 2.0) / TILE_SIZE)
-	var y: int = floor((hit.y - TILE_SIZE * normal.y / 2.0) / TILE_SIZE)
+	if abs(normal.x) > .9 or 1: hit.x -= TILE_SIZE * normal.x / 2.0
+	if abs(normal.y) > .9 or 1: hit.y -= TILE_SIZE * normal.y / 2.0
+	
+	var x: int = floor(hit.x / TILE_SIZE)
+	var y: int = floor(hit.y / TILE_SIZE)
 
 	return Vector2i(x, y)
 
@@ -32,6 +35,8 @@ func shoot() -> void:
 	
 	var coords: Vector2i = get_coords()
 	var tile: TileData = tile_map.get_cell_tile_data(0, coords)
+
+	print(coords)
 
 	var can_portal: bool = tile.get_custom_data("CanPortal")
 	
