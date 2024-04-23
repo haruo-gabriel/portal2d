@@ -8,6 +8,8 @@ extends State
 @onready var player_stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
+@onready var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
+
 func check_basic_change() -> String:
 	
 	if player_stats.jumped:

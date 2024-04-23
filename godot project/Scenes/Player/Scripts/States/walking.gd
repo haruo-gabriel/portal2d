@@ -12,7 +12,7 @@ func physics_update(delta: float) -> void:
 		return
 
 	if not player_stats.is_on_floor:
-		player_stats.velocity.y += delta * gravity
+		player_stats.velocity.y += delta * game_constants.GRAVITY
 
 	if player_stats.direction:
 
