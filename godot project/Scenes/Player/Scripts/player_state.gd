@@ -8,8 +8,6 @@ extends State
 @onready var player_stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
-var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 func check_basic_change() -> String:
 	
 	if player_stats.jumped:
