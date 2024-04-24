@@ -11,10 +11,10 @@ extends CharacterBody2D
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var tile_map: TileMap = get_parent().get_node("TileMap")
 
-const TILE_SIZE: float = 64.0
+@onready var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
 
-func get_coords() -> Vector2i:
-	
+func shoot() -> void:
+
 	var hit: Vector2 = raycast.get_collision_point()
 	var normal: Vector2 = raycast.get_collision_normal()
 	
@@ -23,20 +23,12 @@ func get_coords() -> Vector2i:
 	
 	hit -= tile_map.position
 	
-	if abs(normal.x) > .9: hit.x -= TILE_SIZE * normal.x / 2.0
-	if abs(normal.y) > .9: hit.y -= TILE_SIZE * normal.y / 2.0
+	if abs(normal.x) > .9: hit.x -= game_constants.TILE_SIZE * normal.x / 2.0
+	if abs(normal.y) > .9: hit.y -= game_constants.TILE_SIZE * normal.y / 2.0
 	
-	var x: int = floor(hit.x / TILE_SIZE)
-	var y: int = floor(hit.y / TILE_SIZE)
-
-	return Vector2i(x, y)
-
-func shoot() -> void:
+	var x: int = floor(hit.x / game_constants.TILE_SIZE)
+	var y: int = floor(hit.y / game_constants.TILE_SIZE)
 	
-	var coords: Vector2i = get_coords()
-	var tile: TileData = tile_map.get_cell_tile_data(0, coords)
-
-	var can_portal: bool = tile.get_custom_data("CanPortal")
 	
 func set_angle() -> void:
 	
