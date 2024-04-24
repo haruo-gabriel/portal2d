@@ -15,10 +15,10 @@ extends CharacterBody2D
 
 @onready var SPACE_STATE: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 
-func linear_space(start: Vector2, end: Vector2, count: int) -> Array:
+func linear_space(start: Variant, end: Variant, count: int) -> Array:
 
 	var result: Array = Array()
-	var diff: Vector2 = (end - start) / (count - 1)
+	var diff: Variant = (end - start) / (count - 1)
 
 	result.append(start)
 
@@ -104,21 +104,21 @@ func shoot() -> void:
 	var span1: float = 0.0
 	var span2: float = 0.0
 	
-	var div: int = 1000
+	var div: int = 200
 
-	for i in range(int(game_constants.PORTAL_SIZE * div) + div):
+	for i in linear_space(0, game_constants.PORTAL_SIZE, div):
 
-		if Vector2i(hit / game_constants.TILE_SIZE + i / float(div) * normal.rotated(PI / 2)) not in squares:
+		if Vector2i(hit / game_constants.TILE_SIZE + i * normal.rotated(PI / 2)) not in squares:
 			break
 		
-		span1 = i / float(div)
+		span1 = i
 
-	for i in range(int(game_constants.PORTAL_SIZE * div) + div):
+	for i in linear_space(0, game_constants.PORTAL_SIZE, div):
 
-		if Vector2i(floor(hit / game_constants.TILE_SIZE - i / float(div) * normal.rotated(PI / 2))) not in squares:
+		if Vector2i(hit / game_constants.TILE_SIZE - i * normal.rotated(PI / 2)) not in squares:
 			break
 
-		span2 = i / float(div)
+		span2 = i
 	
 	var portal_pos: Vector2 = hit
 	
