@@ -101,30 +101,34 @@ func shoot() -> void:
 	if len(squares) < game_constants.PORTAL_SIZE:
 		return
 
-	var span1: Vector2 = Vector2.ZERO
-	var span2: Vector2 = Vector2.ZERO
+	var span1: float = 0.0
+	var span2: float = 0.0
+	
+	var div: int = 1000
 
-	print(hit, " ", ceil(hit) - hit)
+	for i in range(int(game_constants.PORTAL_SIZE * div) + div):
 
-	print(Vector2i(floor(hit / game_constants.TILE_SIZE)), (hit / game_constants.TILE_SIZE))
-
-	for i in range(100):
-
-		if Vector2i(floor(hit / game_constants.TILE_SIZE + i * normal.rotated(PI / 2))) not in squares:
+		if Vector2i(hit / game_constants.TILE_SIZE + i / float(div) * normal.rotated(PI / 2)) not in squares:
 			break
 		
-		span1 = Vector2(i, i)
+		span1 = i / float(div)
 
-	for i in range(100):
+	for i in range(int(game_constants.PORTAL_SIZE * div) + div):
 
-		if Vector2i(floor(hit / game_constants.TILE_SIZE - i * normal.rotated(PI / 2))) not in squares:
+		if Vector2i(floor(hit / game_constants.TILE_SIZE - i / float(div) * normal.rotated(PI / 2))) not in squares:
 			break
-	
-		span2 = Vector2(i, i)
-	
-	print(span1)
-	print(span2)
 
+		span2 = i / float(div)
+	
+	var portal_pos: Vector2 = hit
+	
+	if span1 < game_constants.PORTAL_SIZE / 2.0:
+		portal_pos += -normal.rotated(PI / 2.0) * (game_constants.PORTAL_SIZE / 2.0 - span1) * game_constants.TILE_SIZE
+		
+	if span2 < game_constants.PORTAL_SIZE / 2.0:
+		portal_pos += -normal.rotated(- PI / 2.0) * (game_constants.PORTAL_SIZE / 2.0 - span2) * game_constants.TILE_SIZE
+
+	print(portal_pos)
 
 func set_angle() -> void:
 	
