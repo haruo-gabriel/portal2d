@@ -120,7 +120,7 @@ func shoot() -> void:
 
 		span2 = i
 	
-	var portal_pos: Vector2 = hit
+	var portal_pos: Vector2 = fix_pos(hit, -normal)
 	
 	if span1 < game_constants.PORTAL_SIZE / 2.0:
 		portal_pos += -normal.rotated(PI / 2.0) * (game_constants.PORTAL_SIZE / 2.0 - span1) * game_constants.TILE_SIZE
