@@ -16,18 +16,7 @@ extends CharacterBody2D
 @onready var SPACE_STATE: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 
 const DIVISIONS: int = 200
-
-func linear_space(start: Variant, end: Variant, count: int) -> Array:
-
-	var result: Array = Array()
-	var diff: Variant = (end - start) / (count - 1)
-
-	result.append(start)
-
-	for i in range(1, count):
-		result.append(start + diff * i)
-
-	return result
+const CASTS: int = 10
 
 func to_coord(pos: Vector2) -> Vector2i:
 	return Vector2i(pos / game_constants.TILE_SIZE)
@@ -60,13 +49,11 @@ func is_valid_square(pos: Vector2, normal: Vector2) -> bool:
 
 	return tile.get_custom_data("CanPortal")
 
-func get_squares(pos: Vector2, normal: Vector2) -> Dictionary:
+func get_valid_squares(pos: Vector2, normal: Vector2) -> Dictionary:
 	
-	var change: Vector2 = game_constants.PORTAL_SIZE * game_constants.TILE_SIZE * normal.rotated(PI / 2)	
 	var squares: Dictionary = Dictionary()
 
-	var casts: int = 10
-	var step: Vector2 = change / casts
+	var step: Vector2 = game_constants.PORTAL_SIZE * game_constants.TILE_SIZE * normal.rotated(PI / 2) / CASTS
 	var current: Vector2 = pos
 
 	while is_valid_square(current, normal):
@@ -97,7 +84,7 @@ func shoot() -> void:
 	hit = fix_pos(hit, normal)
 
 	var rotated: Vector2 = normal.rotated(PI / 2)
-	var squares: Dictionary = get_squares(hit, normal)
+	var squares: Dictionary = get_valid_squares(hit, normal)
 
 	if len(squares) < game_constants.PORTAL_SIZE:
 		return
