@@ -8,6 +8,22 @@ extends CharacterBody2D
 @onready var main_hitbox: CollisionShape2D = $MainHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 
+@onready var portal_caster = $PortalCaster
+
+@onready var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
+
+func shoot() -> void:
+	
+	var result: Array = portal_caster.get_portal()
+
+	if not result:
+		return
+
+	var position: Vector2 = result[0]
+	var normal: Vector2 = result[1]
+	
+	# TODO: Add the portal creation
+
 func set_angle() -> void:
 	
 	var difference: Vector2 = get_global_mouse_position() - (global_position + constants.PLAYER_CENTER)
@@ -63,7 +79,7 @@ func _ready() -> void:
 	stats.position = position
 	stats.velocity = velocity
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 
 	stats.is_on_floor = is_on_floor()
 	stats.direction = Input.get_axis("move_left", "move_right")
@@ -76,5 +92,10 @@ func _physics_process(_delta: float) -> void:
 	if not try_crouch and stats.is_crouching:
 		toggle_crouch(false)
 
+	if Input.is_action_just_pressed("shoot_portal1"):
+		shoot()
+
 	set_angle()
+
+func _physics_process(_delta: float) -> void:
 	move()

@@ -8,7 +8,7 @@ extends State
 @onready var player_stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
-var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
 
 func check_basic_change() -> String:
 	
@@ -21,7 +21,7 @@ func check_basic_change() -> String:
 	if player_stats.velocity.x and player_stats.is_on_floor:
 		return "walking"
 	
-	if player_stats.velocity.y < 0: # If current state is "falling", this should be ignored
+	if not player_stats.is_on_floor and player_stats.velocity.y >= 0: # If current state is "falling", this should be ignored
 		return "falling"
 	
 	return ""
@@ -46,5 +46,5 @@ func exit() -> void:
 func update(_delta: float) -> void:
 	pass
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	pass

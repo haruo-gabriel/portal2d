@@ -11,6 +11,9 @@ func physics_update(delta: float) -> void:
 	if try_basic_change():
 		return
 
+	if not player_stats.is_on_floor:
+		player_stats.velocity.y += delta * game_constants.GRAVITY
+
 	if player_stats.direction:
 
 		var step = constants.HORIZONTAL_ACCELERATION

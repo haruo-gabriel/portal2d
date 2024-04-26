@@ -17,7 +17,7 @@ func physics_update(delta: float) -> void:
 	if try_basic_change():
 		return
 	
-	player_stats.velocity.y += gravity * delta
+	player_stats.velocity.y += game_constants.GRAVITY * delta
 
 	var step: float = constants.HORIZONTAL_ACCELERATION * constants.IN_AIR_MULTIPLIER
 	var new_speed: float = player_stats.direction * constants.WALKING_SPEED
