@@ -60,10 +60,10 @@ func is_valid_square(pos: Vector2, normal: Vector2) -> bool:
 
 	return tile.get_custom_data("CanPortal")
 
-func get_squares(pos: Vector2, normal: Vector2) -> Array:
+func get_squares(pos: Vector2, normal: Vector2) -> Dictionary:
 	
 	var change: Vector2 = game_constants.PORTAL_SIZE * game_constants.TILE_SIZE * normal.rotated(PI / 2)	
-	var squares: Array = Array()
+	var squares: Dictionary = Dictionary()
 
 	var casts: int = 10
 	var step: Vector2 = change / casts
@@ -71,10 +71,7 @@ func get_squares(pos: Vector2, normal: Vector2) -> Array:
 
 	while is_valid_square(current, normal):
 
-		var coord = to_coord(current)
-
-		if coord not in squares:
-			squares.append(coord)
+		squares[to_coord(current)] = true
 
 		current += step
 
@@ -82,10 +79,7 @@ func get_squares(pos: Vector2, normal: Vector2) -> Array:
 
 	while is_valid_square(current, normal):
 
-		var coord = to_coord(current)
-
-		if coord not in squares:
-			squares.append(coord)
+		squares[to_coord(current)] = true
 
 		current -= step
 
@@ -103,11 +97,10 @@ func shoot() -> void:
 	hit = fix_pos(hit, normal)
 
 	var rotated: Vector2 = normal.rotated(PI / 2)
-	var squares: Array = get_squares(hit, normal)
+	var squares: Dictionary = get_squares(hit, normal)
 
 	if len(squares) < game_constants.PORTAL_SIZE:
 		return
-
 
 	var span1: float = 0.0
 	var span2: float = 0.0
@@ -119,7 +112,6 @@ func shoot() -> void:
 
 	while Vector2i(hit / game_constants.TILE_SIZE - span2 * rotated) in squares:
 		span2 += step
-
 	
 	var portal_pos: Vector2 = fix_pos(hit, -normal) # Unfixing the position
 	
