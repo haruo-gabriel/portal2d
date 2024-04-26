@@ -22,8 +22,6 @@ func shoot() -> void:
 	var position: Vector2 = result[0]
 	var normal: Vector2 = result[1]
 
-	print(position)
-
 func set_angle() -> void:
 	
 	var difference: Vector2 = get_global_mouse_position() - (global_position + constants.PLAYER_CENTER)
