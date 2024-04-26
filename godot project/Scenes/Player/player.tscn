@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=43 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/player.gd" id="1_isvi5"]
 [ext_resource type="Texture2D" uid="uid://ck8lvvm2eut0b" path="res://Scenes/Player/Sprites/Idle (Crouched)/player_idle(crouched)1.png" id="2_fouop"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/walking.gd" id="25_brkpg"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/jumping.gd" id="26_ehxwp"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/falling.gd" id="27_2dtpr"]
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/portal_caster.gd" id="30_hiqvw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbok6"]
 size = Vector2(72.7969, 144)
@@ -244,6 +245,9 @@ position = Vector2(3, -108)
 exclude_parent = false
 target_position = Vector2(-168, -8)
 script = ExtResource("22_728ld")
+
+[node name="PortalCaster" type="Node" parent="."]
+script = ExtResource("30_hiqvw")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("23_3uh3y")
