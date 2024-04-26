@@ -2,7 +2,7 @@
 class_name Health
 extends Node
 
-const regeneration_cooldown: int = 60 # measured in frames
+const REGENERATION_COOLDOWN: int = 60 # measured in frames
 
 signal died
 
@@ -25,7 +25,14 @@ func _set_health(new_hp: float) -> void:
 	if new_hp <= 0:
 		died.emit()
 	
+	if new_hp < health:
+		_time_since_last_hit = 0
+	
 	health = clamp(new_hp, 0, max_health)
 
 func _process(_delta: float) -> void:
-	pass
+	
+	if _time_since_last_hit >= REGENERATION_COOLDOWN:
+		health += regeneration
+	
+	_time_since_last_hit += 1
