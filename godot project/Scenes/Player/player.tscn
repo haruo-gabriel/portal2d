@@ -211,12 +211,6 @@ scale = Vector2(0.825, 0.74)
 texture = ExtResource("3_swsmt")
 script = ExtResource("5_1wtye")
 
-[node name="GunSprite2" type="Sprite2D" parent="."]
-position = Vector2(0, -111)
-scale = Vector2(0.825, 0.74)
-texture = ExtResource("3_swsmt")
-script = ExtResource("5_1wtye")
-
 [node name="MainHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.500001, -72)
 scale = Vector2(0.783, 1)
