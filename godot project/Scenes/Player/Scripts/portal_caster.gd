@@ -64,7 +64,7 @@ func get_valid_squares(pos: Vector2, normal: Vector2) -> Dictionary:
 
 	return squares
 
-func get_portal_pos() -> Array:
+func get_portal() -> Array:
 	"""Returns `position` and `normal` of the portal or an empty array if an invalid spot"""
 
 	var hit: Vector2 = raycast.get_collision_point()
