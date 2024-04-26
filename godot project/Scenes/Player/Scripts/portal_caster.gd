@@ -64,14 +64,15 @@ func get_valid_squares(pos: Vector2, normal: Vector2) -> Dictionary:
 
 	return squares
 
-func get_portal_pos() -> Vector2:
+func get_portal_pos() -> Array:
+	"""Returns `position` and `normal` of the portal or an empty array if an invalid spot"""
 
 	var hit: Vector2 = raycast.get_collision_point()
 	var normal: Vector2 = raycast.get_collision_normal()
 
 
 	if hit == Vector2.ZERO or hit == null or normal == null:
-		return Vector2.ZERO
+		return Array()
 	
 
 	hit -= tile_map.position
@@ -82,7 +83,7 @@ func get_portal_pos() -> Vector2:
 
 
 	if len(squares) < game_constants.PORTAL_SIZE:
-		return Vector2.ZERO
+		return Array()
 
 
 	var step: float = game_constants.PORTAL_SIZE / DIVISIONS
@@ -105,4 +106,4 @@ func get_portal_pos() -> Vector2:
 	if span2 < game_constants.PORTAL_SIZE / 2.0:
 		portal_pos += rotated * (game_constants.PORTAL_SIZE / 2.0 - span2) * game_constants.TILE_SIZE
 
-	return portal_pos
+	return [portal_pos, normal]

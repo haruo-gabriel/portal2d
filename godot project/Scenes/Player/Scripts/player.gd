@@ -14,11 +14,13 @@ extends CharacterBody2D
 
 func shoot() -> void:
 	
-	var pos: Vector2 = portal_caster.shoot()
+	var result: Array = portal_caster.shoot()
 
-	if pos == Vector2.ZERO:
+	if not result:
 		return
-	
+
+	var position: Vector2 = result[0]
+	var normal: Vector2 = result[1]	
 	
 
 func set_angle() -> void:
