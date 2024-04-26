@@ -1,4 +1,5 @@
 
+class_name PortalCaster
 extends Node
 
 var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
