@@ -5,6 +5,7 @@ extends Node
 const REGENERATION_COOLDOWN: int = 60 # measured in frames
 
 signal died
+signal reached_full_health
 
 @export var max_health: float
 @export var regeneration: float # HP / frame
@@ -33,6 +34,9 @@ func _set_health(new_hp: float) -> void:
 	
 	if new_hp < _health:
 		_time_since_last_hit = 0
+	
+	if new_hp >= max_health and _health < max_health:
+		reached_full_health.emit()
 	
 	_health = clamp(new_hp, 0, max_health)
 
