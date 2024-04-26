@@ -8,11 +8,10 @@ extends CharacterBody2D
 @onready var main_hitbox: CollisionShape2D = $MainHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 
-@onready var portal_caster = $PortalCaster
+@onready var raycast: RayCast2D = $RayCast2D
+@onready var portal_caster: PortalCaster = $PortalCaster
 
 @onready var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
-
-var player_center: Vector2
 
 func shoot() -> void:
 	
@@ -28,7 +27,7 @@ func shoot() -> void:
 
 func set_angle() -> void:
 	
-	var difference: Vector2 = get_global_mouse_position() - (global_position + player_center)
+	var difference: Vector2 = get_global_mouse_position() - raycast.global_position
 
 	if difference: 
 		stats.angle = atan2(difference.y, difference.x)
@@ -80,8 +79,6 @@ func _ready() -> void:
 	
 	stats.position = position
 	stats.velocity = velocity
-	
-	player_center = Vector2(100, 100)
 
 func _process(_delta: float) -> void:
 
