@@ -1,10 +1,31 @@
 
+class_name Health
 extends Node
 
-func _ready():
-	pass # Replace with function body.
+const regeneration_cooldown: int = 60 # measured in frames
 
+signal died
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+var max_health: float
+var regeneration: float # HP / frame
+
+var health: float
+
+var _time_since_last_hit: int # frames
+
+func _init(max_hp: float, regen: float, starting_hp: float = -1) -> void:
+
+	max_health = max_hp
+	health = starting_hp if starting_hp > 0 else max_health
+
+	regeneration = regen
+
+func _set_health(new_hp: float) -> void:
+	
+	if new_hp <= 0:
+		died.emit()
+	
+	health = clamp(new_hp, 0, max_health)
+
+func _process(_delta: float) -> void:
 	pass
