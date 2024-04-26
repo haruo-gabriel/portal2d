@@ -15,6 +15,8 @@ extends CharacterBody2D
 
 @onready var SPACE_STATE: PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 
+const DIVISIONS: int = 200
+
 func linear_space(start: Variant, end: Variant, count: int) -> Array:
 
 	var result: Array = Array()
@@ -28,7 +30,7 @@ func linear_space(start: Variant, end: Variant, count: int) -> Array:
 	return result
 
 func to_coord(pos: Vector2) -> Vector2i:
-	return Vector2i(floor(pos.x / game_constants.TILE_SIZE), floor(pos.y / game_constants.TILE_SIZE))
+	return Vector2i(pos / game_constants.TILE_SIZE)
 
 func fix_pos(pos: Vector2, normal: Vector2) -> Vector2:
 	
@@ -63,25 +65,29 @@ func get_squares(pos: Vector2, normal: Vector2) -> Array:
 	var change: Vector2 = game_constants.PORTAL_SIZE * game_constants.TILE_SIZE * normal.rotated(PI / 2)	
 	var squares: Array = Array()
 
-	for i in linear_space(pos, pos - change, 10):
+	var casts: int = 10
+	var step: Vector2 = change / casts
+	var current: Vector2 = pos
 
-		if not is_valid_square(i, normal):
-			break
-		
-		var coord = to_coord(i)
-		
-		if coord not in squares: # O(n ^ 2), but few elements, so okay
+	while is_valid_square(current, normal):
+
+		var coord = to_coord(current)
+
+		if coord not in squares:
 			squares.append(coord)
 
-	for i in linear_space(pos, pos + change, 10):
+		current += step
 
-		if not is_valid_square(i, normal):
-			break
-		
-		var coord = to_coord(i)
-		
-		if coord not in squares: # O(n ^ 2), but few elements, so okay
+	current = pos
+
+	while is_valid_square(current, normal):
+
+		var coord = to_coord(current)
+
+		if coord not in squares:
 			squares.append(coord)
+
+		current -= step
 
 	return squares
 
@@ -96,37 +102,33 @@ func shoot() -> void:
 	hit -= tile_map.position
 	hit = fix_pos(hit, normal)
 
+	var rotated: Vector2 = normal.rotated(PI / 2)
 	var squares: Array = get_squares(hit, normal)
 
 	if len(squares) < game_constants.PORTAL_SIZE:
 		return
 
+
 	var span1: float = 0.0
 	var span2: float = 0.0
+
+	var step: float = game_constants.PORTAL_SIZE / DIVISIONS
+
+	while Vector2i(hit / game_constants.TILE_SIZE + span1 * rotated) in squares:
+		span1 += step
+
+	while Vector2i(hit / game_constants.TILE_SIZE - span2 * rotated) in squares:
+		span2 += step
+
 	
-	var div: int = 200
-
-	for i in linear_space(0, game_constants.PORTAL_SIZE, div):
-
-		if Vector2i(hit / game_constants.TILE_SIZE + i * normal.rotated(PI / 2)) not in squares:
-			break
-		
-		span1 = i
-
-	for i in linear_space(0, game_constants.PORTAL_SIZE, div):
-
-		if Vector2i(hit / game_constants.TILE_SIZE - i * normal.rotated(PI / 2)) not in squares:
-			break
-
-		span2 = i
-	
-	var portal_pos: Vector2 = fix_pos(hit, -normal)
+	var portal_pos: Vector2 = fix_pos(hit, -normal) # Unfixing the position
 	
 	if span1 < game_constants.PORTAL_SIZE / 2.0:
-		portal_pos += -normal.rotated(PI / 2.0) * (game_constants.PORTAL_SIZE / 2.0 - span1) * game_constants.TILE_SIZE
+		portal_pos += -rotated * (game_constants.PORTAL_SIZE / 2.0 - span1) * game_constants.TILE_SIZE
 		
 	if span2 < game_constants.PORTAL_SIZE / 2.0:
-		portal_pos += -normal.rotated(- PI / 2.0) * (game_constants.PORTAL_SIZE / 2.0 - span2) * game_constants.TILE_SIZE
+		portal_pos += rotated * (game_constants.PORTAL_SIZE / 2.0 - span2) * game_constants.TILE_SIZE
+
 
 	print(portal_pos)
 
