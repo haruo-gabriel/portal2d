@@ -37,12 +37,14 @@ func _set_health(new_hp: float) -> void:
 	_health = clamp(new_hp, 0, max_health)
 
 func _ready() -> void:
-	
 	health = max_health
 
 func _process(_delta: float) -> void:
 	
 	if _time_since_last_hit >= REGENERATION_COOLDOWN:
-		heal(regeneration)
+		
+		if health < max_health:
+			heal(regeneration)
+		
 	else:
 		_time_since_last_hit += 1
