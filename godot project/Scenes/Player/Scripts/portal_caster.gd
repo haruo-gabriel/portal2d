@@ -9,14 +9,15 @@ var game_constants: GameConstants = load("res://Scripts/Resources/game_constants
 
 const DIVISIONS: int = 200
 const CASTS: int = 10
+const TOLERANCE: float = .9
 
 func to_coord(pos: Vector2) -> Vector2i:
 	return Vector2i(pos / game_constants.TILE_SIZE)
 
 func fix_pos(pos: Vector2, normal: Vector2) -> Vector2:
 	
-	if abs(normal.x) > 0.9: pos.x -= normal.x
-	if abs(normal.y) > 0.9: pos.y -= normal.y
+	if abs(normal.x) > TOLERANCE: pos.x -= normal.x
+	if abs(normal.y) > TOLERANCE: pos.y -= normal.y
 
 	return pos
 

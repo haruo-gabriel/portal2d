@@ -21,6 +21,8 @@ func shoot() -> void:
 
 	var position: Vector2 = result[0]
 	var normal: Vector2 = result[1]
+	
+	# TODO: Add the portal creation
 
 func set_angle() -> void:
 	
