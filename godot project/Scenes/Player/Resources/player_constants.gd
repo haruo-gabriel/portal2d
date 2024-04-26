@@ -25,3 +25,7 @@ const MAX_X_SPEED: float = 600.0 # In absolute value
 # Frames a player can press jump before landing and still jump upon hitting ground.
 # To remove, set it to 1, NOT ZERO (the player won't be able to jump).
 const JUMP_BUFFER_TIME: int = 10
+
+
+const MAX_HP: float = 100.0
+const REGENERATION: float = 1.0

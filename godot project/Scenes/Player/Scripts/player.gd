@@ -3,7 +3,9 @@ class_name Player
 extends CharacterBody2D
 
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
+
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
+@onready var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
 
 @onready var main_hitbox: CollisionShape2D = $MainHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
@@ -11,7 +13,7 @@ extends CharacterBody2D
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var portal_caster: PortalCaster = $PortalCaster
 
-@onready var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
+@onready var health: Health = $Health
 
 func shoot() -> void:
 	

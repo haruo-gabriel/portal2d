@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=44 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/player.gd" id="1_isvi5"]
 [ext_resource type="Texture2D" uid="uid://ck8lvvm2eut0b" path="res://Scenes/Player/Sprites/Idle (Crouched)/player_idle(crouched)1.png" id="2_fouop"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/AnimationPlayer2.gd" id="23_226gn"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/idle.gd" id="24_wit4e"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/walking.gd" id="25_brkpg"]
+[ext_resource type="Script" path="res://Scripts/Components/Health/health.gd" id="26_6owou"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/jumping.gd" id="26_ehxwp"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/falling.gd" id="27_2dtpr"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/portal_caster.gd" id="30_hiqvw"]
@@ -239,6 +240,11 @@ position = Vector2(2.08165e-12, -80)
 exclude_parent = false
 target_position = Vector2(-200, 2.08165e-12)
 script = ExtResource("22_728ld")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("26_6owou")
+max_health = 100.0
+regeneration = 1.0
 
 [node name="PortalCaster" type="Node" parent="."]
 script = ExtResource("30_hiqvw")
