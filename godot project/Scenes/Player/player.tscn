@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://fbsofodhxh1" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)3.png" id="15_vi87d"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/animation_player.gd" id="19_33oij"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/ray_cast.gd" id="22_728ld"]
-[ext_resource type="Script" path="res://Scripts/FiniteStateMachine/state_machine.gd" id="23_3uh3y"]
+[ext_resource type="Script" path="res://Scripts/Components/FiniteStateMachine/state_machine.gd" id="23_3uh3y"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/AnimationPlayer2.gd" id="23_226gn"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/idle.gd" id="24_wit4e"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/walking.gd" id="25_brkpg"]
