@@ -26,5 +26,6 @@ const MAX_X_SPEED: float = 600.0 # In absolute value
 # To remove, set it to 1, NOT ZERO (the player won't be able to jump).
 const JUMP_BUFFER_TIME: int = 10
 
-# Offset of the players shooting point (gun center) from their feet
-const PLAYER_CENTER: Vector2 = Vector2(0, -111)
+
+const MAX_HP: float = 100.0
+const REGENERATION: float = 1.0

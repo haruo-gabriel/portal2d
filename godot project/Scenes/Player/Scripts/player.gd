@@ -3,14 +3,17 @@ class_name Player
 extends CharacterBody2D
 
 @onready var stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
+
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
+@onready var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
 
 @onready var main_hitbox: CollisionShape2D = $MainHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox
 
-@onready var portal_caster = $PortalCaster
+@onready var raycast: RayCast2D = $RayCast2D
+@onready var portal_caster: PortalCaster = $PortalCaster
 
-@onready var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
+@onready var health: Health = $Health
 
 func shoot() -> void:
 	
@@ -19,14 +22,14 @@ func shoot() -> void:
 	if not result:
 		return
 
-	var position: Vector2 = result[0]
+	var pos: Vector2 = result[0]
 	var normal: Vector2 = result[1]
 	
 	# TODO: Add the portal creation
 
 func set_angle() -> void:
 	
-	var difference: Vector2 = get_global_mouse_position() - (global_position + constants.PLAYER_CENTER)
+	var difference: Vector2 = get_global_mouse_position() - raycast.global_position
 
 	if difference: 
 		stats.angle = atan2(difference.y, difference.x)

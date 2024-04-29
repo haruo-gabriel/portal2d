@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=44 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/player.gd" id="1_isvi5"]
 [ext_resource type="Texture2D" uid="uid://ck8lvvm2eut0b" path="res://Scenes/Player/Sprites/Idle (Crouched)/player_idle(crouched)1.png" id="2_fouop"]
@@ -23,10 +23,11 @@
 [ext_resource type="Texture2D" uid="uid://fbsofodhxh1" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)3.png" id="15_vi87d"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/animation_player.gd" id="19_33oij"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/ray_cast.gd" id="22_728ld"]
-[ext_resource type="Script" path="res://Scripts/FiniteStateMachine/state_machine.gd" id="23_3uh3y"]
+[ext_resource type="Script" path="res://Scripts/Components/FiniteStateMachine/state_machine.gd" id="23_3uh3y"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/AnimationPlayer2.gd" id="23_226gn"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/idle.gd" id="24_wit4e"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/walking.gd" id="25_brkpg"]
+[ext_resource type="Script" path="res://Scripts/Components/Health/health.gd" id="26_6owou"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/jumping.gd" id="26_ehxwp"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/falling.gd" id="27_2dtpr"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/portal_caster.gd" id="30_hiqvw"]
@@ -206,13 +207,7 @@ texture = ExtResource("2_fouop")
 script = ExtResource("4_w8j8u")
 
 [node name="GunSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -111)
-scale = Vector2(0.825, 0.74)
-texture = ExtResource("3_swsmt")
-script = ExtResource("5_1wtye")
-
-[node name="GunSprite2" type="Sprite2D" parent="."]
-position = Vector2(0, -111)
+position = Vector2(2.08165e-12, -80)
 scale = Vector2(0.825, 0.74)
 texture = ExtResource("3_swsmt")
 script = ExtResource("5_1wtye")
@@ -241,10 +236,15 @@ libraries = {
 script = ExtResource("23_226gn")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(3, -108)
+position = Vector2(2.08165e-12, -80)
 exclude_parent = false
-target_position = Vector2(-168, -8)
+target_position = Vector2(-200, 2.08165e-12)
 script = ExtResource("22_728ld")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("26_6owou")
+max_health = 100.0
+regeneration = 1.0
 
 [node name="PortalCaster" type="Node" parent="."]
 script = ExtResource("30_hiqvw")
