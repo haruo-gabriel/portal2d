@@ -15,8 +15,6 @@ func get_states() -> Array:
 		if child is State:
 			_states.append(child)
 
-	_states.append(initial_state)
-
 	return _states
 
 func _ready() -> void:

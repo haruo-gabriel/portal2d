@@ -31,8 +31,8 @@ func shoot() -> void:
 	if not result:
 		return
 
-	var pos: Vector2 = result[0]
-	var normal: Vector2 = result[1]
+	var _pos: Vector2 = result[0]
+	var _normal: Vector2 = result[1]
 	
 	# TODO: Add the portal creation
 
