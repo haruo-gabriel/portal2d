@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="GameConstants" load_steps=2 format=3 uid="uid://calf0f622w30x"]
-
-[ext_resource type="Script" path="res://Scripts/Resources/game_constants.gd" id="1_y536s"]
-
-[resource]
-script = ExtResource("1_y536s")

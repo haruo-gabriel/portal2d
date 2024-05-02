@@ -1,0 +1,257 @@
+[gd_scene load_steps=33 format=3 uid="uid://wgnluw24avir"]
+
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_isvi5"]
+[ext_resource type="Resource" uid="uid://d0i22fdptd3lv" path="res://characters/player/player_stats.tres" id="2_x6im2"]
+[ext_resource type="Resource" uid="uid://b4xv4neetc43i" path="res://characters/player/player_constants.tres" id="3_j4dwh"]
+[ext_resource type="Script" path="res://characters/player/player_sprite.gd" id="3_ysinc"]
+[ext_resource type="Resource" uid="uid://calf0f622w30x" path="res://characters/common/game_constants.tres" id="4_cqnro"]
+[ext_resource type="Script" path="res://characters/player/crouching_sprite.gd" id="4_w8j8u"]
+[ext_resource type="Script" path="res://characters/player/gun_sprite.gd" id="5_1wtye"]
+[ext_resource type="Script" path="res://characters/player/main_hitbox.gd" id="6_gbb4j"]
+[ext_resource type="Script" path="res://characters/player/crouched_hitbox.gd" id="7_pp85t"]
+[ext_resource type="Script" path="res://characters/player/animation_player.gd" id="19_33oij"]
+[ext_resource type="Script" path="res://characters/player/ray_cast.gd" id="22_728ld"]
+[ext_resource type="Script" path="res://characters/common/finite_state_machine/state_machine.gd" id="23_3uh3y"]
+[ext_resource type="Script" path="res://characters/player/AnimationPlayer2.gd" id="23_226gn"]
+[ext_resource type="Script" path="res://characters/player/states/idle.gd" id="24_wit4e"]
+[ext_resource type="Script" path="res://characters/player/states/walking.gd" id="25_brkpg"]
+[ext_resource type="Script" path="res://characters/common/health.gd" id="26_6owou"]
+[ext_resource type="Script" path="res://characters/player/states/jumping.gd" id="26_ehxwp"]
+[ext_resource type="Script" path="res://characters/player/states/falling.gd" id="27_2dtpr"]
+[ext_resource type="Script" path="res://characters/player/portal_caster.gd" id="30_hiqvw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xuiil"]
+size = Vector2(18, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbok6"]
+size = Vector2(18, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bv35t"]
+size = Vector2(18, 11)
+
+[sub_resource type="Animation" id="Animation_ou7s0"]
+resource_name = "Fall"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_d0u0g"]
+resource_name = "Idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [null, null, null]
+}
+
+[sub_resource type="Animation" id="Animation_8ukh0"]
+resource_name = "Idle (Crouched)"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CrouchingSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_v0ljn"]
+resource_name = "Jump"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [null, null, null]
+}
+
+[sub_resource type="Animation" id="Animation_l52iv"]
+resource_name = "Walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [null, null, null]
+}
+
+[sub_resource type="Animation" id="Animation_6phk5"]
+resource_name = "Walk (Crouched)"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CrouchingSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [null, null, null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_auc0t"]
+_data = {
+"Fall": SubResource("Animation_ou7s0"),
+"Idle": SubResource("Animation_d0u0g"),
+"Idle (Crouched)": SubResource("Animation_8ukh0"),
+"Jump": SubResource("Animation_v0ljn"),
+"Walk": SubResource("Animation_l52iv"),
+"Walk (Crouched)": SubResource("Animation_6phk5")
+}
+
+[sub_resource type="Animation" id="Animation_122gm"]
+resource_name = "Idle (Crouched)"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CrouchingSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_h02w5"]
+resource_name = "Walk (Crouched)"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CrouchingSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [null, null, null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l13df"]
+_data = {
+"Idle (Crouched)": SubResource("Animation_122gm"),
+"Walk (Crouched)": SubResource("Animation_h02w5")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_isvi5")
+stats = ExtResource("2_x6im2")
+constants = ExtResource("3_j4dwh")
+game_constants = ExtResource("4_cqnro")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -111)
+
+[node name="MainSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -11)
+texture = SubResource("PlaceholderTexture2D_xuiil")
+script = ExtResource("3_ysinc")
+
+[node name="CrouchingSprite" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, -44)
+scale = Vector2(0.38, 0.286667)
+script = ExtResource("4_w8j8u")
+
+[node name="GunSprite" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, -80)
+scale = Vector2(0.825, 0.74)
+script = ExtResource("5_1wtye")
+
+[node name="MainHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_nbok6")
+script = ExtResource("6_gbb4j")
+
+[node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_bv35t")
+script = ExtResource("7_pp85t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_auc0t")
+}
+script = ExtResource("19_33oij")
+
+[node name="AnimationPlayerCrouching" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l13df")
+}
+script = ExtResource("23_226gn")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(2.08165e-12, -80)
+exclude_parent = false
+target_position = Vector2(-200, 2.08165e-12)
+script = ExtResource("22_728ld")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("26_6owou")
+max_health = 100.0
+regeneration = 1.0
+
+[node name="PortalCaster" type="Node" parent="."]
+script = ExtResource("30_hiqvw")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "entity")]
+script = ExtResource("23_3uh3y")
+initial_state = NodePath("Idle")
+entity = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("24_wit4e")
+
+[node name="Walking" type="Node" parent="StateMachine"]
+script = ExtResource("25_brkpg")
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("26_ehxwp")
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource("27_2dtpr")
