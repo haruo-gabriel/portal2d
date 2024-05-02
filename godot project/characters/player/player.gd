@@ -2,8 +2,6 @@
 class_name Player
 extends CharacterBody2D
 
-@export var stats: PlayerStats
-
 @export var constants: PlayerConstants
 @export var game_constants: GameConstants
 
