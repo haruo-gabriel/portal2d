@@ -1,8 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=29 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://characters/player/scripts/player.gd" id="1_cp1xu"]
 [ext_resource type="Script" path="res://characters/player/scripts/player_sprite.gd" id="3_ugign"]
+[ext_resource type="Texture2D" uid="uid://ry4yxc770xfx" path="res://characters/player/sprites/fall.png" id="4_vuwt8"]
+[ext_resource type="Texture2D" uid="uid://5bx0vwbt3eow" path="res://characters/player/sprites/idle.png" id="5_plhcd"]
+[ext_resource type="Texture2D" uid="uid://dbe3cjsvgxcg" path="res://characters/player/sprites/idle crouch.png" id="6_k707m"]
 [ext_resource type="Script" path="res://characters/player/scripts/gun_sprite.gd" id="7_hqwtu"]
+[ext_resource type="Texture2D" uid="uid://c4rrv52itc5b1" path="res://characters/player/sprites/jump.png" id="7_oduw5"]
+[ext_resource type="Texture2D" uid="uid://bnsio32wsnc1g" path="res://characters/player/sprites/walk.png" id="8_3qtfq"]
+[ext_resource type="Texture2D" uid="uid://dg0ekhbkfqyvs" path="res://characters/player/sprites/walk crouch.png" id="9_qfl83"]
 [ext_resource type="Script" path="res://characters/player/scripts/animation_player.gd" id="22_j0vq1"]
 [ext_resource type="Script" path="res://characters/player/scripts/ray_cast.gd" id="24_ds6al"]
 [ext_resource type="Script" path="res://characters/common/health.gd" id="25_a7xhi"]
@@ -12,8 +18,6 @@
 [ext_resource type="Script" path="res://characters/player/states/walking.gd" id="29_lmmct"]
 [ext_resource type="Script" path="res://characters/player/states/jumping.gd" id="30_e0dd0"]
 [ext_resource type="Script" path="res://characters/player/states/falling.gd" id="31_jnq8s"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lk3nd"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_66yal"]
 
@@ -37,7 +41,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [null]
+"values": [ExtResource("4_vuwt8")]
 }
 
 [sub_resource type="Animation" id="Animation_d0u0g"]
@@ -54,13 +58,25 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
+"values": [ExtResource("5_plhcd"), ExtResource("5_plhcd"), ExtResource("5_plhcd")]
 }
 
 [sub_resource type="Animation" id="Animation_8ukh0"]
 resource_name = "Idle (Crouched)"
 length = 0.1
 loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_k707m")]
+}
 
 [sub_resource type="Animation" id="Animation_v0ljn"]
 resource_name = "Jump"
@@ -75,7 +91,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
+"values": [ExtResource("7_oduw5"), ExtResource("7_oduw5"), ExtResource("7_oduw5")]
 }
 
 [sub_resource type="Animation" id="Animation_l52iv"]
@@ -92,13 +108,25 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
+"values": [ExtResource("8_3qtfq"), ExtResource("8_3qtfq"), ExtResource("8_3qtfq")]
 }
 
 [sub_resource type="Animation" id="Animation_6phk5"]
 resource_name = "Walk (Crouched)"
 length = 0.3
 loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_qfl83")]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_auc0t"]
 _data = {
@@ -120,8 +148,7 @@ offset = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="MainSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(-2.38419e-07, -11.5)
-scale = Vector2(16, 23)
-texture = SubResource("PlaceholderTexture2D_lk3nd")
+texture = ExtResource("5_plhcd")
 script = ExtResource("3_ugign")
 player = NodePath("..")
 

@@ -21,7 +21,7 @@ func check_basic_change() -> String:
 	if not player.velocity.x and player.is_on_floor():
 		return "idle"
 	
-	if player.velocity.x and player.is_on_floor:
+	if player.velocity.x and player.is_on_floor():
 		return "walking"
 	
 	if not player.is_on_floor() and player.velocity.y >= 0: # If current state is "falling", this should be ignored
