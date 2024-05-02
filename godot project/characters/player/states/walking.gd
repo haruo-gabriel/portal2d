@@ -25,4 +25,4 @@ func physics_update(delta: float) -> void:
 		player.velocity.x = move_toward(player.velocity.x, new_speed, step)
 
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, game_constants.GROUND_DRAG)
+		player.velocity.x = move_toward(player.velocity.x, 0, player_constants.GROUND_DRAG)

@@ -2,11 +2,13 @@
 class_name PortalCaster
 extends Node
 
-var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
+@export var player: Player
 
-@onready var raycast: RayCast2D = get_parent().get_node("RayCast2D")
-@onready var tile_map: TileMap = get_parent().get_parent().get_node("TileMap")
-@onready var space_state: PhysicsDirectSpaceState2D = get_parent().get_world_2d().direct_space_state
+@onready var raycast: RayCast2D = player.get_node("RayCast2D")
+@onready var tile_map: TileMap = player.get_parent().get_node("TileMap")
+@onready var space_state: PhysicsDirectSpaceState2D = player.get_world_2d().direct_space_state
+
+var game_constants: GameConstants = load("res://characters/common/game_constants.tres")
 
 const DIVISIONS: int = 200
 const CASTS: int = 10
