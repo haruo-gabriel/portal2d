@@ -2,7 +2,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var constants: PlayerConstants
+@export var player_constants: PlayerConstants
 @export var game_constants: GameConstants
 
 @onready var main_hitbox: CollisionShape2D = $MainHitbox
@@ -59,7 +59,7 @@ func toggle_crouch(to_crouch: bool) -> void:
 func try_jump() -> void:
 	
 	if Input.is_action_just_pressed("jump"):
-		last_jumped = constants.JUMP_BUFFER_TIME
+		last_jumped = player_constants.JUMP_BUFFER_TIME
 
 	if last_jumped and is_on_floor():
 		last_jumped = 0
@@ -73,8 +73,8 @@ func move() -> void:
 	
 	try_jump()
 
-	velocity.x = clamp(velocity.x, -constants.MAX_X_SPEED, constants.MAX_X_SPEED)
-	velocity.y = clamp(velocity.y, -constants.MAX_Y_SPEED, constants.MAX_Y_SPEED)
+	velocity.x = clamp(velocity.x, -player_constants.MAX_X_SPEED, player_constants.MAX_X_SPEED)
+	velocity.y = clamp(velocity.y, -player_constants.MAX_Y_SPEED, player_constants.MAX_Y_SPEED)
 
 	move_and_slide()
 

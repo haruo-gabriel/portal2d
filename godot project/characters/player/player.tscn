@@ -1,6 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=24 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_cp1xu"]
+[ext_resource type="Resource" uid="uid://b4xv4neetc43i" path="res://characters/player/player_constants.tres" id="2_rfa4y"]
+[ext_resource type="Resource" uid="uid://calf0f622w30x" path="res://characters/common/game_constants.tres" id="3_4eeot"]
 [ext_resource type="Script" path="res://characters/player/player_sprite.gd" id="3_ugign"]
 [ext_resource type="Script" path="res://characters/player/gun_sprite.gd" id="7_hqwtu"]
 [ext_resource type="Script" path="res://characters/player/animation_player.gd" id="22_j0vq1"]
@@ -109,6 +111,8 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_cp1xu")
+player_constants = ExtResource("2_rfa4y")
+game_constants = ExtResource("3_4eeot")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -12)
