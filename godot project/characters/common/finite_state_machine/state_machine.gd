@@ -7,7 +7,6 @@ extends Node
 var current_state: State
 var states: Dictionary = {}
 
-
 func _ready() -> void:
 
 	for child in get_children():
@@ -46,4 +45,3 @@ func _on_child_transitioned(state: State, new_state_name: String) -> void:
 	new_state.enter()
 	
 	current_state = new_state
-

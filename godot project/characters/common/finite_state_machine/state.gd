@@ -3,6 +3,7 @@ class_name State
 extends Node
 
 signal transitioned(state: State, new_state_name: String)
+
 var entity: Node
 
 func enter() -> void:
