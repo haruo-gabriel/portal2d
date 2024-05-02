@@ -5,8 +5,8 @@ extends State
 var player: Player
 var animation: AnimationPlayer
 
-@onready var game_constants: GameConstants = load("res://characters/common/game_constants.tres")
-@onready var player_constants: PlayerConstants = load("res://characters/player/scripts/player_constants.tres")
+@export var game_constants: GameConstants = load("res://characters/common/game_constants.tres")
+@export var player_constants: PlayerConstants = load("res://characters/player/scripts/player_constants.tres")
 
 func start() -> void:
 	

@@ -15,6 +15,11 @@ run/main_scene="res://levels/level_1/level_scene.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.png"
 
+[autoload]
+
+GameConstants="*res://characters/common/game_constants.gd"
+PlayerConstants="*res://characters/player/scripts/player_constants.gd"
+
 [display]
 
 window/size/viewport_width=309

@@ -1,6 +1,6 @@
 
-class_name PlayerConstants
-extends Resource
+
+extends Node
 
 const WALKING_SPEED: float = 100.0
 const HORIZONTAL_ACCELERATION: float = 10.0 # Pixels per second per frame
