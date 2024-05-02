@@ -4,18 +4,18 @@ extends PlayerState
 
 func enter() -> void:
 
-	player_stats.velocity.y = constants.JUMP_VELOCITY
-	player_stats.velocity.x *= constants.BHOP_MULTIPLIER
+	player.velocity.y = constants.JUMP_VELOCITY
+	player.velocity.x *= constants.BHOP_MULTIPLIER
 
-	player_stats.is_on_floor = false
+	player.is_on_floor = false
 
-	player.position = player_stats.position
-	player.velocity = player_stats.velocity
+	player.position = player.position
+	player.velocity = player.velocity
 
 	player.move_and_slide()
 	
-	player_stats.position = player.position
-	player_stats.velocity = player.velocity
+	player.position = player.position
+	player.velocity = player.velocity
 
 	animation.play("Jump")
 

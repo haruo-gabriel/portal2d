@@ -10,9 +10,9 @@ func physics_update(delta: float) -> void:
 	if try_basic_change():
 		return
 	
-	if not player_stats.is_on_floor:
-		player_stats.velocity.y += delta * game_constants.GRAVITY
+	if not player.is_on_floor():
+		player.velocity.y += delta * game_constants.GRAVITY
 
-	if player_stats.direction and not player.move_and_collide(Vector2(player_stats.direction, 0), true):
+	if player.direction and not player.move_and_collide(Vector2(player.direction, 0), true):
 		transitioned.emit(self, "walking")
 		return

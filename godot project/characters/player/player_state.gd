@@ -2,26 +2,25 @@
 class_name PlayerState
 extends State
 
-@onready var player: CharacterBody2D = get_parent().get_parent()
-@onready var animation: AnimationPlayer = player.get_node("AnimationPlayer")
+@onready var player: Player = entity
+@onready var animation: AnimationPlayer = entity.get_node("AnimationPlayer")
 
-@onready var player_stats: PlayerStats = load("res://Scenes/Player/player_stats.tres")
 @onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
 
 @onready var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
 
 func check_basic_change() -> String:
 	
-	if player_stats.jumped:
+	if player.jumped:
 		return "jumping"
 	
-	if not player_stats.velocity.x and player_stats.is_on_floor:
+	if not player.velocity.x and player.is_on_floor():
 		return "idle"
 	
-	if player_stats.velocity.x and player_stats.is_on_floor:
+	if player.velocity.x and player.is_on_floor:
 		return "walking"
 	
-	if not player_stats.is_on_floor and player_stats.velocity.y >= 0: # If current state is "falling", this should be ignored
+	if not player.is_on_floor() and player.velocity.y >= 0: # If current state is "falling", this should be ignored
 		return "falling"
 	
 	return ""

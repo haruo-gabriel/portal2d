@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_cp1xu"]
 [ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Fall/player_fall1.png" id="2_0jc81"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/player_sprite.gd" id="3_ugign"]
+[ext_resource type="Script" path="res://characters/player/player_sprite.gd" id="3_ugign"]
 [ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Idle (Crouched)/player_idle(crouched)1.png" id="4_crgdt"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/crouching_sprite.gd" id="5_cxaas"]
+[ext_resource type="Script" path="res://characters/player/crouching_sprite.gd" id="5_cxaas"]
 [ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Gun/gun_idle.png" id="6_bphxc"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/gun_sprite.gd" id="7_bgdy6"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/main_hitbox.gd" id="8_38oie"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/crouched_hitbox.gd" id="9_mmpa2"]
+[ext_resource type="Script" path="res://characters/player/gun_sprite.gd" id="7_hqwtu"]
+[ext_resource type="Script" path="res://characters/player/main_hitbox.gd" id="8_o07y7"]
+[ext_resource type="Script" path="res://characters/player/crouched_hitbox.gd" id="9_mmpa2"]
 [ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Idle/player_idle1.png" id="10_30mpr"]
 [ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Idle/player_idle2.png" id="11_0t3q3"]
 [ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Idle/player_idle3.png" id="12_b0vqc"]
@@ -21,16 +21,16 @@
 [ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)1.png" id="19_v8oak"]
 [ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)2.png" id="20_6tawq"]
 [ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)3.png" id="21_jx1lm"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/animation_player.gd" id="22_j0vq1"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/AnimationPlayer2.gd" id="23_81xc1"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/ray_cast.gd" id="24_ds6al"]
-[ext_resource type="Script" path="res://Scripts/Components/Health/health.gd" id="25_v0vnk"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/portal_caster.gd" id="26_t25b7"]
+[ext_resource type="Script" path="res://characters/player/animation_player.gd" id="22_j0vq1"]
+[ext_resource type="Script" path="res://characters/player/AnimationPlayer2.gd" id="23_81xc1"]
+[ext_resource type="Script" path="res://characters/player/ray_cast.gd" id="24_ds6al"]
+[ext_resource type="Script" path="res://characters/common/health.gd" id="25_a7xhi"]
+[ext_resource type="Script" path="res://characters/player/portal_caster.gd" id="26_tat2q"]
 [ext_resource type="Script" path="res://characters/common/finite_state_machine/state_machine.gd" id="27_h2hio"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/States/idle.gd" id="28_de4cw"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/States/walking.gd" id="29_31bds"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/States/jumping.gd" id="30_pkx4e"]
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/States/falling.gd" id="31_3cm4j"]
+[ext_resource type="Script" path="res://characters/player/states/idle.gd" id="28_b8ry5"]
+[ext_resource type="Script" path="res://characters/player/states/walking.gd" id="29_lmmct"]
+[ext_resource type="Script" path="res://characters/player/states/jumping.gd" id="30_e0dd0"]
+[ext_resource type="Script" path="res://characters/player/states/falling.gd" id="31_jnq8s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbok6"]
 size = Vector2(72.7969, 144)
@@ -210,13 +210,13 @@ script = ExtResource("5_cxaas")
 position = Vector2(2.08165e-12, -80)
 scale = Vector2(0.825, 0.74)
 texture = ExtResource("6_bphxc")
-script = ExtResource("7_bgdy6")
+script = ExtResource("7_hqwtu")
 
 [node name="MainHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.500001, -72)
 scale = Vector2(0.783, 1)
 shape = SubResource("RectangleShape2D_nbok6")
-script = ExtResource("8_38oie")
+script = ExtResource("8_o07y7")
 
 [node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -43.5)
@@ -242,12 +242,10 @@ target_position = Vector2(-200, 2.08165e-12)
 script = ExtResource("24_ds6al")
 
 [node name="Health" type="Node" parent="."]
-script = ExtResource("25_v0vnk")
-max_health = 100.0
-regeneration = 1.0
+script = ExtResource("25_a7xhi")
 
 [node name="PortalCaster" type="Node" parent="."]
-script = ExtResource("26_t25b7")
+script = ExtResource("26_tat2q")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "entity")]
 script = ExtResource("27_h2hio")
@@ -255,13 +253,13 @@ initial_state = NodePath("Idle")
 entity = NodePath("..")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("28_de4cw")
+script = ExtResource("28_b8ry5")
 
 [node name="Walking" type="Node" parent="StateMachine"]
-script = ExtResource("29_31bds")
+script = ExtResource("29_lmmct")
 
 [node name="Jumping" type="Node" parent="StateMachine"]
-script = ExtResource("30_pkx4e")
+script = ExtResource("30_e0dd0")
 
 [node name="Falling" type="Node" parent="StateMachine"]
-script = ExtResource("31_3cm4j")
+script = ExtResource("31_jnq8s")
