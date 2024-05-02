@@ -6,7 +6,6 @@ func _ready() -> void:
 	animation_name = "Idle"
 
 func enter() -> void:
-	
 	animation.try_play(animation_name)
 
 func can_move() -> bool:
