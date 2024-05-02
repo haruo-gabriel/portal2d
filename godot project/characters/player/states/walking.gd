@@ -4,7 +4,7 @@ extends PlayerState
 
 func enter() -> void:
 	animation.play("Walk")
-	player.velocity += Vector2(.001, 0)
+	player.velocity += player.direction * Vector2(.001, 0)
 
 func physics_update(delta: float) -> void:
 	
@@ -12,17 +12,17 @@ func physics_update(delta: float) -> void:
 		return
 
 	if not player.is_on_floor():
-		player.velocity.y += delta * game_constants.GRAVITY
+		player.velocity.y += delta * GameConstants.GRAVITY
 
 	if player.direction:
 
-		var step = player_constants.HORIZONTAL_ACCELERATION
-		var new_speed = player.direction * player_constants.WALKING_SPEED
+		var step = PlayerConstants.HORIZONTAL_ACCELERATION
+		var new_speed = player.direction * PlayerConstants.WALKING_SPEED
 		
 		if player.is_crouching:
-			new_speed *= player_constants.CROUCH_SPEED_MULTIPLIER
+			new_speed *= PlayerConstants.CROUCH_SPEED_MULTIPLIER
 		
 		player.velocity.x = move_toward(player.velocity.x, new_speed, step)
 
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, player_constants.GROUND_DRAG)
+		player.velocity.x = move_toward(player.velocity.x, 0, PlayerConstants.GROUND_DRAG)

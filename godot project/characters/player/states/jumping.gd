@@ -4,8 +4,8 @@ extends PlayerState
 
 func enter() -> void:
 
-	player.velocity.y = player_constants.JUMP_VELOCITY
-	player.velocity.x *= player_constants.BHOP_MULTIPLIER
+	player.velocity.y = PlayerConstants.JUMP_VELOCITY
+	player.velocity.x *= PlayerConstants.BHOP_MULTIPLIER
 
 	player.move_and_slide()
 
@@ -17,10 +17,10 @@ func physics_update(delta: float) -> void:
 		return
 	
 	if not player.is_on_floor():
-		player.velocity.y += delta * game_constants.GRAVITY
+		player.velocity.y += delta * GameConstants.GRAVITY
 	
-	var step: float = player_constants.HORIZONTAL_ACCELERATION * player_constants.IN_AIR_MULTIPLIER
-	var new_speed: float = player.direction * player_constants.WALKING_SPEED
+	var step: float = PlayerConstants.HORIZONTAL_ACCELERATION * PlayerConstants.IN_AIR_MULTIPLIER
+	var new_speed: float = player.direction * PlayerConstants.WALKING_SPEED
 
 	if sign(player.velocity.x) == sign(player.direction):
 		new_speed = sign(new_speed) * max(abs(new_speed), abs(player.velocity.x))
