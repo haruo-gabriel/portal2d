@@ -15,8 +15,14 @@ extends CharacterBody2D
 
 @onready var health: Health = $Health
 
+var direction: float = 0.0
+var angle: float = 0.0
+
 var last_jumped: int = 0
 var jumped: bool = false
+
+var is_falling: bool = false
+var is_crouching: bool = false
 
 func shoot() -> void:
 	
@@ -35,14 +41,14 @@ func set_angle() -> void:
 	var difference: Vector2 = get_global_mouse_position() - raycast.global_position
 
 	if difference: 
-		stats.angle = atan2(difference.y, difference.x)
+		angle = atan2(difference.y, difference.x)
 
 func toggle_hitbox(to_crouch: bool) -> void:
 
 	main_hitbox.disabled = to_crouch
 	crouched_hitbox.disabled =  not to_crouch
 
-	stats.is_crouching = to_crouch
+	is_crouching = to_crouch
 
 func toggle_crouch(to_crouch: bool) -> void:
 
@@ -76,15 +82,14 @@ func move() -> void:
 
 func _process(_delta: float) -> void:
 
-	stats.is_on_floor = is_on_floor()
-	stats.direction = Input.get_axis("move_left", "move_right")
+	direction = Input.get_axis("move_left", "move_right")
 
 	var try_crouch = Input.is_action_pressed("crouch")
 
-	if try_crouch and not stats.is_crouching:
+	if try_crouch and not is_crouching:
 		toggle_crouch(true)
 	
-	if not try_crouch and stats.is_crouching:
+	if not try_crouch and is_crouching:
 		toggle_crouch(false)
 
 	if Input.is_action_just_pressed("shoot_portal1"):
