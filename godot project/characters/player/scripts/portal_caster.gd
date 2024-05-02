@@ -8,14 +8,12 @@ extends Node
 @onready var tile_map: TileMap = player.get_parent().get_node("TileMap")
 @onready var space_state: PhysicsDirectSpaceState2D = player.get_world_2d().direct_space_state
 
-var game_constants: GameConstants = load("res://characters/common/game_constants.tres")
-
 const DIVISIONS: int = 200
 const CASTS: int = 10
 const TOLERANCE: float = .9
 
 func to_coord(pos: Vector2) -> Vector2i:
-	return Vector2i(pos / game_constants.TILE_SIZE)
+	return Vector2i(pos / GameConstants.TILE_SIZE)
 
 func fix_pos(pos: Vector2, normal: Vector2) -> Vector2:
 	

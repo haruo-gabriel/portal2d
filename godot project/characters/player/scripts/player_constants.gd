@@ -1,5 +1,4 @@
 
-
 extends Node
 
 const WALKING_SPEED: float = 100.0
