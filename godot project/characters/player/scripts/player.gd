@@ -41,7 +41,7 @@ func set_angle() -> void:
 func toggle_hitbox(to_crouch: bool) -> void:
 
 	main_hitbox.disabled = to_crouch
-	crouched_hitbox.disabled =  not to_crouch
+	crouched_hitbox.disabled = not to_crouch
 
 	is_crouching = to_crouch
 

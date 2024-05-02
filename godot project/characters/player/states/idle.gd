@@ -5,9 +5,16 @@ extends PlayerState
 func enter() -> void:
 	animation.play("Idle")
 
+func can_move() -> bool:
+	
+	var normal_move: bool = player.move_and_collide(Vector2(player.direction, 0), true) == null
+	var ramp_move: bool = player.move_and_collide(Vector2(player.direction, -1), true) == null
+	
+	return normal_move or ramp_move
+
 func physics_update(delta: float) -> void:
 	
-	if player.direction and not player.move_and_collide(Vector2(player.direction, -1), true):
+	if player.direction and can_move():
 		transitioned.emit(self, "walking")
 		return
 
