@@ -9,7 +9,7 @@ func enter() -> void:
 	
 	player.is_falling = true
 	
-	animation.play(animation_name)
+	animation.try_play(animation_name)
 
 func exit() -> void:
 	

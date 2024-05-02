@@ -12,7 +12,7 @@ func enter() -> void:
 
 	player.move_and_slide()
 
-	animation.play(animation_name)
+	animation.try_play(animation_name)
 
 func physics_update(delta: float) -> void:
 	

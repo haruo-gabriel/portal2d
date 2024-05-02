@@ -6,8 +6,10 @@ func _ready() -> void:
 	animation_name = "Walk"
 
 func enter() -> void:
-	animation.play(animation_name)
+
 	player.velocity += player.direction * Vector2(.001, 0)
+
+	animation.try_play(animation_name)
 
 func physics_update(delta: float) -> void:
 	

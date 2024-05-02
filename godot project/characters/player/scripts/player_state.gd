@@ -3,7 +3,7 @@ class_name PlayerState
 extends State
 
 var player: Player
-var animation: AnimationPlayer
+var animation: PlayerAnimation
 
 var animation_name: String
 
