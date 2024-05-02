@@ -43,6 +43,9 @@ func is_valid_square(pos: Vector2, normal: Vector2) -> bool:
 	var coord = to_coord(result.position)
 	var tile = tile_map.get_cell_tile_data(0, coord)
 
+	if tile == null:
+		return false
+
 	return tile.get_custom_data("CanPortal")
 
 func get_valid_squares(pos: Vector2, normal: Vector2) -> Dictionary:
