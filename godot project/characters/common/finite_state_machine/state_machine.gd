@@ -7,19 +7,30 @@ extends Node
 var current_state: State
 var states: Dictionary = {}
 
-func _ready() -> void:
+func get_states() -> Array:
+	
+	var _states: Array = Array()
 
 	for child in get_children():
 		if child is State:
-			states[child.name.to_lower()] = child
-			child.transitioned.connect(_on_child_transitioned)
-			child.entity = entity
-	
-	
-	if initial_state:
-		initial_state.entity = entity
-		initial_state.enter()
-		current_state = initial_state
+			_states.append(child)
+
+	_states.append(initial_state)
+
+	return _states
+
+func _ready() -> void:
+
+	for state in get_states():
+
+		states[state.name.to_lower()] = state
+		
+		state.transitioned.connect(_on_child_transitioned)
+		state.entity = entity
+		state.start()
+
+	current_state = initial_state
+	initial_state.enter()
 
 func _process(delta: float) -> void:
 

@@ -6,6 +6,9 @@ signal transitioned(state: State, new_state_name: String)
 
 var entity: Node
 
+func start() -> void:
+	pass
+
 func enter() -> void:
 	pass
 
