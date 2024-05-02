@@ -2,8 +2,11 @@
 class_name Idle
 extends PlayerState
 
+func _ready() -> void:
+	animation_name = "Idle"
+
 func enter() -> void:
-	animation.play("Idle")
+	animation.play(animation_name)
 
 func can_move() -> bool:
 	

@@ -2,6 +2,9 @@
 class_name Jumping
 extends PlayerState
 
+func _ready() -> void:
+	animation_name = "Jump"
+
 func enter() -> void:
 
 	player.velocity.y = PlayerConstants.JUMP_VELOCITY
@@ -9,7 +12,7 @@ func enter() -> void:
 
 	player.move_and_slide()
 
-	animation.play("Jump")
+	animation.play(animation_name)
 
 func physics_update(delta: float) -> void:
 	
@@ -26,10 +29,6 @@ func physics_update(delta: float) -> void:
 		new_speed = sign(new_speed) * max(abs(new_speed), abs(player.velocity.x))
 
 	player.velocity.x = move_toward(player.velocity.x, new_speed, step)
-
-
-func _ready() -> void:
-	pass # Replace with function body.
 
 func _process(_delta: float) -> void:
 	pass

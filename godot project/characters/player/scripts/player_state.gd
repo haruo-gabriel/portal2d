@@ -5,6 +5,8 @@ extends State
 var player: Player
 var animation: AnimationPlayer
 
+var animation_name: String
+
 func start() -> void:
 	
 	player = entity

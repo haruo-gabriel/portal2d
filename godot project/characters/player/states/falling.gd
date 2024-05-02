@@ -2,11 +2,14 @@
 class_name Falling
 extends PlayerState
 
+func _ready() -> void:
+	animation_name = "Fall"
+
 func enter() -> void:
 	
 	player.is_falling = true
 	
-	animation.play("Fall")
+	animation.play(animation_name)
 
 func exit() -> void:
 	

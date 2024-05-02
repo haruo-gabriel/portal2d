@@ -2,8 +2,11 @@
 class_name Walking
 extends PlayerState
 
+func _ready() -> void:
+	animation_name = "Walk"
+
 func enter() -> void:
-	animation.play("Walk")
+	animation.play(animation_name)
 	player.velocity += player.direction * Vector2(.001, 0)
 
 func physics_update(delta: float) -> void:
