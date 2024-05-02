@@ -1,26 +1,11 @@
-[gd_scene load_steps=44 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=29 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_cp1xu"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Fall/player_fall1.png" id="2_0jc81"]
 [ext_resource type="Script" path="res://characters/player/player_sprite.gd" id="3_ugign"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Idle (Crouched)/player_idle(crouched)1.png" id="4_crgdt"]
 [ext_resource type="Script" path="res://characters/player/crouching_sprite.gd" id="5_cxaas"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Gun/gun_idle.png" id="6_bphxc"]
 [ext_resource type="Script" path="res://characters/player/gun_sprite.gd" id="7_hqwtu"]
 [ext_resource type="Script" path="res://characters/player/main_hitbox.gd" id="8_o07y7"]
 [ext_resource type="Script" path="res://characters/player/crouched_hitbox.gd" id="9_mmpa2"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Idle/player_idle1.png" id="10_30mpr"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Idle/player_idle2.png" id="11_0t3q3"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Idle/player_idle3.png" id="12_b0vqc"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Jump/player_jump1.png" id="13_nwlvl"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Jump/player_jump2.png" id="14_eib1y"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Jump/player_jump3.png" id="15_eo4ru"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Walk/player_walk1.png" id="16_vpblf"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Walk/player_walk2.png" id="17_0c8v0"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Walk/player_walk3.png" id="18_biqak"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)1.png" id="19_v8oak"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)2.png" id="20_6tawq"]
-[ext_resource type="Texture2D" path="res://Scenes/Player/Sprites/Walk (Crouched)/player_walk(crouched)3.png" id="21_jx1lm"]
 [ext_resource type="Script" path="res://characters/player/animation_player.gd" id="22_j0vq1"]
 [ext_resource type="Script" path="res://characters/player/AnimationPlayer2.gd" id="23_81xc1"]
 [ext_resource type="Script" path="res://characters/player/ray_cast.gd" id="24_ds6al"]
@@ -52,7 +37,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_0jc81")]
+"values": [null]
 }
 
 [sub_resource type="Animation" id="Animation_d0u0g"]
@@ -69,7 +54,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("10_30mpr"), ExtResource("11_0t3q3"), ExtResource("12_b0vqc")]
+"values": [null, null, null]
 }
 
 [sub_resource type="Animation" id="Animation_8ukh0"]
@@ -102,7 +87,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("13_nwlvl"), ExtResource("14_eib1y"), ExtResource("15_eo4ru")]
+"values": [null, null, null]
 }
 
 [sub_resource type="Animation" id="Animation_l52iv"]
@@ -119,7 +104,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("16_vpblf"), ExtResource("17_0c8v0"), ExtResource("18_biqak")]
+"values": [null, null, null]
 }
 
 [sub_resource type="Animation" id="Animation_6phk5"]
@@ -136,7 +121,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("19_v8oak"), ExtResource("20_6tawq"), ExtResource("21_jx1lm")]
+"values": [null, null, null]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_auc0t"]
@@ -163,7 +148,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_crgdt")]
+"values": [null]
 }
 
 [sub_resource type="Animation" id="Animation_h02w5"]
@@ -179,7 +164,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("19_v8oak"), ExtResource("20_6tawq"), ExtResource("21_jx1lm")]
+"values": [null, null, null]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l13df"]
@@ -197,19 +182,16 @@ offset = Vector2(0, -111)
 [node name="MainSprite" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, -72)
 scale = Vector2(0.282, 0.36)
-texture = ExtResource("2_0jc81")
 script = ExtResource("3_ugign")
 
 [node name="CrouchingSprite" type="Sprite2D" parent="."]
 position = Vector2(-9.53674e-07, -44)
 scale = Vector2(0.38, 0.286667)
-texture = ExtResource("4_crgdt")
 script = ExtResource("5_cxaas")
 
 [node name="GunSprite" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, -80)
 scale = Vector2(0.825, 0.74)
-texture = ExtResource("6_bphxc")
 script = ExtResource("7_hqwtu")
 
 [node name="MainHitbox" type="CollisionShape2D" parent="."]

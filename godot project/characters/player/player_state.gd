@@ -2,12 +2,16 @@
 class_name PlayerState
 extends State
 
-@onready var player: Player = entity
-@onready var animation: AnimationPlayer = entity.get_node("AnimationPlayer")
+var player: Player
 
-@onready var constants: PlayerConstants = load("res://Scenes/Player/player_constants.tres")
+var animation: AnimationPlayer :
+	get: return entity.get_node("AnimationPlayer")
 
-@onready var game_constants: GameConstants = load("res://Scripts/Resources/game_constants.tres")
+@onready var game_constants: GameConstants = load("res://characters/common/game_constants.tres")
+@onready var player_constants: PlayerConstants = load("res://characters/player/player_constants.tres")
+
+func _ready() -> void:
+	player = entity
 
 func check_basic_change() -> String:
 	

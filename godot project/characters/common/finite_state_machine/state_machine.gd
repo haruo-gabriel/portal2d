@@ -15,7 +15,9 @@ func _ready() -> void:
 			child.transitioned.connect(_on_child_transitioned)
 			child.entity = entity
 	
+	
 	if initial_state:
+		initial_state.entity = entity
 		initial_state.enter()
 		current_state = initial_state
 

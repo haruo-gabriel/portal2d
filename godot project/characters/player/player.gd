@@ -15,6 +15,9 @@ extends CharacterBody2D
 
 @onready var health: Health = $Health
 
+var last_jumped: int = 0
+var jumped: bool = false
+
 func shoot() -> void:
 	
 	var result: Array = portal_caster.get_portal()
@@ -52,15 +55,15 @@ func toggle_crouch(to_crouch: bool) -> void:
 func try_jump() -> void:
 	
 	if Input.is_action_just_pressed("jump"):
-		stats.last_jumped = constants.JUMP_BUFFER_TIME
+		last_jumped = constants.JUMP_BUFFER_TIME
 
-	if stats.last_jumped and stats.is_on_floor:
-		stats.last_jumped = 0
-		stats.jumped = true
+	if last_jumped and is_on_floor():
+		last_jumped = 0
+		jumped = true
 	else:
-		stats.jumped = false
+		jumped = false
 
-	stats.last_jumped = max(0, stats.last_jumped - 1)
+	last_jumped = max(0, last_jumped - 1)
 
 func move() -> void:
 	
@@ -69,18 +72,7 @@ func move() -> void:
 	velocity.x = clamp(velocity.x, -constants.MAX_X_SPEED, constants.MAX_X_SPEED)
 	velocity.y = clamp(velocity.y, -constants.MAX_Y_SPEED, constants.MAX_Y_SPEED)
 
-	position = stats.position
-	velocity = stats.velocity
-
 	move_and_slide()
-
-	stats.position = position
-	stats.velocity = velocity
-
-func _ready() -> void:
-	
-	stats.position = position
-	stats.velocity = velocity
 
 func _process(_delta: float) -> void:
 

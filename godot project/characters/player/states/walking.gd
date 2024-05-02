@@ -16,13 +16,13 @@ func physics_update(delta: float) -> void:
 
 	if player.direction:
 
-		var step = constants.HORIZONTAL_ACCELERATION
-		var new_speed = player.direction * constants.WALKING_SPEED
+		var step = player_constants.HORIZONTAL_ACCELERATION
+		var new_speed = player.direction * player_constants.WALKING_SPEED
 		
 		if player.is_crouching:
-			new_speed *= constants.CROUCH_SPEED_MULTIPLIER
+			new_speed *= player_constants.CROUCH_SPEED_MULTIPLIER
 		
 		player.velocity.x = move_toward(player.velocity.x, new_speed, step)
 
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, constants.GROUND_DRAG)
+		player.velocity.x = move_toward(player.velocity.x, 0, game_constants.GROUND_DRAG)

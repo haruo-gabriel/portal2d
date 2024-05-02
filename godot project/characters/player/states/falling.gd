@@ -4,26 +4,26 @@ extends PlayerState
 
 func enter() -> void:
 	
-	player_stats.is_falling = true
+	player.is_falling = true
 	
 	animation.play("Fall")
 
 func exit() -> void:
 	
-	player_stats.is_falling = false
+	player.is_falling = false
 
 func physics_update(delta: float) -> void:
 
 	if try_basic_change():
 		return
 	
-	player_stats.velocity.y += game_constants.GRAVITY * delta
+	player.velocity.y += game_constants.GRAVITY * delta
 
-	var step: float = constants.HORIZONTAL_ACCELERATION * constants.IN_AIR_MULTIPLIER
-	var new_speed: float = player_stats.direction * constants.WALKING_SPEED
+	var step: float = player_constants.HORIZONTAL_ACCELERATION * player_constants.IN_AIR_MULTIPLIER
+	var new_speed: float = player.direction * player_constants.WALKING_SPEED
 
-	if sign(player_stats.velocity.x) == sign(player_stats.direction):
-		new_speed = sign(new_speed) * max(abs(new_speed), abs(player_stats.velocity.x))
+	if sign(player.velocity.x) == sign(player.direction):
+		new_speed = sign(new_speed) * max(abs(new_speed), abs(player.velocity.x))
 
-	player_stats.velocity.x = move_toward(player_stats.velocity.x, new_speed, step)
+	player.velocity.x = move_toward(player.velocity.x, new_speed, step)
 
