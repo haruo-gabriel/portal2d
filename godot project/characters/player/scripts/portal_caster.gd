@@ -12,8 +12,14 @@ const DIVISIONS: int = 200
 const CASTS: int = 10
 const TOLERANCE: float = .9
 
+var layer: int
+
 func to_coord(pos: Vector2) -> Vector2i:
-	return Vector2i(pos / GameConstants.TILE_SIZE)
+
+	var x: int = floor(pos[0] / GameConstants.TILE_SIZE)
+	var y: int = floor(pos[1] / GameConstants.TILE_SIZE)
+
+	return Vector2i(x, y)
 
 func fix_pos(pos: Vector2, normal: Vector2) -> Vector2:
 	
@@ -39,12 +45,12 @@ func is_valid_square(pos: Vector2, normal: Vector2) -> bool:
 	result.position = fix_pos(result.position, result.normal)
 
 	var coord = to_coord(result.position)
-	var tile = tile_map.get_cell_tile_data(0, coord)
+	var tile = tile_map.get_cell_tile_data(layer, coord)
 
 	if tile == null:
 		return false
 
-	return tile.get_custom_data("CanPortal")
+	return true
 
 func get_valid_squares(pos: Vector2, normal: Vector2) -> Dictionary:
 	
@@ -53,7 +59,7 @@ func get_valid_squares(pos: Vector2, normal: Vector2) -> Dictionary:
 	var step: Vector2 = GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE * normal.rotated(PI / 2) / CASTS
 	var current: Vector2 = pos
 
-	while is_valid_square(current, normal):
+	while is_valid_square(current, normal) and (current - pos).length() <= GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE:
 
 		squares[to_coord(current)] = true
 
@@ -61,7 +67,7 @@ func get_valid_squares(pos: Vector2, normal: Vector2) -> Dictionary:
 
 	current = pos
 
-	while is_valid_square(current, normal):
+	while is_valid_square(current, normal) and (current - pos).length() <= GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE:
 
 		squares[to_coord(current)] = true
 
@@ -86,22 +92,19 @@ func get_portal() -> Array:
 	var rotated: Vector2 = normal.rotated(PI / 2)
 	var squares: Dictionary = get_valid_squares(hit, normal)
 
-
 	if len(squares) < GameConstants.PORTAL_SIZE:
 		return Array()
-
 
 	var step: float = GameConstants.PORTAL_SIZE / DIVISIONS
 	
 	var span1: float = 0.0
 	var span2: float = 0.0
 
-	while Vector2i(hit / GameConstants.TILE_SIZE + span1 * rotated) in squares:
+	while to_coord(hit + span1 * rotated * GameConstants.TILE_SIZE) in squares:
 		span1 += step
 
-	while Vector2i(hit / GameConstants.TILE_SIZE - span2 * rotated) in squares:
+	while to_coord(hit - span2 * rotated * GameConstants.TILE_SIZE) in squares:
 		span2 += step
-	
 
 	var portal_pos: Vector2 = fix_pos(hit, -normal) # Unfixing the position
 	
@@ -112,3 +115,9 @@ func get_portal() -> Array:
 		portal_pos += rotated * (GameConstants.PORTAL_SIZE / 2.0 - span2) * GameConstants.TILE_SIZE
 
 	return [portal_pos, normal]
+
+func _ready() -> void:
+	
+	for i in range(tile_map.get_layers_count()):
+		if tile_map.get_layer_name(i) == "Portal":
+			layer = i
