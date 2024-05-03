@@ -94,7 +94,6 @@ separation = Vector2i(1, 1)
 4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:1/0/physics_layer_0/angular_velocity = 0.0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.96875, -8, 4.90625, 8, -4.96875, 8, -5.03125, -8)
-4:1/0/physics_layer_0/polygon_0/one_way = true
 5:1/0 = 0
 5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:1/0/physics_layer_0/angular_velocity = 0.0
