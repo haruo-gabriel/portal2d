@@ -59,7 +59,7 @@ func get_valid_squares(pos: Vector2, normal: Vector2) -> Dictionary:
 	var step: Vector2 = GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE * normal.rotated(PI / 2) / CASTS
 	var current: Vector2 = pos
 
-	while is_valid_square(current, normal):
+	while is_valid_square(current, normal) and (current - pos).length() <= GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE:
 
 		squares[to_coord(current)] = true
 
@@ -67,7 +67,7 @@ func get_valid_squares(pos: Vector2, normal: Vector2) -> Dictionary:
 
 	current = pos
 
-	while is_valid_square(current, normal):
+	while is_valid_square(current, normal) and (current - pos).length() <= GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE:
 
 		squares[to_coord(current)] = true
 
@@ -92,22 +92,19 @@ func get_portal() -> Array:
 	var rotated: Vector2 = normal.rotated(PI / 2)
 	var squares: Dictionary = get_valid_squares(hit, normal)
 
-
 	if len(squares) < GameConstants.PORTAL_SIZE:
 		return Array()
-
 
 	var step: float = GameConstants.PORTAL_SIZE / DIVISIONS
 	
 	var span1: float = 0.0
 	var span2: float = 0.0
 
-	while Vector2i(hit / GameConstants.TILE_SIZE + span1 * rotated) in squares:
+	while to_coord(hit + span1 * rotated * GameConstants.TILE_SIZE) in squares:
 		span1 += step
 
-	while Vector2i(hit / GameConstants.TILE_SIZE - span2 * rotated) in squares:
+	while to_coord(hit - span2 * rotated * GameConstants.TILE_SIZE) in squares:
 		span2 += step
-	
 
 	var portal_pos: Vector2 = fix_pos(hit, -normal) # Unfixing the position
 	
