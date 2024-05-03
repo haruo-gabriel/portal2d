@@ -12,8 +12,14 @@ const DIVISIONS: int = 200
 const CASTS: int = 10
 const TOLERANCE: float = .9
 
+var layer: int
+
 func to_coord(pos: Vector2) -> Vector2i:
-	return Vector2i(pos / GameConstants.TILE_SIZE)
+
+	var x: int = floor(pos[0] / GameConstants.TILE_SIZE)
+	var y: int = floor(pos[1] / GameConstants.TILE_SIZE)
+
+	return Vector2i(x, y)
 
 func fix_pos(pos: Vector2, normal: Vector2) -> Vector2:
 	
@@ -39,12 +45,12 @@ func is_valid_square(pos: Vector2, normal: Vector2) -> bool:
 	result.position = fix_pos(result.position, result.normal)
 
 	var coord = to_coord(result.position)
-	var tile = tile_map.get_cell_tile_data(0, coord)
+	var tile = tile_map.get_cell_tile_data(layer, coord)
 
 	if tile == null:
 		return false
 
-	return tile.get_custom_data("CanPortal")
+	return true
 
 func get_valid_squares(pos: Vector2, normal: Vector2) -> Dictionary:
 	
@@ -112,3 +118,9 @@ func get_portal() -> Array:
 		portal_pos += rotated * (GameConstants.PORTAL_SIZE / 2.0 - span2) * GameConstants.TILE_SIZE
 
 	return [portal_pos, normal]
+
+func _ready() -> void:
+	
+	for i in range(tile_map.get_layers_count()):
+		if tile_map.get_layer_name(i) == "Portal":
+			layer = i
