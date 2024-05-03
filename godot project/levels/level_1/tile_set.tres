@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bxf11dynbrbke"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://bxf11dynbrbke"]
 
 [ext_resource type="Texture2D" uid="uid://7l2nshjc1j5i" path="res://levels/level_1/tilesheet.png" id="1_3nsdd"]
 
@@ -13,6 +13,15 @@ tile_data = PackedInt32Array(0, 196608, 0, 65536, 65536, 131072, 131072, 65536, 
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_y1isx"]
 tile_data = PackedInt32Array(0, 327680, 1, 65536, 65536, 1, 65537, 65536, 1, 65538, 131072, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_gt2ys"]
+tile_data = PackedInt32Array(0, 65536, 1, 1, 65536, 1, 2, 131072, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_2ovcx"]
+tile_data = PackedInt32Array(0, 0, 1, 1, 65536, 1, 2, 65536, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_sl7j5"]
+tile_data = PackedInt32Array(0, 262144, 0, 65536, 262144, 0, 131072, 262144, 0, 1, 262144, 0, 65537, 262144, 0, 131073, 262144, 0, 2, 262144, 0, 65538, 262144, 0, 131074, 262144, 0, 3, 262144, 0, 4, 262144, 0, 5, 262144, 0, 11, 262144, 0, 12, 262144, 0, 13, 262144, 0, 14, 262144, 0, 15, 262144, 0, 65551, 262144, 0, 131087, 262144, 0, 16, 262144, 0, 65552, 262144, 0, 131088, 262144, 0, 17, 262144, 0, 65553, 262144, 0, 131089, 262144, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sglwg"]
 texture = ExtResource("1_3nsdd")
@@ -147,3 +156,6 @@ pattern_0 = SubResource("TileMapPattern_qrl1y")
 pattern_1 = SubResource("TileMapPattern_ktep6")
 pattern_2 = SubResource("TileMapPattern_v30xg")
 pattern_3 = SubResource("TileMapPattern_y1isx")
+pattern_4 = SubResource("TileMapPattern_gt2ys")
+pattern_5 = SubResource("TileMapPattern_2ovcx")
+pattern_6 = SubResource("TileMapPattern_sl7j5")
