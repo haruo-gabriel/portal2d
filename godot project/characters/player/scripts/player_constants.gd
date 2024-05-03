@@ -16,10 +16,10 @@ const BHOP_MULTIPLIER: float = 1.2
 # You move slower while crouched
 const CROUCH_SPEED_MULTIPLIER: float = .5
 
-const JUMP_VELOCITY: float = -250.0
+const JUMP_VELOCITY: float = -300.0
 
 const MAX_Y_SPEED: float = 400.0 # In absolute value
-const MAX_X_SPEED: float = 300.0 # In absolute value
+const MAX_X_SPEED: float = 600.0 # In absolute value
 
 # Frames a player can press jump before landing and still jump upon hitting ground.
 # To remove, set it to 1, NOT ZERO (the player won't be able to jump).

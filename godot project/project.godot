@@ -22,8 +22,8 @@ PlayerConstants="*res://characters/player/scripts/player_constants.gd"
 
 [display]
 
-window/size/viewport_width=309
-window/size/viewport_height=189
+window/size/viewport_width=768
+window/size/viewport_height=432
 window/size/mode=2
 window/stretch/mode="viewport"
 
