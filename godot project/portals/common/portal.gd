@@ -2,7 +2,7 @@
 class_name Portal
 extends Area2D
 
-var type: PortalsConstants.PortalType  
+var type: PortalsConstants.PortalType
 var direction: float = 0.0
 var normal: Vector2
 

@@ -8,11 +8,15 @@ extends Node
 @onready var tile_map: TileMap = player.get_parent().get_node("TileMap")
 @onready var space_state: PhysicsDirectSpaceState2D = player.get_world_2d().direct_space_state
 
-const DIVISIONS: int = 200
+# Portal size in pixels
+const PORTAL_SIZE_P: float = GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE
+
+const DIVISIONS: int = 100
 const CASTS: int = 10
 const TOLERANCE: float = .9
 
 var layer: int
+var other_portal: Portal
 
 func to_coord(pos: Vector2) -> Vector2i:
 
@@ -22,58 +26,40 @@ func to_coord(pos: Vector2) -> Vector2i:
 	return Vector2i(x, y)
 
 func fix_pos(pos: Vector2, normal: Vector2) -> Vector2:
+	return pos - normal
+
+func is_valid_point(pos: Vector2) -> bool:
 	
-	if abs(normal.x) > TOLERANCE: pos.x -= normal.x
-	if abs(normal.y) > TOLERANCE: pos.y -= normal.y
-
-	return pos
-
-func is_valid_square(pos: Vector2, normal: Vector2) -> bool:
-	
-	var query = PhysicsRayQueryParameters2D.create(pos + CASTS * normal, pos - CASTS * normal)
-	
-	query.exclude = [self]
-
-	var result: Dictionary = space_state.intersect_ray(query)
-
-	if not result:
+	if tile_map.get_cell_tile_data(layer, to_coord(pos)) == null:
 		return false
 	
-	if result.normal != normal:
+	if other_portal == null:
+		return true
+	
+	return pos.distance_to(other_portal.position) >= PORTAL_SIZE_P / 2
+
+func is_valid_pos(pos: Vector2, normal: Vector2) -> bool:
+	
+	if not is_valid_point(pos):
 		return false
 
-	result.position = fix_pos(result.position, result.normal)
+	if not is_valid_point(pos + PORTAL_SIZE_P / 2 * normal.rotated(PI / 2)):
+		return false
 
-	var coord = to_coord(result.position)
-	var tile = tile_map.get_cell_tile_data(layer, coord)
-
-	if tile == null:
+	if not is_valid_point(pos + PORTAL_SIZE_P / 2 * normal.rotated(-PI / 2)):
 		return false
 
 	return true
 
-func get_valid_squares(pos: Vector2, normal: Vector2) -> Dictionary:
+func get_valid_point(start: Vector2, normal: Vector2, walk_direction: Vector2) -> Vector2:
 	
-	var squares: Dictionary = Dictionary()
+	var step: Vector2 = walk_direction.normalized() * PORTAL_SIZE_P / (DIVISIONS - 1)
 
-	var step: Vector2 = GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE * normal.rotated(PI / 2) / CASTS
-	var current: Vector2 = pos
-
-	while is_valid_square(current, normal) and (current - pos).length() <= GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE:
-
-		squares[to_coord(current)] = true
-
-		current += step
-
-	current = pos
-
-	while is_valid_square(current, normal) and (current - pos).length() <= GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE:
-
-		squares[to_coord(current)] = true
-
-		current -= step
-
-	return squares
+	for i in range(DIVISIONS):
+		if is_valid_pos(start + step * i, normal):
+			return start + step * i
+	
+	return Vector2.ZERO
 
 func get_portal() -> Array:
 	"""Returns `position` and `normal` of the portal or an empty array if an invalid spot"""
@@ -81,39 +67,24 @@ func get_portal() -> Array:
 	var hit: Vector2 = raycast.get_collision_point()
 	var normal: Vector2 = raycast.get_collision_normal()
 
-
 	if hit == Vector2.ZERO or hit == null or normal == null:
 		return Array()
 	
 
 	hit -= tile_map.position
-	hit = fix_pos(hit, normal)
+	hit -= normal
 
-	var rotated: Vector2 = normal.rotated(PI / 2)
-	var squares: Dictionary = get_valid_squares(hit, normal)
-
-	if len(squares) < GameConstants.PORTAL_SIZE:
-		return Array()
-
-	var step: float = GameConstants.PORTAL_SIZE / DIVISIONS
+	var right: Vector2 = get_valid_point(hit, normal, normal.rotated(PI / 2))
+	var left: Vector2 = get_valid_point(hit, normal, normal.rotated(-PI / 2))
 	
-	var span1: float = 0.0
-	var span2: float = 0.0
-
-	while to_coord(hit + span1 * rotated * GameConstants.TILE_SIZE) in squares:
-		span1 += step
-
-	while to_coord(hit - span2 * rotated * GameConstants.TILE_SIZE) in squares:
-		span2 += step
-
-	var portal_pos: Vector2 = fix_pos(hit, -normal) # Unfixing the position
+	if not right and not left:
+		return []
 	
-	if span1 < GameConstants.PORTAL_SIZE / 2.0:
-		portal_pos += -rotated * (GameConstants.PORTAL_SIZE / 2.0 - span1) * GameConstants.TILE_SIZE
-		
-	if span2 < GameConstants.PORTAL_SIZE / 2.0:
-		portal_pos += rotated * (GameConstants.PORTAL_SIZE / 2.0 - span2) * GameConstants.TILE_SIZE
-
+	var portal_pos: Vector2
+	
+	if right.distance_to(hit) < left.distance_to(hit): portal_pos = right
+	else: portal_pos = left
+	
 	return [portal_pos, normal]
 
 func _ready() -> void:
