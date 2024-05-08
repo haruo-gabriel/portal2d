@@ -61,7 +61,7 @@ func get_valid_point(start: Vector2, normal: Vector2, walk_direction: Vector2) -
 	
 	return Vector2.ZERO
 
-func get_portal() -> Array:
+func get_portal(type: PortalsConstants.PortalType) -> Array:
 	"""Returns `position` and `normal` of the portal or an empty array if an invalid spot"""
 
 	var hit: Vector2 = raycast.get_collision_point()
@@ -70,12 +70,17 @@ func get_portal() -> Array:
 	if hit == Vector2.ZERO or hit == null or normal == null:
 		return Array()
 	
+	for child in tile_map.get_tree().get_nodes_in_group("Portal"):
+		if child is Portal and child.type != type:
+			other_portal = child
 
 	hit -= tile_map.position
 	hit -= normal
 
 	var right: Vector2 = get_valid_point(hit, normal, normal.rotated(PI / 2))
 	var left: Vector2 = get_valid_point(hit, normal, normal.rotated(-PI / 2))
+	
+	other_portal = null
 	
 	if not right and not left:
 		return []

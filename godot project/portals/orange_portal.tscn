@@ -14,12 +14,12 @@ priority = 10
 script = ExtResource("1_qxjg7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, 0)
+position = Vector2(0, -2.08165e-12)
 shape = SubResource("SegmentShape2D_3rnao")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.921661, 0.394423, 0.282212, 1)
-position = Vector2(2, -2.08165e-12)
+position = Vector2(0, -2.08165e-12)
 texture = ExtResource("2_wi1a2")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
