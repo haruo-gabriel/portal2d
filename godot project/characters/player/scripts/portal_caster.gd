@@ -17,16 +17,16 @@ const TOLERANCE: float = .9
 var layer: int
 var other_portal: Portal
 
-func to_coord(pos: Vector2) -> Vector2i:
+func _to_coord(pos: Vector2) -> Vector2i:
 
 	var x: int = floor(pos[0] / GameConstants.TILE_SIZE)
 	var y: int = floor(pos[1] / GameConstants.TILE_SIZE)
 
 	return Vector2i(x, y)
 
-func is_valid_point(pos: Vector2) -> bool:
+func _is_valid_point(pos: Vector2) -> bool:
 	
-	if tile_map.get_cell_tile_data(layer, to_coord(pos)) == null:
+	if tile_map.get_cell_tile_data(layer, _to_coord(pos)) == null:
 		return false
 	
 	if other_portal == null:
@@ -34,25 +34,25 @@ func is_valid_point(pos: Vector2) -> bool:
 	
 	return pos.distance_to(other_portal.position) >= PORTAL_SIZE_P / 2
 
-func is_valid_pos(pos: Vector2, normal: Vector2) -> bool:
+func _is_valid_pos(pos: Vector2, normal: Vector2) -> bool:
 	
-	if not is_valid_point(pos):
+	if not _is_valid_point(pos):
 		return false
 
-	if not is_valid_point(pos + PORTAL_SIZE_P / 2 * normal.rotated(PI / 2)):
+	if not _is_valid_point(pos + PORTAL_SIZE_P / 2 * normal.rotated(PI / 2)):
 		return false
 
-	if not is_valid_point(pos + PORTAL_SIZE_P / 2 * normal.rotated(-PI / 2)):
+	if not _is_valid_point(pos + PORTAL_SIZE_P / 2 * normal.rotated(-PI / 2)):
 		return false
 
 	return true
 
-func get_valid_point(start: Vector2, normal: Vector2, walk_direction: Vector2) -> Vector2:
+func _get_next_valid_point(start: Vector2, normal: Vector2, walk_direction: Vector2) -> Vector2:
 	
 	var step: Vector2 = walk_direction.normalized() * PORTAL_SIZE_P / (DIVISIONS - 1)
 
 	for i in range(DIVISIONS):
-		if is_valid_pos(start + step * i, normal):
+		if _is_valid_pos(start + step * i, normal):
 			return start + step * i
 	
 	return Vector2.ZERO
@@ -75,11 +75,11 @@ func get_portal(type: PortalsConstants.PortalType) -> Array:
 	hit -= tile_map.position
 	hit -= normal
 
-	if not is_valid_point(hit):
+	if not _is_valid_point(hit):
 		return []
 
-	var right: Vector2 = get_valid_point(hit, normal, normal.rotated(PI / 2))
-	var left: Vector2 = get_valid_point(hit, normal, normal.rotated(-PI / 2))
+	var right: Vector2 = _get_next_valid_point(hit, normal, normal.rotated(PI / 2))
+	var left: Vector2 = _get_next_valid_point(hit, normal, normal.rotated(-PI / 2))
 	
 	other_portal = null
 	
