@@ -7,16 +7,16 @@
 a = Vector2(-4.16329e-12, -16)
 b = Vector2(-4.16329e-12, 16)
 
-[node name="BasePortal" type="Area2D" groups=["Portal"]]
+[node name="Portal" type="Area2D" groups=["Portal"]]
 position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_hy248")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, -2.08165e-12)
+position = Vector2(0, -2.08165e-12)
 shape = SubResource("SegmentShape2D_3rnao")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, -2.08165e-12)
+position = Vector2(0, -2.08165e-12)
 texture = ExtResource("2_2gttd")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

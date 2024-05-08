@@ -7,7 +7,7 @@ var portal_map: Dictionary = {
 }
 
 
-func create_portal_instance(type: PortalsConstants.PortalType, position, normal):
+func create_portal_instance(type: PortalsConstants.PortalType, position: Vector2, normal: Vector2) -> void:
 	if portal_map[type] != null:
 		remove_portal(type)
 
@@ -35,7 +35,7 @@ func create_portal_instance(type: PortalsConstants.PortalType, position, normal)
 		add_child(new_portal)
 		
 
-func remove_portal(type: PortalsConstants.PortalType):
+func remove_portal(type: PortalsConstants.PortalType) -> void:
 	# If Portal is already instantiated, uninstantiate it
 	portal_map[type].queue_free()
 	portal_map[type] = null
