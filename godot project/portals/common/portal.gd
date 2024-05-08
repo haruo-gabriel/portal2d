@@ -2,8 +2,6 @@
 class_name Portal
 extends Area2D
 
-#export var portalType: = "Blue" # Set to "Blue" or "Orange" in the editor
-
 var type: PortalsConstants.PortalType  
 var direction: float = 0.0
 var normal: Vector2
@@ -15,10 +13,6 @@ func _get_other_portal() -> Portal:
 		return Portals.portal_map[PortalsConstants.PortalType.PORTAL_TYPE_ORANGE]
 	else:
 		return Portals.portal_map[PortalsConstants.PortalType.PORTAL_TYPE_BLUE]
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	return
 
 func _get_new_body_position(body: CollisionObject2D, otherPortal: Portal) -> Vector2:
 	# Get object dimentions
