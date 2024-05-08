@@ -30,13 +30,15 @@ func shoot(type: PortalsConstants.PortalType) -> void:
 	var _normal: Vector2 = result[1]
 		
 	Portals.create_portal_instance(type, _pos, _normal)
-	
+
 func set_angle() -> void:
 	
 	var difference: Vector2 = get_global_mouse_position() - raycast.global_position
 
 	if difference: 
 		angle = atan2(difference.y, difference.x)
+
+	raycast.target_position = 1000 * Vector2(cos(angle), sin(angle))
 
 func get_enabled_hitbox() -> CollisionShape2D:
 	
