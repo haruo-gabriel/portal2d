@@ -138,7 +138,7 @@ _data = {
 "Walk (Crouched)": SubResource("Animation_6phk5")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Teleportable"]]
 position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_cp1xu")
 
