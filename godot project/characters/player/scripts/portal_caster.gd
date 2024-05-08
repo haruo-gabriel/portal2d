@@ -6,7 +6,6 @@ extends Node
 
 @onready var raycast: RayCast2D = player.get_node("RayCast2D")
 @onready var tile_map: TileMap = player.get_parent().get_node("TileMap")
-@onready var space_state: PhysicsDirectSpaceState2D = player.get_world_2d().direct_space_state
 
 # Portal size in pixels
 const PORTAL_SIZE_P: float = GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE
@@ -24,9 +23,6 @@ func to_coord(pos: Vector2) -> Vector2i:
 	var y: int = floor(pos[1] / GameConstants.TILE_SIZE)
 
 	return Vector2i(x, y)
-
-func fix_pos(pos: Vector2, normal: Vector2) -> Vector2:
-	return pos - normal
 
 func is_valid_point(pos: Vector2) -> bool:
 	
@@ -63,6 +59,8 @@ func get_valid_point(start: Vector2, normal: Vector2, walk_direction: Vector2) -
 
 func get_portal(type: PortalsConstants.PortalType) -> Array:
 	"""Returns `position` and `normal` of the portal or an empty array if an invalid spot"""
+
+	raycast.target_position = 1000 * Vector2(cos(player.angle), sin(player.angle))
 
 	var hit: Vector2 = raycast.get_collision_point()
 	var normal: Vector2 = raycast.get_collision_normal()
