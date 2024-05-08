@@ -16,8 +16,7 @@ func physics_update(delta: float) -> void:
 	if try_basic_change():
 		return
 
-	if not player.is_on_floor():
-		player.velocity.y += delta * GameConstants.GRAVITY
+	player.velocity.y += delta * GameConstants.GRAVITY
 
 	if player.direction:
 

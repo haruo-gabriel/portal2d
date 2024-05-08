@@ -139,6 +139,8 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" groups=["Teleportable"]]
 position = Vector2(2.08165e-12, 2.08165e-12)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_cp1xu")
 
 [node name="Camera2D" type="Camera2D" parent="."]

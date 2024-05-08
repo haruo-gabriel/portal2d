@@ -78,8 +78,6 @@ func move() -> void:
 	velocity.x = clamp(velocity.x, -PlayerConstants.MAX_X_SPEED, PlayerConstants.MAX_X_SPEED)
 	velocity.y = clamp(velocity.y, -PlayerConstants.MAX_Y_SPEED, PlayerConstants.MAX_Y_SPEED)
 
-	move_and_slide()
-
 func _process(_delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
@@ -100,5 +98,23 @@ func _process(_delta: float) -> void:
 		
 	set_angle()
 
+func _f(delta: float) -> void:
+	
+	collision_mask = 2
+	
+	var collision: KinematicCollision2D = move_and_collide(ceil(velocity * delta * 2), true)
+
+	collision_mask = 3
+	
+	if collision == null:
+		return
+	
+	print(collision.get_collider_shape())
+
 func _physics_process(_delta: float) -> void:
-	move()	
+
+	move()
+
+	Portals.try_teleport(self, ceil(velocity * _delta) * 2)
+	
+	move_and_slide()
