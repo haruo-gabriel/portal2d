@@ -71,7 +71,7 @@ func get_portal(type: PortalsConstants.PortalType) -> Array:
 		return Array()
 	
 	for child in tile_map.get_tree().get_nodes_in_group("Portal"):
-		if child is Portal and child.type != type:
+		if child.type != type:
 			other_portal = child
 
 	hit -= tile_map.position
