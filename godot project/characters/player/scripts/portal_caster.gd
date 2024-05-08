@@ -75,6 +75,9 @@ func get_portal(type: PortalsConstants.PortalType) -> Array:
 	hit -= tile_map.position
 	hit -= normal
 
+	if not is_valid_point(hit):
+		return []
+
 	var right: Vector2 = get_valid_point(hit, normal, normal.rotated(PI / 2))
 	var left: Vector2 = get_valid_point(hit, normal, normal.rotated(-PI / 2))
 	
