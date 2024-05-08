@@ -19,7 +19,7 @@ var jumped: bool = false
 var is_falling: bool = false
 var is_crouching: bool = false
 
-func shoot() -> void:
+func shoot(type: PortalsConstants.PortalType) -> void:
 	
 	var result: Array = portal_caster.get_portal()
 
@@ -28,15 +28,20 @@ func shoot() -> void:
 
 	var _pos: Vector2 = result[0]
 	var _normal: Vector2 = result[1]
+		
+	Portals.create_portal_instance(type, _pos, _normal)
 	
-	# TODO: Add the portal creation
-
 func set_angle() -> void:
 	
 	var difference: Vector2 = get_global_mouse_position() - raycast.global_position
 
 	if difference: 
 		angle = atan2(difference.y, difference.x)
+
+func get_enabled_hitbox() -> CollisionShape2D:
+	if main_hitbox.disabled:
+		return crouched_hitbox
+	return main_hitbox
 
 func toggle_hitbox(to_crouch: bool) -> void:
 
@@ -88,9 +93,12 @@ func _process(_delta: float) -> void:
 		toggle_crouch(false)
 
 	if Input.is_action_just_pressed("shoot_portal1"):
-		shoot()
-
+		shoot(PortalsConstants.PortalType.PORTAL_TYPE_BLUE)
+		
+	if Input.is_action_just_pressed("shoot_portal2"):
+		shoot(PortalsConstants.PortalType.PORTAL_TYPE_ORANGE)
+		
 	set_angle()
 
 func _physics_process(_delta: float) -> void:
-	move()
+	move()	

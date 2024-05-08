@@ -19,6 +19,8 @@ config/icon="res://icon.png"
 
 GameConstants="*res://characters/common/game_constants.gd"
 PlayerConstants="*res://characters/player/scripts/player_constants.gd"
+PortalsConstants="*res://portals/portals_constants.gd"
+Portals="*res://portals/portals.gd"
 
 [display]
 
