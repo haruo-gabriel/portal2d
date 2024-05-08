@@ -39,8 +39,10 @@ func set_angle() -> void:
 		angle = atan2(difference.y, difference.x)
 
 func get_enabled_hitbox() -> CollisionShape2D:
+	
 	if main_hitbox.disabled:
 		return crouched_hitbox
+	
 	return main_hitbox
 
 func toggle_hitbox(to_crouch: bool) -> void:

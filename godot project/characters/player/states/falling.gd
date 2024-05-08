@@ -22,6 +22,9 @@ func physics_update(delta: float) -> void:
 	
 	player.velocity.y += GameConstants.GRAVITY * delta
 
+	if not player.direction:
+		return
+
 	var step: float = PlayerConstants.HORIZONTAL_ACCELERATION * PlayerConstants.IN_AIR_MULTIPLIER
 	var new_speed: float = player.direction * PlayerConstants.WALKING_SPEED
 
