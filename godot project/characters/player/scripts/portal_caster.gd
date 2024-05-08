@@ -85,7 +85,7 @@ func get_portal() -> Array:
 	if right.distance_to(hit) < left.distance_to(hit): portal_pos = right
 	else: portal_pos = left
 	
-	return [portal_pos, normal]
+	return [portal_pos + normal, normal]
 
 func _ready() -> void:
 	
