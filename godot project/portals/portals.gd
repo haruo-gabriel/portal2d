@@ -1,6 +1,7 @@
+
 extends Node
 
-var portal_map = {
+var portal_map: Dictionary = {
 	PortalsConstants.PortalType.PORTAL_TYPE_ORANGE: null,
 	PortalsConstants.PortalType.PORTAL_TYPE_BLUE: null
 }

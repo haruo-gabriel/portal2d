@@ -21,7 +21,7 @@ var is_crouching: bool = false
 
 func shoot(type: PortalsConstants.PortalType) -> void:
 	
-	var result: Array = portal_caster.get_portal()
+	var result: Array = portal_caster.get_portal(type)
 
 	if not result:
 		return

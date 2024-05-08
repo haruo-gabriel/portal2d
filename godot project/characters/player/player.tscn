@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=28 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://characters/player/scripts/player.gd" id="1_cp1xu"]
 [ext_resource type="Script" path="res://characters/player/scripts/player_sprite.gd" id="3_ugign"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bnsio32wsnc1g" path="res://characters/player/sprites/walk.png" id="8_3qtfq"]
 [ext_resource type="Texture2D" uid="uid://dg0ekhbkfqyvs" path="res://characters/player/sprites/walk crouch.png" id="9_qfl83"]
 [ext_resource type="Script" path="res://characters/player/scripts/animation_player.gd" id="22_j0vq1"]
-[ext_resource type="Script" path="res://characters/player/scripts/ray_cast.gd" id="24_ds6al"]
 [ext_resource type="Script" path="res://characters/common/health.gd" id="25_a7xhi"]
 [ext_resource type="Script" path="res://characters/player/scripts/portal_caster.gd" id="26_tat2q"]
 [ext_resource type="Script" path="res://characters/common/finite_state_machine/state_machine.gd" id="27_h2hio"]
@@ -174,11 +173,9 @@ libraries = {
 script = ExtResource("22_j0vq1")
 player = NodePath("..")
 
-[node name="RayCast2D" type="RayCast2D" parent="." node_paths=PackedStringArray("player")]
+[node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, -17)
 target_position = Vector2(-200, 2.08165e-12)
-script = ExtResource("24_ds6al")
-player = NodePath("..")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("25_a7xhi")

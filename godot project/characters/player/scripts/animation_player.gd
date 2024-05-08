@@ -6,12 +6,12 @@ extends AnimationPlayer
 
 @onready var state_machine: StateMachine = player.get_node("StateMachine")
 
-func try_play(name: String) -> void:
+func try_play(animation_name: String) -> void:
 	
 	if player.is_crouching:
 		return
 	
-	play(name)
+	play(animation_name)
 
 func _ready() -> void:
 	pass
