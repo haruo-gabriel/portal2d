@@ -1,39 +1,31 @@
 
 extends Node
 
+var PORTAL_SCENE: Resource = preload("res://portals/common/portal.tscn")
+
 var portal_map: Dictionary = {
 	PortalsConstants.PortalType.PORTAL_TYPE_ORANGE: null,
 	PortalsConstants.PortalType.PORTAL_TYPE_BLUE: null
 }
 
-
 func create_portal_instance(type: PortalsConstants.PortalType, position: Vector2, normal: Vector2) -> void:
+
 	if portal_map[type] != null:
 		remove_portal(type)
 
-	# If Portal is not instantiated, instantiate it at the correct position
-	if type == PortalsConstants.PortalType.PORTAL_TYPE_BLUE:
-		var portal_scene = preload("res://portals/blue_portal.tscn")
-		var new_portal: Portal = portal_scene.instantiate()
-		new_portal.type = PortalsConstants.PortalType.PORTAL_TYPE_BLUE
-		new_portal.position = position
-		new_portal.normal = normal
-		new_portal.rotate(normal.angle())
+	var new_portal: Portal = PORTAL_SCENE.instantiate()
 
+	new_portal.modulate = PortalsConstants.PORTAL_COLORS[type]
 
-		portal_map[PortalsConstants.PortalType.PORTAL_TYPE_BLUE] = new_portal		
-		add_child(new_portal)
-	else:
-		var portal_scene = preload("res://portals/orange_portal.tscn")
-		var new_portal: Portal = portal_scene.instantiate()
-		new_portal.type = PortalsConstants.PortalType.PORTAL_TYPE_ORANGE
-		new_portal.position = position
-		new_portal.normal = normal
-		new_portal.rotate(normal.angle())
-		
-		portal_map[PortalsConstants.PortalType.PORTAL_TYPE_ORANGE] = new_portal		
-		add_child(new_portal)
-		
+	new_portal.type = type
+	new_portal.position = position
+	new_portal.normal = normal
+	new_portal.rotation = normal.angle()
+
+	portal_map[type] = new_portal
+	
+	add_child(new_portal)
+
 
 func remove_portal(type: PortalsConstants.PortalType) -> void:
 	# If Portal is already instantiated, uninstantiate it
