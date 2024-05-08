@@ -18,18 +18,22 @@ func _get_new_body_position(body: CollisionObject2D, otherPortal: Portal) -> Vec
 	# Get object dimentions
 	var object_shape = body.get_enabled_hitbox().shape.extents
 	var offset = otherPortal.normal * (object_shape + _POSITION_OFFSET_CONSTANT)
+
 	return otherPortal.position + offset
-		
+
 func _get_new_body_velocity(body: CollisionObject2D, otherPortal: Portal) -> Vector2:
+
 	var relativeVelocity = body.velocity.rotated(normal.angle_to(otherPortal.normal))
+
 	return relativeVelocity.rotated(direction - otherPortal.direction + PI)
 	
-func _teleport_object(body: CollisionObject2D, otherPortal: Portal):
-		body.position = _get_new_body_position(body, otherPortal)
-		body.velocity = _get_new_body_velocity(body, otherPortal)
+func _teleport_object(body: CollisionObject2D, otherPortal: Portal) -> void:
+
+	body.position = _get_new_body_position(body, otherPortal)
+	body.velocity = _get_new_body_velocity(body, otherPortal)
 
 
-func _on_body_entered(body):
+func _on_body_entered(body: Node2D) -> void:
 	var otherPortal: Portal = _get_other_portal()
 	
 	if body.is_in_group("Teleportable"):
