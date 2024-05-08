@@ -29,13 +29,3 @@ func _teleport_object(body: CollisionObject2D, otherPortal: Portal) -> void:
 	body.position = _get_new_body_position(body, otherPortal)
 	body.velocity = _get_new_body_velocity(body, otherPortal)
 
-func _on_body_entered(body: Node2D) -> void:
-	
-	var otherPortal: Portal = _get_other_portal()
-	
-	if body.is_in_group("Teleportable"):
-		if otherPortal == null:
-			print("There is only one portal")
-			return
-		
-		_teleport_object(body, otherPortal)

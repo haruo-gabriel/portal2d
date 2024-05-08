@@ -98,19 +98,6 @@ func _process(_delta: float) -> void:
 		
 	set_angle()
 
-func _f(delta: float) -> void:
-	
-	collision_mask = 2
-	
-	var collision: KinematicCollision2D = move_and_collide(ceil(velocity * delta * 2), true)
-
-	collision_mask = 3
-	
-	if collision == null:
-		return
-	
-	print(collision.get_collider_shape())
-
 func _physics_process(_delta: float) -> void:
 
 	move()
