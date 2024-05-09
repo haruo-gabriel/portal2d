@@ -38,6 +38,8 @@ func set_angle() -> void:
 	if difference: 
 		angle = atan2(difference.y, difference.x)
 
+	raycast.target_position = 1000 * Vector2(cos(angle), sin(angle))
+
 func get_enabled_hitbox() -> CollisionShape2D:
 	if main_hitbox.disabled:
 		return crouched_hitbox
@@ -97,8 +99,8 @@ func _process(_delta: float) -> void:
 		
 	if Input.is_action_just_pressed("shoot_portal2"):
 		shoot(PortalsConstants.PortalType.PORTAL_TYPE_ORANGE)
-		
+	
 	set_angle()
 
 func _physics_process(_delta: float) -> void:
-	move()	
+	move()
