@@ -8,5 +8,6 @@ func enter() -> void:
 func exit() -> void:
 	turret.modulate = Color.WHITE
 
-func _process(delta: float) -> void:
-	pass
+func physics_update(delta: float) -> void:
+
+	turret.angle = move_toward(turret.angle, angle_to_player, .1)
