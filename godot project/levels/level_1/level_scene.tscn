@@ -17,6 +17,7 @@ layer_1/tile_data = PackedInt32Array(-2162534, 196608, 1073741827, -2228070, 196
 [node name="Player" parent="." instance=ExtResource("2_i7aku")]
 position = Vector2(1920, -352)
 
-[node name="Turret" parent="." instance=ExtResource("3_5o3q5")]
+[node name="Turret" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_5o3q5")]
 position = Vector2(2245, -339)
 maximum_angle = 1.57
+player = NodePath("../Player")

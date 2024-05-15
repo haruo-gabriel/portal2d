@@ -2,8 +2,8 @@
 class_name TurretSearching
 extends TurretState
 
-func _ready() -> void:
+func on_enter() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func update(_delta: float) -> void:
 	pass

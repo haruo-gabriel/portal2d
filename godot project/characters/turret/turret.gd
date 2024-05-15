@@ -8,6 +8,8 @@ extends StaticBody2D
 @export var minimum_angle: float
 @export var maximum_angle: float
 
+@export var player: Player
+
 var angle: float = 0.0
 
 func _ready() -> void:
