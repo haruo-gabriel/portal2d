@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7pirrmmj56br"]
+[gd_scene load_steps=5 format=3 uid="uid://b7pirrmmj56br"]
 
+[ext_resource type="Script" path="res://characters/turret/turret.gd" id="1_4rcoj"]
 [ext_resource type="Texture2D" uid="uid://bsrnk5t2hppc1" path="res://characters/turret/head.png" id="1_yvtyw"]
 [ext_resource type="Texture2D" uid="uid://b4l3rbx8qc8ov" path="res://characters/turret/base.png" id="2_pk15q"]
 
@@ -7,14 +8,15 @@
 size = Vector2(20, 6)
 
 [node name="Turret" type="StaticBody2D"]
+script = ExtResource("1_4rcoj")
 
-[node name="Head" type="Sprite2D" parent="."]
+[node name="HeadSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -7)
 texture = ExtResource("1_yvtyw")
 
-[node name="Base" type="Sprite2D" parent="."]
-texture = ExtResource("2_pk15q")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="HeadShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_1xwa7")
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("2_pk15q")

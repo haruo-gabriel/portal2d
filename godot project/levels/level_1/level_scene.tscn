@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://45cxitl1b5uh"]
+[gd_scene load_steps=4 format=3 uid="uid://45cxitl1b5uh"]
 
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_6d6h5"]
 [ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://characters/player/player.tscn" id="2_i7aku"]
+[ext_resource type="PackedScene" uid="uid://b7pirrmmj56br" path="res://characters/turret/turret.tscn" id="3_5o3q5"]
 
 [node name="LevelScene" type="Node2D"]
 
@@ -15,3 +16,6 @@ layer_1/tile_data = PackedInt32Array(-2162534, 196608, 1073741827, -2228070, 196
 
 [node name="Player" parent="." instance=ExtResource("2_i7aku")]
 position = Vector2(1920, -352)
+
+[node name="Turret" parent="." instance=ExtResource("3_5o3q5")]
+position = Vector2(2245, -339)
