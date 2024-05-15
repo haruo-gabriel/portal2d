@@ -3,6 +3,7 @@ class_name TurretState
 extends State
 
 var turret: Turret
+var player: Player
 
 func start() -> void:
 	turret = entity
