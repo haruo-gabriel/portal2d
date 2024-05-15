@@ -1,6 +1,6 @@
 
-class_name Jumping
-extends InAir
+class_name PlayerJumping
+extends PlayerInAir
 
 func _ready() -> void:
 	animation_name = "Jump"

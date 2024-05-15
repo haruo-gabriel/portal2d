@@ -1,5 +1,5 @@
 
-class_name Idle
+class_name PlayerIdle
 extends PlayerState
 
 func _ready() -> void:

@@ -1,5 +1,5 @@
 
-class_name InAir
+class_name PlayerInAir
 extends PlayerState
 
 
