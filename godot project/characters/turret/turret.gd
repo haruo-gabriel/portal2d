@@ -11,6 +11,7 @@ extends StaticBody2D
 @export var maximum_angle: float
 
 @export var rotation_speed: float
+@export var open_cooldown: int
 
 @export var player: Player
 

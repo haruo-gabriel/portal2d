@@ -21,4 +21,5 @@ position = Vector2(1920, -352)
 position = Vector2(2132, -344)
 minimum_angle = -1.57
 rotation_speed = 0.02
+open_cooldown = 30
 player = NodePath("../Player")
