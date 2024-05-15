@@ -2,7 +2,7 @@
 class_name TurretActive
 extends TurretState
 
-const last_seen_time: int = 100
+const last_seen_time: int = 40
 
 var open_cooldown: int
 var last_seen: int
@@ -27,7 +27,7 @@ func physics_update(delta: float) -> void:
 			last_seen -= 1
 			return
 
-		transitioned.emit(self, "Idle")
+		transitioned.emit(self, "Searching")
 		return
 
 	if not open_cooldown and last_seen:
