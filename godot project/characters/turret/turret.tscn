@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7pirrmmj56br"]
+[gd_scene load_steps=7 format=3 uid="uid://b7pirrmmj56br"]
 
 [ext_resource type="Script" path="res://characters/turret/turret.gd" id="1_4rcoj"]
 [ext_resource type="Texture2D" uid="uid://bsrnk5t2hppc1" path="res://characters/turret/head.png" id="1_yvtyw"]
 [ext_resource type="Texture2D" uid="uid://b4l3rbx8qc8ov" path="res://characters/turret/base.png" id="2_pk15q"]
+[ext_resource type="Script" path="res://characters/common/finite_state_machine/state_machine.gd" id="4_y41af"]
+[ext_resource type="Script" path="res://characters/turret/states/idle.gd" id="5_476sv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xwa7"]
 size = Vector2(20, 6)
@@ -20,3 +22,11 @@ shape = SubResource("RectangleShape2D_1xwa7")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_pk15q")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "entity")]
+script = ExtResource("4_y41af")
+initial_state = NodePath("Idle")
+entity = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_476sv")

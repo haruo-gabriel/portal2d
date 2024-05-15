@@ -5,6 +5,9 @@ extends StaticBody2D
 @onready var head_sprite: Sprite2D = $HeadSprite
 @onready var head_shape: CollisionShape2D = $HeadShape
 
+@export var minimum_angle: float
+@export var maximum_angle: float
+
 var angle: float = 0.0
 
 func _ready() -> void:
