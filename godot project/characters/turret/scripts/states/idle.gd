@@ -7,7 +7,7 @@ func on_enter() -> void:
 
 func update(_delta: float) -> void:
 	
-	if angle_to_player >= turret.minimum_angle and angle_to_player <= turret.maximum_angle:
+	if can_see_player():
 		transitioned.emit(self, "Active")
 	
-	
+	turret.angle = move_toward(turret.angle, turret.maximum_angle, 0.2)

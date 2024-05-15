@@ -25,6 +25,9 @@ shape = SubResource("RectangleShape2D_1xwa7")
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_pk15q")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(2.08165e-12, -30)
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "entity")]
 script = ExtResource("4_ct1qn")
 initial_state = NodePath("Idle")

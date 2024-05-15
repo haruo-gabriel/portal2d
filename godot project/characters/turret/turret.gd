@@ -5,6 +5,8 @@ extends StaticBody2D
 @onready var head_sprite: Sprite2D = $HeadSprite
 @onready var head_shape: CollisionShape2D = $HeadShape
 
+@onready var raycast: RayCast2D = $RayCast2D
+
 @export var minimum_angle: float
 @export var maximum_angle: float
 

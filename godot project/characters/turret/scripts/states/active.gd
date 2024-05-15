@@ -6,7 +6,12 @@ func enter() -> void:
 	turret.get_node("HeadSprite").modulate = Color.RED
 
 func exit() -> void:
-	turret.modulate = Color.WHITE
+	turret.get_node("HeadSprite").modulate = Color.WHITE
+
+func update(_delta: float) -> void:
+	
+	if not can_see_player():
+		transitioned.emit(self, "Idle")
 
 func physics_update(delta: float) -> void:
 
