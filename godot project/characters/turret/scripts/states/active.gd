@@ -15,4 +15,4 @@ func update(_delta: float) -> void:
 
 func physics_update(delta: float) -> void:
 
-	turret.angle = move_toward(turret.angle, angle_to_player, .1)
+	turret.angle = move_toward(turret.angle, angle_to_player, turret.rotation_speed)
