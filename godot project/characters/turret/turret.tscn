@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7pirrmmj56br"]
+[gd_scene load_steps=9 format=3 uid="uid://b7pirrmmj56br"]
 
 [ext_resource type="Script" path="res://characters/turret/turret.gd" id="1_4rcoj"]
 [ext_resource type="Texture2D" uid="uid://bsrnk5t2hppc1" path="res://characters/turret/head.png" id="1_yvtyw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://characters/common/finite_state_machine/state_machine.gd" id="4_y41af"]
 [ext_resource type="Script" path="res://characters/turret/states/idle.gd" id="5_476sv"]
 [ext_resource type="Script" path="res://characters/turret/states/active.gd" id="6_08x7h"]
+[ext_resource type="Script" path="res://characters/turret/states/searching.gd" id="7_8p68t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xwa7"]
 size = Vector2(20, 6)
@@ -34,3 +35,6 @@ script = ExtResource("5_476sv")
 
 [node name="TurretActive" type="Node" parent="StateMachine"]
 script = ExtResource("6_08x7h")
+
+[node name="TurretSearching" type="Node" parent="StateMachine"]
+script = ExtResource("7_8p68t")

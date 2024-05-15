@@ -1,6 +1,6 @@
 
 class_name TurretIdle
-extends State
+extends TurretState
 
 func on_enter() -> void:
 	pass

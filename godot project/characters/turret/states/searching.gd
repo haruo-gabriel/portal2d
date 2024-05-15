@@ -1,6 +1,6 @@
 
 class_name TurretSearching
-extends State
+extends TurretState
 
 func _ready() -> void:
 	pass
