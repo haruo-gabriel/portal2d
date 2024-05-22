@@ -10,7 +10,6 @@ var last_seen: int
 func enter() -> void:
 	
 	last_seen = last_seen_time
-	
 	open_cooldown = turret.open_cooldown
 
 func physics_update(delta: float) -> void:
