@@ -38,6 +38,9 @@ func shoot(target: Vector2) -> void:
 	laser.start_position = raycast.global_position
 	laser.velocity = diff.normalized() * 2000
 	
+	laser.velocity = laser.velocity.rotated((randf() * 2 - 1) / 20)
+	laser.velocity *= .9 + randf() / 5
+	
 	get_parent().add_child(laser)
 
 func _ready() -> void:

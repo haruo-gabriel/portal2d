@@ -2,7 +2,7 @@
 class_name TurretActive
 extends TurretState
 
-const last_seen_time: int = 40
+const last_seen_time: int = 100
 
 var open_cooldown: int
 var last_seen: int
