@@ -19,7 +19,7 @@ func physics_update(delta: float) -> void:
 		open_cooldown -= 1
 		return
 
-	if can_see_player():
+	if can_see_target():
 		last_seen = last_seen_time
 	else:
 		

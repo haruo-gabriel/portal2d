@@ -2,18 +2,19 @@
 class_name TurretStateMachine
 extends StateMachine
 
-var player: Player
-
-func find_player() -> void:
-	
-	for child in entity.get_parent().get_children():
-		if child is Player:
-			player = child
+var target: CharacterBody2D
 
 func _ready() -> void:
 	super()
 
-	find_player()
-
 	for state in states.values():
-		state.player = player
+		state.turret = entity
+
+func _process(delta: float) -> void:
+	super(delta)
+
+	if target == null:
+		return
+	
+	for state in states.values():
+		state.target = target
