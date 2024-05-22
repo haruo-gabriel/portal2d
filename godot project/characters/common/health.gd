@@ -2,13 +2,14 @@
 class_name Health
 extends Node
 
-const REGENERATION_COOLDOWN: int = 60 # measured in frames
 
 signal died
 signal reached_full_health
 
 @export var max_health: float
 @export var regeneration: float # HP / frame
+
+var regeneration_cooldown: int = 300 # measured in frames
 
 var _health: float
 
@@ -45,7 +46,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	
-	if _time_since_last_hit >= REGENERATION_COOLDOWN:
+	if _time_since_last_hit >= regeneration_cooldown:
 		
 		if health < max_health:
 			heal(regeneration)

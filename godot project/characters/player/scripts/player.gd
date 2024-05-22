@@ -86,6 +86,11 @@ func move() -> void:
 
 func _process(_delta: float) -> void:
 
+	if health.health <= 0:
+		modulate = Color.REBECCA_PURPLE
+	else:
+		modulate = Color.WHITE
+
 	direction = Input.get_axis("move_left", "move_right")
 
 	var try_crouch = Input.is_action_pressed("crouch")
@@ -108,4 +113,7 @@ func _physics_process(_delta: float) -> void:
 	move()
 
 func _on_laser_hit(laser: Laser) -> void:
+
+	health.take_damage(2)
+
 	laser.queue_free()
