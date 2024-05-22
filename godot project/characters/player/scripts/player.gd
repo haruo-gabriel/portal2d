@@ -106,3 +106,6 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	move()
+
+func _on_laser_hit(laser: Laser) -> void:
+	laser.queue_free()
