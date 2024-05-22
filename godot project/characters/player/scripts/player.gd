@@ -111,6 +111,7 @@ func _on_laser_hit(laser: Laser) -> void:
 
 	health.take_damage(2)
 
-	position += laser.velocity / 1000
+	position += laser.velocity * laser.mass / 2000
+	velocity += laser.velocity * laser.mass / 2000
 
 	laser.queue_free()

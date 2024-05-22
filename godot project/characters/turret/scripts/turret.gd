@@ -8,6 +8,7 @@ extends StaticBody2D
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var machine: TurretStateMachine = $StateMachine
 
+@export var rest_angle: float
 @export var minimum_angle: float
 @export var maximum_angle: float
 
@@ -36,15 +37,20 @@ func shoot(target: Vector2) -> void:
 	var diff: Vector2 = target - raycast.global_position
 	
 	laser.start_position = raycast.global_position
-	laser.velocity = diff.normalized() * 2000
+	laser.velocity = diff.normalized() * 1000
 	
-	laser.velocity = laser.velocity.rotated((randf() * 2 - 1) / 40)
-	laser.velocity *= .9 + randf() / 5
+	laser.velocity = laser.velocity.rotated((randf() * 2 - 1) / 30)
+	laser.velocity *= .6 + randf() * .8
+	
+	laser.mass = 1
 
 	get_parent().add_child(laser)
 
 func _ready() -> void:
+
 	get_node("DetectionArea").get_node("CollisionShape2D").shape.radius = radius
+
+	angle = rest_angle
 
 func _process(delta: float) -> void:
 
