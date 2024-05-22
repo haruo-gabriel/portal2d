@@ -2,8 +2,6 @@
 class_name Laser
 extends Node2D
 
-signal hit(laser: Laser)
-
 var velocity: Vector2
 var start_position: Vector2
 var life_time: int
@@ -27,9 +25,12 @@ func _physics_process(delta: float) -> void:
 	
 	if life_time <= 0:
 		queue_free()
-
+	
 
 func _on_body_entered(body: Node2D) -> void:
 
 	if body.is_in_group("TurretTarget"):
 		body._on_laser_hit(self)
+	
+	if body.is_in_group("LaserWall"):
+		queue_free()

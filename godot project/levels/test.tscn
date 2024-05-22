@@ -6,7 +6,7 @@
 
 [node name="LevelScene" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["LaserWall"]]
 tile_set = ExtResource("1_w1d4u")
 format = 2
 layer_0/name = "Terrain"
