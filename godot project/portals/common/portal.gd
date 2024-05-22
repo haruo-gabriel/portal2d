@@ -20,11 +20,19 @@ func _get_new_body_position(body: CollisionObject2D, otherPortal: Portal) -> Vec
 
 func _get_new_body_velocity(body: CollisionObject2D, otherPortal: Portal) -> Vector2:
 
+	var relativeVelocity = body.velocity.rotated(normal.angle_to(otherPortal.normal))
+
+	return relativeVelocity.rotated(direction - otherPortal.direction + PI)
+	
+func _teleport_object(body: CollisionObject2D, otherPortal: Portal) -> void:
+
+	body.position = _get_new_body_position(body, otherPortal)
+	body.velocity = _get_new_body_velocity(body, otherPortal)
+
 	var projected_magnitude: float = body.velocity.project(normal).length()
 
-	var magnitude: float = projected_magnitude * (1 - exp(-(projected_magnitude / 250) ** 5))
-
-	return otherPortal.normal * magnitude
+func _on_body_entered(body: Node2D) -> void:
+	var otherPortal: Portal = _get_other_portal()
 	
 func _teleport_object(body: CollisionObject2D, otherPortal: Portal) -> void:
 

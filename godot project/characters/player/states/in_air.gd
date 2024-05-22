@@ -1,18 +1,7 @@
 
-class_name PlayerJumping
-extends PlayerInAir
+class_name PlayerInAir
+extends PlayerState
 
-func _ready() -> void:
-	animation_name = "Jump"
-
-func enter() -> void:
-
-	player.velocity.y = PlayerConstants.JUMP_VELOCITY
-	player.velocity.x *= PlayerConstants.BHOP_MULTIPLIER
-
-	player.move_and_slide()
-
-	animation.try_play(animation_name)
 
 func physics_update(delta: float) -> void:
 	
@@ -21,16 +10,13 @@ func physics_update(delta: float) -> void:
 	
 	player.velocity.y += delta * GameConstants.GRAVITY
 	
-	if not player.direction:
-		return
-	
 	var step: float = PlayerConstants.HORIZONTAL_ACCELERATION * PlayerConstants.IN_AIR_MULTIPLIER
 	var new_speed: float = player.direction * PlayerConstants.WALKING_SPEED
 
 	if sign(player.velocity.x) == sign(player.direction):
 		new_speed = sign(new_speed) * max(abs(new_speed), abs(player.velocity.x))
 
-	player.velocity.x = move_toward(player.velocity.x, new_speed, step)
+	if not player.direction:
+		new_speed = move_toward(player.velocity.x, 0, PlayerConstants.IN_AIR_DRAG)
 
-func _process(_delta: float) -> void:
-	pass
+	player.velocity.x = move_toward(player.velocity.x, new_speed, step)

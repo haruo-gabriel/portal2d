@@ -1,5 +1,5 @@
 
-class_name Walking
+class_name PlayerWalking
 extends PlayerState
 
 func _ready() -> void:
