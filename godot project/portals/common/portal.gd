@@ -1,6 +1,6 @@
 
 class_name Portal
-extends Area2D
+extends StaticBody2D
 
 var type: PortalsConstants.PortalType
 var direction: float = 0.0
@@ -9,10 +9,7 @@ var normal: Vector2
 const _POSITION_OFFSET_CONSTANT = Vector2(5, 5)  
 
 func _get_other_portal() -> Portal:
-	if type == PortalsConstants.PortalType.PORTAL_TYPE_BLUE:
-		return Portals.portal_map[PortalsConstants.PortalType.PORTAL_TYPE_ORANGE]
-	else:
-		return Portals.portal_map[PortalsConstants.PortalType.PORTAL_TYPE_BLUE]
+	return Portals.portal_map[1 - type]
 
 func _get_new_body_position(body: CollisionObject2D, otherPortal: Portal) -> Vector2:
 	# Get object dimentions
@@ -32,13 +29,13 @@ func _teleport_object(body: CollisionObject2D, otherPortal: Portal) -> void:
 	body.position = _get_new_body_position(body, otherPortal)
 	body.velocity = _get_new_body_velocity(body, otherPortal)
 
+	var projected_magnitude: float = body.velocity.project(normal).length()
 
 func _on_body_entered(body: Node2D) -> void:
 	var otherPortal: Portal = _get_other_portal()
 	
-	if body.is_in_group("Teleportable"):
-		if otherPortal == null:
-			print("There is only one portal")
-			return
-		
-		_teleport_object(body, otherPortal)
+func _teleport_object(body: CollisionObject2D, otherPortal: Portal) -> void:
+
+	body.position = _get_new_body_position(body, otherPortal)
+	body.velocity = _get_new_body_velocity(body, otherPortal)
+
