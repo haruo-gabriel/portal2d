@@ -11,8 +11,12 @@ extends StaticBody2D
 @export var minimum_angle: float
 @export var maximum_angle: float
 
+@export var radius: float = 200
+
 @export var rotation_speed: float = .01
 @export var open_cooldown: int = 60
+
+var LASER_SCENE: Resource = preload("res://characters/laser/laser.tscn")
 
 var angle: float = 0.0
 
@@ -25,8 +29,19 @@ func can_see(target: Vector2) -> bool:
 
 	return not raycast.get_collider() is TileMap
 
+func shoot(target: Vector2) -> void:
+	
+	var laser: Laser = LASER_SCENE.instantiate()
+	
+	var diff: Vector2 = target - raycast.global_position
+	
+	laser.start_position = raycast.global_position
+	laser.velocity = diff.normalized() * 2000
+	
+	get_parent().add_child(laser)
+
 func _ready() -> void:
-	pass
+	get_node("DetectionArea").get_node("CollisionShape2D").shape.radius = radius
 
 func _process(delta: float) -> void:
 

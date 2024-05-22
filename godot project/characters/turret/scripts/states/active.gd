@@ -34,3 +34,6 @@ func physics_update(delta: float) -> void:
 
 	if not open_cooldown and last_seen:
 		turret.angle = get_new_angle(angle)
+	
+	if abs(fmod(turret.angle - angle, TAU)) < .1:
+		turret.shoot(target.global_position + Vector2(0, -10))
