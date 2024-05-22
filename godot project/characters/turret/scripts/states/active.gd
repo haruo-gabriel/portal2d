@@ -27,8 +27,10 @@ func physics_update(delta: float) -> void:
 			last_seen -= 1
 			return
 
-		transitioned.emit(self, "Searching")
+		transitioned.emit(self, "Idle")
 		return
 
+	var angle: float = (target.global_position - turret.raycast.global_position).angle()
+
 	if not open_cooldown and last_seen:
-		turret.angle = move_toward(turret.angle, angle_to_player, turret.rotation_speed)
+		turret.angle = get_new_angle(angle)

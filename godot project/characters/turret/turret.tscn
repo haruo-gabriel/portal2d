@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7pirrmmj56br"]
+[gd_scene load_steps=9 format=3 uid="uid://b7pirrmmj56br"]
 
 [ext_resource type="Script" path="res://characters/turret/scripts/turret.gd" id="1_4rcoj"]
 [ext_resource type="Texture2D" uid="uid://bsrnk5t2hppc1" path="res://characters/turret/head.png" id="1_yvtyw"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://characters/turret/scripts/state_machine.gd" id="4_ct1qn"]
 [ext_resource type="Script" path="res://characters/turret/scripts/states/idle.gd" id="5_15jw2"]
 [ext_resource type="Script" path="res://characters/turret/scripts/states/active.gd" id="6_rcg6g"]
-[ext_resource type="Script" path="res://characters/turret/scripts/states/searching.gd" id="7_6t4a4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xwa7"]
 size = Vector2(20, 6)
@@ -49,8 +48,5 @@ script = ExtResource("5_15jw2")
 [node name="Active" type="Node" parent="StateMachine"]
 script = ExtResource("6_rcg6g")
 
-[node name="Searching" type="Node" parent="StateMachine"]
-script = ExtResource("7_6t4a4")
-
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

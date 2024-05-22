@@ -12,7 +12,7 @@ extends StaticBody2D
 @export var maximum_angle: float
 
 @export var rotation_speed: float = .01
-@export var open_cooldown: int = 2
+@export var open_cooldown: int = 60
 
 var angle: float = 0.0
 
@@ -21,10 +21,7 @@ func can_see(target: Vector2) -> bool:
 	var diff: Vector2 = target - raycast.global_position
 	var angle: float = diff.angle()
 
-	if angle > maximum_angle or angle < minimum_angle:
-		return false
-
-	raycast.target_position = 1.5 * diff
+	raycast.target_position = 1.5 * diff + Vector2(0, -10)
 
 	return not raycast.get_collider() is TileMap
 
@@ -42,3 +39,9 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		return
 
 	machine.target = body
+
+func _on_detection_area_body_exited(body: Node2D) -> void:
+	
+	if body == machine.target:
+		machine.target = null
+	

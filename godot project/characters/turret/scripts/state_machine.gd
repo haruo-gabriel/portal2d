@@ -13,8 +13,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super(delta)
 
-	if target == null:
-		return
-	
 	for state in states.values():
 		state.target = target

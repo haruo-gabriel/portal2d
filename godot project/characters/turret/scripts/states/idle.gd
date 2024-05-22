@@ -9,5 +9,5 @@ func update(_delta: float) -> void:
 
 	if can_see_target():
 		transitioned.emit(self, "Active")
-	
-	turret.angle = move_toward(turret.angle, turret.maximum_angle, turret.rotation_speed)
+
+	turret.angle = get_new_angle(turret.maximum_angle)
