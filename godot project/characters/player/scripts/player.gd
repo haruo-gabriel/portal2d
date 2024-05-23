@@ -106,7 +106,15 @@ func _physics_process(_delta: float) -> void:
 	
 	move()
 	
-	Portals.try_teleport(self, ceil(2 * velocity * _delta))
+	var test_speed: Vector2 = 2 * velocity
+	
+	var down: Vector2 = floor(test_speed)
+	var up: Vector2 = ceil(test_speed)
+	
+	test_speed.x = down.x if abs(down.x) > abs(up.x) else up.x
+	test_speed.y = down.y if abs(down.y) > abs(up.y) else up.y
+	
+	Portals.try_teleport(self, test_speed)
 	
 	move_and_slide()
 
