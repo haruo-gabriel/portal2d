@@ -124,7 +124,6 @@ func _physics_process(delta: float) -> void:
 	
 	move()
 
-	print(get_test_speed(delta))
 	Portals.try_teleport(self, get_test_speed(delta))
 	
 	move_and_slide()

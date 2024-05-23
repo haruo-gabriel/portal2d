@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aotld"]
 size = Vector2(10, 2)
 
-[node name="Laser" type="Area2D" groups=["Teleportable"]]
+[node name="Laser" type="Area2D"]
 script = ExtResource("1_vnbwl")
 
 [node name="HitBox" type="CollisionShape2D" parent="."]

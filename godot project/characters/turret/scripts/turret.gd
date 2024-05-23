@@ -37,7 +37,7 @@ func shoot(target: Vector2) -> void:
 	var diff: Vector2 = target - raycast.global_position
 	
 	laser.start_position = raycast.global_position
-	laser.velocity = diff.normalized() * 1000
+	laser.velocity = diff.normalized() * 2000
 	
 	laser.velocity = laser.velocity.rotated((randf() * 2 - 1) / 30)
 	laser.velocity *= .6 + randf() * .8
