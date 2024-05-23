@@ -82,6 +82,24 @@ func move() -> void:
 	velocity.x = clamp(velocity.x, -PlayerConstants.MAX_X_SPEED, PlayerConstants.MAX_X_SPEED)
 	velocity.y = clamp(velocity.y, -PlayerConstants.MAX_Y_SPEED, PlayerConstants.MAX_Y_SPEED)
 
+func get_test_speed(delta: float) -> Vector2:
+	
+	var test_speed: Vector2 = 2 * velocity * delta
+	
+	var down: Vector2 = floor(test_speed)
+	var up: Vector2 = ceil(test_speed)
+	
+	test_speed.x = down.x if abs(down.x) > abs(up.x) else up.x
+	test_speed.y = down.y if abs(down.y) > abs(up.y) else up.y
+	
+	if direction > 0:
+		test_speed.x = max(test_speed.x, direction)
+		
+	if direction < 0:
+		test_speed.x = min(test_speed.x, direction)
+	
+	return test_speed
+
 func _process(_delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
@@ -105,16 +123,9 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	
 	move()
-	
-	var test_speed: Vector2 = 2 * velocity * delta
-	
-	var down: Vector2 = floor(test_speed)
-	var up: Vector2 = ceil(test_speed)
-	
-	test_speed.x = down.x if abs(down.x) > abs(up.x) else up.x
-	test_speed.y = down.y if abs(down.y) > abs(up.y) else up.y
-	print(test_speed)
-	Portals.try_teleport(self, test_speed)
+
+	print(get_test_speed(delta))
+	Portals.try_teleport(self, get_test_speed(delta))
 	
 	move_and_slide()
 

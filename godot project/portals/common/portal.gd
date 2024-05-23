@@ -38,7 +38,7 @@ func _teleport_object(body: PhysicsBody2D, otherPortal: Portal) -> void:
 
 	var new_mag: float = body.velocity.project(normal).length()
 
-	new_mag = new_mag * (1 - exp(-new_mag / 100))
+	new_mag = new_mag * .7
 
 	body.velocity = new_mag * otherPortal.normal
 

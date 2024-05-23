@@ -32,8 +32,7 @@ func remove_portal(type: PortalsConstants.PortalType) -> void:
 	portal_map[type].queue_free()
 	portal_map[type] = null
 
-
-func try_teleport(body: PhysicsBody2D, velocity: Vector2) -> void:
+func can_teleport(body: PhysicsBody2D, velocity: Vector2) -> PortalsConstants.PortalType:
 	
 	var original_mask: int = body.collision_mask
 	
@@ -44,23 +43,43 @@ func try_teleport(body: PhysicsBody2D, velocity: Vector2) -> void:
 	body.collision_mask = original_mask
 	
 	if collision == null:
-		return
+		return -1
 
 	if collision.get_collider_shape() == null:
-		return
+		return -1
 	
 	var shape: CollisionShape2D = collision.get_collider_shape()
 	
 	if not shape.is_in_group("teleport_area"):
-		return
+		return -1
 
 	var portal: Portal = shape.get_parent()
 	var other_portal: Portal = portal_map[1 - portal.type]
 	
 	if other_portal == null:
-		return
+		return -1
 	
-	portal._teleport_object(body, other_portal)
+	return portal.type
+
+func try_teleport(body: PhysicsBody2D, velocity: Vector2) -> void:
+	
+	var portal_type: int = -1
+
+	if portal_type < 0: 
+		portal_type = can_teleport(body, velocity)
+
+	if portal_type < 0: 
+		portal_type = can_teleport(body, Vector2(velocity.x, velocity.y + 10))
+	
+	if portal_type < 0: 
+		portal_type = can_teleport(body, Vector2(velocity.x, velocity.y - 10))
+
+	if portal_type >= 0:
+
+		var portal: Portal = Portals.portal_map[portal_type]
+		var other: Portal = Portals.portal_map[1 - portal_type]
+	
+		portal._teleport_object(body, other)
 
 #(0, -1) = U
 #(0, 1) = D
