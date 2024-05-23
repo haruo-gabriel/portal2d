@@ -103,8 +103,12 @@ func _process(_delta: float) -> void:
 	set_angle()
 
 func _physics_process(_delta: float) -> void:
-
+	
 	move()
+	
+	Portals.try_teleport(self, ceil(2 * velocity))
+	
+	move_and_slide()
 
 func _on_laser_hit(laser: Laser) -> void:
 

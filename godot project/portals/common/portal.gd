@@ -29,13 +29,8 @@ func _teleport_object(body: CollisionObject2D, otherPortal: Portal) -> void:
 	body.position = _get_new_body_position(body, otherPortal)
 	body.velocity = _get_new_body_velocity(body, otherPortal)
 
-	var projected_magnitude: float = body.velocity.project(normal).length()
-
 func _on_body_entered(body: Node2D) -> void:
+
 	var otherPortal: Portal = _get_other_portal()
-	
-func _teleport_object(body: CollisionObject2D, otherPortal: Portal) -> void:
 
-	body.position = _get_new_body_position(body, otherPortal)
-	body.velocity = _get_new_body_velocity(body, otherPortal)
-
+	_teleport_object(body, otherPortal)
