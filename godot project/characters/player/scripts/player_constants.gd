@@ -7,7 +7,7 @@ const HORIZONTAL_ACCELERATION: float = 20.0 # Pixels per second per frame
 const GROUND_DRAG: float = 6.0 # Deacceleration on ground.
 
 # It's harder to change direction while on air
-const IN_AIR_MULTIPLIER: float = .9
+const IN_AIR_MULTIPLIER: float = .8
 # Loses speed with time while not moving in air
 const IN_AIR_DRAG: float = 5 # Pixels per second per frame
 
