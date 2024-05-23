@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnc4x4qcme46m"]
+
+[ext_resource type="Script" path="res://characters/laser/laser.gd" id="1_vnbwl"]
+[ext_resource type="Texture2D" uid="uid://ddipmdluv1h3x" path="res://characters/laser/sprite.png" id="2_ec15y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aotld"]
+size = Vector2(10, 2)
+
+[node name="Laser" type="Area2D" groups=["Teleportable"]]
+script = ExtResource("1_vnbwl")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+z_as_relative = false
+shape = SubResource("RectangleShape2D_aotld")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+z_as_relative = false
+texture = ExtResource("2_ec15y")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

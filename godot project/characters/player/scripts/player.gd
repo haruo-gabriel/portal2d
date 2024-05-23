@@ -106,6 +106,11 @@ func _physics_process(_delta: float) -> void:
 
 	move()
 
-	Portals.try_teleport(self, ceil(velocity * _delta) * 2)
-	
-	move_and_slide()
+func _on_laser_hit(laser: Laser) -> void:
+
+	health.take_damage(2)
+
+	position += laser.velocity * laser.mass / 2000
+	velocity += laser.velocity * laser.mass / 2000
+
+	laser.queue_free()
