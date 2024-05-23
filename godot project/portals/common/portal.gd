@@ -6,7 +6,10 @@ var type: PortalsConstants.PortalType
 var direction: float = 0.0
 var normal: Vector2
 
-const _POSITION_OFFSET_CONSTANT = Vector2(5, 5)  
+var cooldown: int = 0
+
+const _TELEPORT_COOLDOWN: int = 5
+const _POSITION_OFFSET_CONSTANT: Vector2 = Vector2(5, 5)
 
 func _get_other_portal() -> Portal:
 	return Portals.portal_map[1 - type]
@@ -26,6 +29,11 @@ func _get_new_body_velocity(body: CollisionObject2D, otherPortal: Portal) -> Vec
 	
 func _teleport_object(body: PhysicsBody2D, otherPortal: Portal) -> void:
 
+	if cooldown:
+		return
+	
+	otherPortal.cooldown = _TELEPORT_COOLDOWN
+
 	body.position = _get_new_body_position(body, otherPortal)
 
 	var new_mag: float = body.velocity.project(normal).length()
@@ -36,9 +44,7 @@ func _teleport_object(body: PhysicsBody2D, otherPortal: Portal) -> void:
 
 	# body.velocity = _get_new_body_velocity(body, otherPortal)
 
-
-func _on_body_entered(body: Node2D) -> void:
-
-	var otherPortal: Portal = _get_other_portal()
-
-	_teleport_object(body, otherPortal)
+func _physics_process(_delta: float) -> void:
+	
+	if cooldown:
+		cooldown -= 1

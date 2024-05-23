@@ -43,8 +43,6 @@ func try_teleport(body: PhysicsBody2D, velocity: Vector2) -> void:
 
 	body.collision_mask = original_mask
 	
-	print(collision)
-	
 	if collision == null:
 		return
 

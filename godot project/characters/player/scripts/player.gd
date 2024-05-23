@@ -102,18 +102,18 @@ func _process(_delta: float) -> void:
 	
 	set_angle()
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	
 	move()
 	
-	var test_speed: Vector2 = 2 * velocity
+	var test_speed: Vector2 = 2 * velocity * delta
 	
 	var down: Vector2 = floor(test_speed)
 	var up: Vector2 = ceil(test_speed)
 	
 	test_speed.x = down.x if abs(down.x) > abs(up.x) else up.x
 	test_speed.y = down.y if abs(down.y) > abs(up.y) else up.y
-	
+	print(test_speed)
 	Portals.try_teleport(self, test_speed)
 	
 	move_and_slide()
