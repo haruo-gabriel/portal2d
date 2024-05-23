@@ -106,7 +106,7 @@ func _physics_process(_delta: float) -> void:
 	
 	move()
 	
-	Portals.try_teleport(self, ceil(2 * velocity))
+	Portals.try_teleport(self, ceil(2 * velocity * _delta))
 	
 	move_and_slide()
 

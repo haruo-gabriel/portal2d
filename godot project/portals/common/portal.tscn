@@ -1,46 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://dy6m25cbos0mk"]
+[gd_scene load_steps=7 format=3 uid="uid://bi01ldx85kvpj"]
 
+[ext_resource type="Texture2D" uid="uid://4x87hdxwgw5n" path="res://portals/base_portal_sprite.png" id="1_6oq3p"]
 [ext_resource type="Script" path="res://portals/common/portal.gd" id="1_hy248"]
-[ext_resource type="Texture2D" uid="uid://4x87hdxwgw5n" path="res://portals/base_portal_sprite.png" id="2_0cqx6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1730m"]
-size = Vector2(20, 32)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gbmy"]
+size = Vector2(15, 28)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxj5f"]
-size = Vector2(20, 3)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2x3fw"]
+size = Vector2(15, 6)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cqo8"]
-size = Vector2(20, 3)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw05p"]
+size = Vector2(15, 7)
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_3rnao"]
-a = Vector2(-4.16329e-12, -16)
-b = Vector2(-4.16329e-12, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jv80s"]
+size = Vector2(15, 28)
 
-[node name="Portal" type="StaticBody2D" groups=["Portal"]]
-position = Vector2(2.08165e-12, 2.08165e-12)
+[node name="Portal" type="StaticBody2D"]
+z_index = 2
+z_as_relative = false
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_hy248")
 
-[node name="Inside" type="CollisionShape2D" parent="." groups=["teleport_area"]]
-position = Vector2(-10, -2.08165e-12)
-shape = SubResource("RectangleShape2D_1730m")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, 0)
+texture = ExtResource("1_6oq3p")
 
-[node name="Sides" type="CollisionShape2D" parent="."]
-position = Vector2(-10, -17.5)
-shape = SubResource("RectangleShape2D_gxj5f")
+[node name="Inside" type="CollisionShape2D" parent="." groups=["teleport_area"]]
+position = Vector2(-7.5, 0)
+shape = SubResource("RectangleShape2D_3gbmy")
+
+[node name="Sides1" type="CollisionShape2D" parent="."]
+position = Vector2(-7.5, -17)
+shape = SubResource("RectangleShape2D_2x3fw")
 
 [node name="Sides2" type="CollisionShape2D" parent="."]
-position = Vector2(-10, 17.5)
-shape = SubResource("RectangleShape2D_2cqo8")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(-1.5, 2.08165e-12)
-texture = ExtResource("2_2gttd")
+position = Vector2(-7.5, 17.5)
+shape = SubResource("RectangleShape2D_yw05p")
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.5, 2.08165e-12)
-shape = SubResource("SegmentShape2D_3rnao")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-7.5, 0)
+shape = SubResource("RectangleShape2D_jv80s")

@@ -42,10 +42,10 @@ func try_teleport(body: PhysicsBody2D, velocity: Vector2) -> void:
 	var collision: KinematicCollision2D = body.move_and_collide(velocity, true)
 
 	body.collision_mask = original_mask
-
 	if collision == null:
 		return
 	
+	print(collision.get_collider())
 	if collision.get_collider_shape() == null:
 		return
 	
