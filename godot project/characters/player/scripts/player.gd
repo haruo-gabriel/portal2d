@@ -44,7 +44,7 @@ func get_enabled_hitbox() -> CollisionShape2D:
 	
 	if main_hitbox.disabled:
 		return crouched_hitbox
-
+	
 	return main_hitbox
 
 func toggle_hitbox(to_crouch: bool) -> void:
@@ -82,8 +82,6 @@ func move() -> void:
 	velocity.x = clamp(velocity.x, -PlayerConstants.MAX_X_SPEED, PlayerConstants.MAX_X_SPEED)
 	velocity.y = clamp(velocity.y, -PlayerConstants.MAX_Y_SPEED, PlayerConstants.MAX_Y_SPEED)
 
-	move_and_slide()
-
 func _process(_delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
@@ -105,6 +103,7 @@ func _process(_delta: float) -> void:
 	set_angle()
 
 func _physics_process(_delta: float) -> void:
+
 	move()
 
 func _on_laser_hit(laser: Laser) -> void:

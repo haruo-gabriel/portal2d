@@ -32,6 +32,36 @@ func remove_portal(type: PortalsConstants.PortalType) -> void:
 	portal_map[type].queue_free()
 	portal_map[type] = null
 
+
+func try_teleport(body: PhysicsBody2D, velocity: Vector2) -> void:
+	
+	var original_mask: int = body.collision_mask
+	
+	body.collision_mask = 2
+
+	var collision: KinematicCollision2D = body.move_and_collide(velocity, true)
+
+	body.collision_mask = original_mask
+
+	if collision == null:
+		return
+	
+	if collision.get_collider_shape() == null:
+		return
+	
+	var shape: CollisionShape2D = collision.get_collider_shape()
+	
+	if not shape.is_in_group("teleport_area"):
+		return
+
+	var portal: Portal = shape.get_parent()
+	var other_portal: Portal = portal_map[1 - portal.type]
+	
+	if other_portal == null:
+		return
+	
+	portal._teleport_object(body, other_portal)
+
 #(0, -1) = U
 #(0, 1) = D
 #(-1, 0) = L
