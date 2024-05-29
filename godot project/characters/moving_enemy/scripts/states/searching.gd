@@ -1,13 +1,8 @@
 
-class_name MovingEnemy
-extends CharacterBody2D
-
+extends Node
 
 func _ready() -> void:
-	pass
-
+	pass # Replace with function body.
 
 func _process(delta: float) -> void:
 	pass
-
-
