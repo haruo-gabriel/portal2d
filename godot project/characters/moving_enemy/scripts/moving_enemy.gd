@@ -13,6 +13,8 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
+@onready var attack_area: Area2D = $AttackArea
+
 const SIGHT_DISTANCE: float = 500
 const BEHIND_SIGHT_DISTANCE: float = 100
 

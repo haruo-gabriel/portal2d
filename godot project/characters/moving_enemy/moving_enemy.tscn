@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://byybmlwajwfcr"]
+[gd_scene load_steps=15 format=3 uid="uid://byybmlwajwfcr"]
 
 [ext_resource type="Script" path="res://characters/moving_enemy/scripts/moving_enemy.gd" id="1_m57l0"]
 [ext_resource type="Texture2D" uid="uid://cd5oo3qhyimel" path="res://characters/moving_enemy/sprites/chase.png" id="2_q3wfa"]
@@ -67,6 +67,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uch4w"]
 size = Vector2(20, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23l4l"]
+size = Vector2(24, 50)
+
 [node name="MovingEnemy" type="CharacterBody2D"]
 script = ExtResource("1_m57l0")
 
@@ -80,6 +83,13 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_uch4w")
+
+[node name="AttackArea" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(22, 0)
+shape = SubResource("RectangleShape2D_23l4l")
 
 [node name="FloorCaster" type="RayCast2D" parent="."]
 position = Vector2(10, 0)
@@ -106,3 +116,5 @@ script = ExtResource("5_l61f2")
 
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource("6_fgdwi")
+
+[connection signal="body_entered" from="AttackArea" to="StateMachine/Attacking" method="_on_attack_area_body_entered"]
