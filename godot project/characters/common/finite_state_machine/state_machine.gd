@@ -18,6 +18,27 @@ func get_states() -> Array:
 
 	return _states
 
+func transition(state: State, new_state_name: String) -> void:
+	
+	if state != current_state:
+		return print("Invalid Caller, must be the same as current")
+	
+	if new_state_name.to_lower() not in states:
+		return print("Invalid New State Name")
+
+	var new_state: State = states[new_state_name.to_lower()]
+
+	if new_state == current_state:
+		return
+
+	if current_state:
+		current_state.exit()
+	
+	new_state.enter()
+	
+	current_state = new_state
+
+
 func _ready() -> void:
 
 	for state in get_states():
@@ -42,18 +63,4 @@ func _physics_process(delta: float) -> void:
 		current_state.physics_update(delta)
 
 func _on_child_transitioned(state: State, new_state_name: String) -> void:
-
-	if state != current_state:
-		return print("Invalid Caller, must be the same as current")
-
-	if new_state_name.to_lower() not in states:
-		return print("Invalid New State Name")
-
-	var new_state: State = states[new_state_name.to_lower()]
-
-	if current_state:
-		current_state.exit()
-	
-	new_state.enter()
-	
-	current_state = new_state
+	transition(state, new_state_name)

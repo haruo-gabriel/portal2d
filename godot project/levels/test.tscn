@@ -26,5 +26,5 @@ radius = 150.0
 rotation_speed = 0.02
 
 [node name="MovingEnemy" parent="." instance=ExtResource("4_wb3jp")]
-position = Vector2(1695, -453)
+position = Vector2(2084, -384)
 can_fall = true

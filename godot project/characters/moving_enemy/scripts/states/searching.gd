@@ -1,29 +1,43 @@
 
 extends MovingEnemyState
 
-const SEARCH_SPEED: int = 100
+const SEARCH_SPEED: float = 100
 
-func should_flip(delta: float) -> bool:
+func enter() -> void:
+	enemy.velocity.x = sign(enemy.velocity.x) * SEARCH_SPEED
+
+func look_around() -> int:
 	
-	if not entity.can_fall and not entity.can_see_floor.is_colliding():
-		return true
+	if can_see_ahead(enemy.SIGHT_DISTANCE):
+		return 1
+	
+	if can_see_behind(enemy.BEHIND_SIGHT_DISTANCE):
+		return -1
+	
+	return 0
 
-	var collision: KinematicCollision2D = entity.move_and_collide(Vector2(entity.velocity.x * delta, 0), true)
+func try_chase() -> void:
+	
+	var seen: int = look_around()
 
-	if collision == null:
-		return false
+	if not seen:
+		return
 
-	var normal: Vector2 = collision.get_normal()
+	if seen < 0:
+		enemy.flip()
 
-	return is_zero_approx(normal.y)
+	transitioned.emit(self, "chasing")
+
 
 func physics_update(delta: float) -> void:
 
-	if not entity.velocity.x:
-		entity.velocity.x = SEARCH_SPEED
+	if not enemy.velocity.x:
+		enemy.velocity.x = SEARCH_SPEED
 
-	if not entity.is_on_floor():
-		entity.velocity.y += GameConstants.GRAVITY * delta
+	if not enemy.is_on_floor():
+		enemy.velocity.y += GameConstants.GRAVITY * delta
 
-	if should_flip(delta):
-		entity.flip(delta)
+	if enemy.should_flip(delta):
+		enemy.flip()
+
+	try_chase()
