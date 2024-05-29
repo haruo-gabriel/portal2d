@@ -2,6 +2,8 @@
 class_name MovingEnemy
 extends CharacterBody2D
 
+@export var can_fall: bool = false
+
 @onready var can_see_floor: RayCast2D = $FloorCaster
 
 func flip(delta: float) -> void:

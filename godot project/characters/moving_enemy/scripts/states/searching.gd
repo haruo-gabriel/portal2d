@@ -5,7 +5,7 @@ const SEARCH_SPEED: int = 100
 
 func should_flip(delta: float) -> bool:
 	
-	if not entity.can_see_floor.is_colliding():
+	if not entity.can_fall and not entity.can_see_floor.is_colliding():
 		return true
 
 	var collision: KinematicCollision2D = entity.move_and_collide(Vector2(entity.velocity.x * delta, 0), true)
