@@ -4,7 +4,10 @@ extends MovingEnemyState
 const SEARCH_SPEED: float = 100
 
 func enter() -> void:
+	
 	enemy.velocity.x = sign(enemy.velocity.x) * SEARCH_SPEED
+	
+	enemy.animation
 
 func look_around() -> int:
 	
