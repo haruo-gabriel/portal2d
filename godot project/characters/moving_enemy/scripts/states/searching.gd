@@ -7,14 +7,15 @@ func enter() -> void:
 	
 	enemy.velocity.x = sign(enemy.velocity.x) * SEARCH_SPEED
 	
-	enemy.animation
+	if enemy.animation != null:
+		enemy.animation.play("search")
 
 func look_around() -> int:
 	
-	if can_see_ahead(enemy.SIGHT_DISTANCE):
+	if can_see(enemy.player_caster):
 		return 1
 	
-	if can_see_behind(enemy.BEHIND_SIGHT_DISTANCE):
+	if can_see(enemy.player_caster2):
 		return -1
 	
 	return 0

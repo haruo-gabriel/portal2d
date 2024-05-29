@@ -9,13 +9,19 @@ const REACH: int = 50
 var attack_delay: int
 var post_attack_delay: int
 
-func attack() -> void:
-	pass
 
-func _ready() -> void:
+func enter() -> void:
+	
 	attack_delay = ATTACK_DELAY
 	post_attack_delay = POST_ATTACK_DELAY
 
+	enemy.animation.play("attack")
+	
+	enemy.velocity = enemy.velocity.normalized() / 10
+	print(enemy.velocity)
+
+func attack() -> void:
+	pass
 
 func _physics_process(delta: float) -> void:
 	

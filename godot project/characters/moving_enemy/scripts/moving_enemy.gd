@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 @onready var player_caster: RayCast2D = $PlayerCaster
 @onready var player_caster2: RayCast2D = $PlayerCaster2
+@onready var attack_caster: RayCast2D = $AttackCaster
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation: AnimationPlayer = $AnimationPlayer
@@ -24,7 +25,7 @@ func flip() -> void:
 	
 	player_caster.target_position = -player_caster.target_position
 	player_caster2.target_position = -player_caster2.target_position
-	
+	attack_caster.target_position = -attack_caster.target_position
 
 
 func flip_to(direction: int) -> void:
@@ -50,7 +51,7 @@ func should_flip(delta: float) -> bool:
 	return is_zero_approx(normal.y)
 
 func _ready() -> void:
-	pass
+	animation.play("searching")
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()

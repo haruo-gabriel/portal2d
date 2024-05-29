@@ -4,6 +4,8 @@ extends MovingEnemyState
 const CHASE_SPEED: float = 200
 const LAST_SEEN_TIME: int = 180
 
+const ATTACK_TRIGGER: int = 1
+
 var last_seen: int
 
 func enter() -> void:
@@ -12,8 +14,10 @@ func enter() -> void:
 
 	last_seen = LAST_SEEN_TIME
 
-func physics_update(delta: float) -> void:
-	
+	enemy.animation.play("chase")
+
+func basic_action(delta: float) -> void:
+
 	if not enemy.velocity.x:
 		enemy.velocity.x = CHASE_SPEED
 
@@ -22,11 +26,19 @@ func physics_update(delta: float) -> void:
 
 	if enemy.should_flip(delta):
 		enemy.flip()
+
+func physics_update(delta: float) -> void:
 	
-	if can_see_ahead(enemy.SIGHT_DISTANCE):
+	basic_action(delta)
+	
+	if can_see(enemy.attack_caster):
+		transitioned.emit(self, "attacking")
+		return
+	
+	if can_see(enemy.player_caster):
 		last_seen = LAST_SEEN_TIME
 	
-	elif can_see_behind(enemy.BEHIND_SIGHT_DISTANCE):
+	elif can_see(enemy.player_caster2):
 		last_seen = LAST_SEEN_TIME
 		enemy.flip()
 
