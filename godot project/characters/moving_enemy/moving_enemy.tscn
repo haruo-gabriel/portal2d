@@ -17,11 +17,13 @@ texture = ExtResource("1_qtp8j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_uch4w")
 
-[node name="CanSeeFloor" type="RayCast2D" parent="."]
+[node name="FloorCaster" type="RayCast2D" parent="."]
 position = Vector2(10, 0)
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "entity")]
 script = ExtResource("3_0kfwn")
+initial_state = NodePath("Searching")
+entity = NodePath("..")
 
 [node name="Searching" type="Node" parent="StateMachine"]
 script = ExtResource("4_8dwqt")

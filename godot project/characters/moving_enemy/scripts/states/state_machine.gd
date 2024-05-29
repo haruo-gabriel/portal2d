@@ -2,7 +2,7 @@
 extends StateMachine
 
 func _ready() -> void:
-	pass # Replace with function body.
+	super()
 
 func _process(delta: float) -> void:
-	pass
+	super(delta)

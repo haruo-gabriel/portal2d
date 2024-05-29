@@ -19,11 +19,11 @@ layer_1/tile_data = PackedInt32Array(-2162534, 196608, 1073741827, -2228070, 196
 position = Vector2(1920, -352)
 
 [node name="Turret" parent="." instance=ExtResource("3_5hl13")]
-position = Vector2(2157, -336)
+position = Vector2(2154, -476)
 rest_angle = 3.1
 minimum_angle = -3.0
 radius = 150.0
 rotation_speed = 0.02
 
 [node name="MovingEnemy" parent="." instance=ExtResource("4_wb3jp")]
-position = Vector2(1698, -441)
+position = Vector2(2072, -390)
