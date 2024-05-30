@@ -206,3 +206,5 @@ script = ExtResource("30_e0dd0")
 
 [node name="Falling" type="Node" parent="StateMachine"]
 script = ExtResource("31_jnq8s")
+
+[connection signal="died" from="Health" to="." method="player_death"]
