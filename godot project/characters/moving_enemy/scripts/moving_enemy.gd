@@ -19,10 +19,19 @@ extends CharacterBody2D
 const SIGHT_DISTANCE: float = 500
 const BEHIND_SIGHT_DISTANCE: float = 100
 
+var direction: float = 1
+
+
 func flip() -> void:
-	
+
 	velocity.x *= -1
 	
+	flip_nodes()
+
+func flip_nodes() -> void:
+	
+	direction *= -1
+
 	can_see_floor.position *= -1
 	sprite.flip_h = not sprite.flip_h
 	
@@ -31,16 +40,7 @@ func flip() -> void:
 	attack_caster.target_position *= -1
 	
 	attack_shape.position *= -1
-
-
-func flip_to(direction: int) -> void:
 	
-	if not direction:
-		return
-	
-	if (direction > 0) == (velocity.x > 0):
-		flip()
-
 func should_flip(delta: float) -> bool:
 	
 	if not can_fall and not can_see_floor.is_colliding():
@@ -59,5 +59,8 @@ func _ready() -> void:
 	animation.play("searching")
 
 func _physics_process(delta: float) -> void:
+	
 	move_and_slide()
 
+	if velocity.x and direction != sign(velocity.x):
+		flip_nodes()

@@ -22,9 +22,8 @@ func enter() -> void:
 	
 	enemy.velocity = enemy.velocity.normalized() / 10
 
-func attack() -> void:
-	enemy.attack_area.monitoring = true
-
+func exit() -> void:
+	pass
 
 func _physics_process(delta: float) -> void:
 	
@@ -32,9 +31,10 @@ func _physics_process(delta: float) -> void:
 		attack_delay -= 1
 		return
 	
-	while attack_duration:
+	enemy.attack_area.monitoring = true
+	
+	if attack_duration:
 		attack_duration -= 1
-		attack()
 		return
 	
 	enemy.attack_area.monitoring = false
