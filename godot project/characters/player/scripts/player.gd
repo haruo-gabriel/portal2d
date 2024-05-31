@@ -139,3 +139,7 @@ func _on_laser_hit(laser: Laser) -> void:
 	velocity += laser.velocity * laser.mass / 2000
 
 	laser.queue_free()
+
+
+func player_death():
+	get_tree().reload_current_scene()
