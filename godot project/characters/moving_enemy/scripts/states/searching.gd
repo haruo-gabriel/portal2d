@@ -5,7 +5,10 @@ const SEARCH_SPEED: float = 100
 
 func enter() -> void:
 	
-	enemy.velocity.x = sign(enemy.velocity.x) * SEARCH_SPEED
+	if enemy.velocity.x:
+		enemy.velocity.x = sign(enemy.velocity.x) * SEARCH_SPEED
+	else:
+		enemy.velocity.x = SEARCH_SPEED
 	
 	if enemy.animation != null:
 		enemy.animation.play("search")
@@ -35,7 +38,9 @@ func try_chase() -> void:
 
 func physics_update(delta: float) -> void:
 
-	if not enemy.velocity.x:
+	if enemy.velocity:
+		enemy.velocity = enemy.velocity.normalized() * SEARCH_SPEED
+	else:
 		enemy.velocity.x = SEARCH_SPEED
 
 	if not enemy.is_on_floor():

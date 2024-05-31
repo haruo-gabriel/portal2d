@@ -20,10 +20,7 @@ func enter() -> void:
 
 	enemy.animation.play("attack")
 	
-	enemy.velocity = enemy.velocity.normalized() / 10
-
-func exit() -> void:
-	pass
+	enemy.velocity.x = sign(enemy.velocity.x)
 
 func _physics_process(delta: float) -> void:
 	

@@ -3,7 +3,7 @@ class_name MovingEnemy
 extends CharacterBody2D
 
 @export var can_fall: bool = false
-
+ 
 @onready var can_see_floor: RayCast2D = $FloorCaster
 
 @onready var player_caster: RayCast2D = $PlayerCaster
@@ -20,7 +20,6 @@ const SIGHT_DISTANCE: float = 500
 const BEHIND_SIGHT_DISTANCE: float = 100
 
 var direction: float = 1
-
 
 func flip() -> void:
 
