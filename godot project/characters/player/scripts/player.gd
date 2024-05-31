@@ -136,3 +136,7 @@ func _on_laser_hit(laser: Laser) -> void:
 	velocity += laser.velocity * laser.mass / 2000
 
 	laser.queue_free()
+
+
+func _on_health_got_hit(damage):
+	pass # Replace with function body.

@@ -4,6 +4,7 @@ extends Node
 
 
 signal died
+signal got_hit(damage: int)
 signal reached_full_health
 
 @export var max_health: float
@@ -23,7 +24,10 @@ var health: float :
 var _time_since_last_hit: int # frames
 
 func take_damage(damage: float) -> void:
+
 	health -= damage
+
+	got_hit.emit(damage)
 
 func heal(healing: float) -> void:
 	health += healing
