@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_3su11"]
 [ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://characters/player/player.tscn" id="2_trbgv"]
 [ext_resource type="PackedScene" uid="uid://b7pirrmmj56br" path="res://characters/turret/turret.tscn" id="3_2m1ke"]
-[ext_resource type="PackedScene" uid="uid://bpipyxlru2fiy" path="res://levels/level_transition.tscn" id="4_h8n1u"]
+[ext_resource type="PackedScene" uid="uid://b5pd4lm1s4pue" path="res://levels/level_transition.tscn" id="4_h8n1u"]
 
 [node name="LevelScene" type="Node2D"]
 
