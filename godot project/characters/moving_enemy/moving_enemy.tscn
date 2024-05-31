@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://characters/moving_enemy/scripts/states/chasing.gd" id="5_l61f2"]
 [ext_resource type="Script" path="res://characters/moving_enemy/scripts/attacking.gd" id="6_fgdwi"]
 
-[sub_resource type="Animation" id="Animation_w7gkq"]
-resource_name = "search"
+[sub_resource type="Animation" id="Animation_8ja54"]
+resource_name = "attack"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -22,7 +22,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_5a60u")]
+"values": [ExtResource("4_aa8od")]
 }
 
 [sub_resource type="Animation" id="Animation_e3tac"]
@@ -41,8 +41,8 @@ tracks/0/keys = {
 "values": [ExtResource("2_q3wfa")]
 }
 
-[sub_resource type="Animation" id="Animation_8ja54"]
-resource_name = "attack"
+[sub_resource type="Animation" id="Animation_w7gkq"]
+resource_name = "search"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -54,7 +54,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_aa8od")]
+"values": [ExtResource("3_5a60u")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xvkrf"]

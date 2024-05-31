@@ -14,6 +14,7 @@ extends CharacterBody2D
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
 @onready var attack_area: Area2D = $AttackArea
+@onready var attack_shape: CollisionShape2D = attack_area.get_node("CollisionShape2D")
 
 const SIGHT_DISTANCE: float = 500
 const BEHIND_SIGHT_DISTANCE: float = 100
@@ -25,9 +26,11 @@ func flip() -> void:
 	can_see_floor.position *= -1
 	sprite.flip_h = not sprite.flip_h
 	
-	player_caster.target_position = -player_caster.target_position
-	player_caster2.target_position = -player_caster2.target_position
-	attack_caster.target_position = -attack_caster.target_position
+	player_caster.target_position *= -1
+	player_caster2.target_position *= -1
+	attack_caster.target_position *= -1
+	
+	attack_shape.position *= -1
 
 
 func flip_to(direction: int) -> void:
