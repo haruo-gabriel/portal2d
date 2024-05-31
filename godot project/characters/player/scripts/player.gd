@@ -10,6 +10,8 @@ extends CharacterBody2D
 
 @onready var health: Health = $Health
 
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 var direction: float = 0.0
 var angle: float = 0.0
 
@@ -128,6 +130,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+
 func _on_laser_hit(laser: Laser) -> void:
 
 	health.take_damage(2)
@@ -137,6 +140,14 @@ func _on_laser_hit(laser: Laser) -> void:
 
 	laser.queue_free()
 
+func _on_health_got_hit(damage: int) -> void:
 
-func _on_health_got_hit(damage):
-	pass # Replace with function body.
+	if not audio_player.is_playing():
+		audio_player.stream = load("res://characters/player/sfx/tomou_hit.wav")
+		audio_player.play()
+
+func _on_health_died():
+
+	if not audio_player.is_playing():
+		audio_player.stream = load("res://characters/player/sfx/died.mp3")
+		audio_player.play()
