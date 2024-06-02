@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://c01pb5akukyl0"]
+[gd_scene load_steps=6 format=3 uid="uid://c01pb5akukyl0"]
 
+[ext_resource type="AudioStream" uid="uid://ddfued18shs8d" path="res://levels/level_1/level1.wav" id="1_vv47m"]
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_w1d4u"]
 [ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://characters/player/player.tscn" id="2_qkb2h"]
 [ext_resource type="PackedScene" uid="uid://b7pirrmmj56br" path="res://characters/turret/turret.tscn" id="3_5hl13"]
 [ext_resource type="PackedScene" uid="uid://byybmlwajwfcr" path="res://characters/moving_enemy/moving_enemy.tscn" id="4_wb3jp"]
 
 [node name="LevelScene" type="Node2D"]
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_vv47m")
+autoplay = true
+bus = &"Music"
 
 [node name="TileMap" type="TileMap" parent="." groups=["LaserWall"]]
 tile_set = ExtResource("1_w1d4u")
