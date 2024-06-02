@@ -2,6 +2,8 @@
 class_name PlayerFalling
 extends PlayerInAir
 
+@onready var landing_on_grass_sfx = $LandingOnGrassSFX
+
 func _ready() -> void:
 	animation_name = "Fall"
 
@@ -12,6 +14,7 @@ func enter() -> void:
 	animation.try_play(animation_name)
 
 func exit() -> void:
+	landing_on_grass_sfx.play()
 	
 	player.is_falling = false
 

@@ -8,6 +8,9 @@ extends StaticBody2D
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var machine: TurretStateMachine = $StateMachine
 
+# SFX resources
+@onready var laser_shot_sfx: AudioStreamPlayer = $LaserShotSFX
+
 @export var rest_angle: float
 @export var minimum_angle: float
 @export var maximum_angle: float
@@ -16,6 +19,8 @@ extends StaticBody2D
 
 @export var rotation_speed: float = .01
 @export var open_cooldown: int = 60
+
+
 
 var LASER_SCENE: Resource = preload("res://characters/laser/laser.tscn")
 
@@ -45,6 +50,8 @@ func shoot(target: Vector2) -> void:
 	laser.mass = 1
 
 	get_parent().add_child(laser)
+	
+	laser_shot_sfx.play()
 
 func _ready() -> void:
 

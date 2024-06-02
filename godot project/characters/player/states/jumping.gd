@@ -2,6 +2,8 @@
 class_name PlayerJumping
 extends PlayerInAir
 
+#@onready var jump_sfx = $JumpingSFX
+
 func _ready() -> void:
 	animation_name = "Jump"
 
@@ -13,6 +15,8 @@ func enter() -> void:
 	player.move_and_slide()
 
 	animation.try_play(animation_name)
+	
+	#jump_sfx.play()
 
 func physics_update(delta: float) -> void:
 	

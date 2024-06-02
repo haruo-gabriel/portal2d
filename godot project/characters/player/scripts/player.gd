@@ -12,6 +12,10 @@ extends CharacterBody2D
 
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+# SFX resourcesv variables
+@onready var portal_gunshot_sfx = $PortalGunshotSFX
+@onready var hit_taken_sfx = $HitTakenSFX
+
 var direction: float = 0.0
 var angle: float = 0.0
 
@@ -116,9 +120,11 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("shoot_portal1"):
 		shoot(PortalsConstants.PortalType.PORTAL_TYPE_BLUE)
+		portal_gunshot_sfx.play()
 		
 	if Input.is_action_just_pressed("shoot_portal2"):
 		shoot(PortalsConstants.PortalType.PORTAL_TYPE_ORANGE)
+		portal_gunshot_sfx.play()
 	
 	set_angle()
 
@@ -137,6 +143,8 @@ func _on_laser_hit(laser: Laser) -> void:
 
 	position += laser.velocity * laser.mass / 2000
 	velocity += laser.velocity * laser.mass / 2000
+	
+	hit_taken_sfx.play()
 
 	laser.queue_free()
 

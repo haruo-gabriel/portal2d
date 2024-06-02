@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c8gpc1g713rc6"
-path="res://.godot/imported/portal-noise.wav-bae59b8cde1b35674e9d2591562e1be4.sample"
+path="res://.godot/imported/portal_noise.wav-8cb6018de89f66f0b9388c4c96bb027e.sample"
 
 [deps]
 
-source_file="res://portals/sfx/portal-noise.wav"
-dest_files=["res://.godot/imported/portal-noise.wav-bae59b8cde1b35674e9d2591562e1be4.sample"]
+source_file="res://portals/sfx/portal_noise.wav"
+dest_files=["res://.godot/imported/portal_noise.wav-8cb6018de89f66f0b9388c4c96bb027e.sample"]
 
 [params]
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7pirrmmj56br"]
+[gd_scene load_steps=10 format=3 uid="uid://b7pirrmmj56br"]
 
 [ext_resource type="Script" path="res://characters/turret/scripts/turret.gd" id="1_4rcoj"]
 [ext_resource type="Texture2D" uid="uid://bsrnk5t2hppc1" path="res://characters/turret/head.png" id="1_yvtyw"]
 [ext_resource type="Texture2D" uid="uid://b4l3rbx8qc8ov" path="res://characters/turret/base.png" id="2_pk15q"]
 [ext_resource type="Script" path="res://characters/turret/scripts/state_machine.gd" id="4_ct1qn"]
+[ext_resource type="AudioStream" uid="uid://dwmn3g0asvjul" path="res://characters/laser/sfx/laser_shot.wav" id="4_uk6uj"]
 [ext_resource type="Script" path="res://characters/turret/scripts/states/idle.gd" id="5_15jw2"]
 [ext_resource type="Script" path="res://characters/turret/scripts/states/active.gd" id="6_rcg6g"]
 
@@ -30,6 +31,10 @@ texture = ExtResource("2_pk15q")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, -7)
 target_position = Vector2(2.08165e-12, -30)
+
+[node name="LaserShotSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_uk6uj")
+bus = &"SFX"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
