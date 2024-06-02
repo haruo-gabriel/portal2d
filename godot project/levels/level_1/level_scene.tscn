@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://45cxitl1b5uh"]
+[gd_scene load_steps=9 format=3 uid="uid://45cxitl1b5uh"]
 
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_6d6h5"]
 [ext_resource type="Script" path="res://levels/level_scene.gd" id="1_chgl5"]
 [ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://characters/player/player.tscn" id="2_i7aku"]
+[ext_resource type="AudioStream" uid="uid://ddfued18shs8d" path="res://levels/level_1/level1.wav" id="2_wed8u"]
 [ext_resource type="PackedScene" uid="uid://b5pd4lm1s4pue" path="res://levels/level_transition.tscn" id="3_l48s3"]
 [ext_resource type="PackedScene" uid="uid://nejou4ncohws" path="res://levels/level_2/level_scene.tscn" id="4_lbfwy"]
 [ext_resource type="PackedScene" uid="uid://cq8lpg21erc5l" path="res://interface/pause.tscn" id="6_vrxgd"]
@@ -10,6 +11,11 @@
 
 [node name="LevelScene" type="Node2D"]
 script = ExtResource("1_chgl5")
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wed8u")
+autoplay = true
+bus = &"Music"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_6d6h5")
