@@ -119,6 +119,7 @@ separation = Vector2i(1, 1)
 4:1/0/physics_layer_0/angular_velocity = 0.0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(5, -8, 5, 8, -5, 8, -5, -8)
 4:1/1 = 1
+4:1/1/modulate = Color(0.721569, 0.721569, 0.721569, 1)
 4:1/1/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:1/1/physics_layer_0/angular_velocity = 0.0
 5:1/0 = 0

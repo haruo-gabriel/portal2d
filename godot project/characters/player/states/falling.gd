@@ -2,7 +2,10 @@
 class_name PlayerFalling
 extends PlayerInAir
 
-@onready var landing_on_grass_sfx = $LandingOnGrassSFX
+# SFX resources
+@onready var landing_on_grass_sfx = $"../../LandingOnGrassSFX"
+@onready var landing_on_rock_sfx = $"../../LandingOnRockSFX"
+
 
 func _ready() -> void:
 	animation_name = "Fall"

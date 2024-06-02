@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=33 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://characters/player/scripts/player.gd" id="1_cp1xu"]
 [ext_resource type="Script" path="res://characters/player/scripts/player_sprite.gd" id="3_ugign"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bqw5qqkbamemo" path="res://characters/player/sfx/hit_taken.wav" id="12_tmsxg"]
 [ext_resource type="AudioStream" uid="uid://bv04vmd4bbrv0" path="res://characters/player/sfx/jump.wav" id="17_30li2"]
 [ext_resource type="AudioStream" uid="uid://bx1dnpks7gri4" path="res://characters/player/sfx/landing_on_grass.wav" id="19_sietw"]
+[ext_resource type="AudioStream" uid="uid://biyao66eq4utc" path="res://characters/player/sfx/landing_on_rock.wav" id="22_7h58e"]
 [ext_resource type="Script" path="res://characters/player/scripts/animation_player.gd" id="22_j0vq1"]
 [ext_resource type="Script" path="res://characters/common/health.gd" id="25_a7xhi"]
 [ext_resource type="Script" path="res://characters/player/scripts/portal_caster.gd" id="26_tat2q"]
@@ -194,6 +195,18 @@ bus = &"SFX"
 stream = ExtResource("12_tmsxg")
 bus = &"SFX"
 
+[node name="JumpingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_30li2")
+bus = &"SFX"
+
+[node name="LandingOnGrassSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_sietw")
+bus = &"SFX"
+
+[node name="LandingOnRockSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_7h58e")
+bus = &"SFX"
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("25_a7xhi")
 max_health = 100.0
@@ -217,15 +230,7 @@ script = ExtResource("29_lmmct")
 [node name="Jumping" type="Node" parent="StateMachine"]
 script = ExtResource("30_e0dd0")
 
-[node name="JumpingSFX" type="AudioStreamPlayer" parent="StateMachine/Jumping"]
-stream = ExtResource("17_30li2")
-bus = &"SFX"
-
 [node name="Falling" type="Node" parent="StateMachine"]
 script = ExtResource("31_jnq8s")
-
-[node name="LandingOnGrassSFX" type="AudioStreamPlayer" parent="StateMachine/Falling"]
-stream = ExtResource("19_sietw")
-bus = &"SFX"
 
 [connection signal="died" from="Health" to="." method="player_death"]
