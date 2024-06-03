@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cq8lpg21erc5l" path="res://interface/pause.tscn" id="6_vrxgd"]
 [ext_resource type="PackedScene" uid="uid://b754jenc4foku" path="res://interface/hud.tscn" id="6_xax1y"]
 
-[node name="LevelScene" type="Node2D"]
+[node name="LevelScene2" type="Node2D"]
 script = ExtResource("1_chgl5")
 
 [node name="LevelMusic" type="AudioStreamPlayer" parent="."]
@@ -17,7 +17,6 @@ process_mode = 3
 stream = ExtResource("2_wed8u")
 volume_db = -80.0
 autoplay = true
-bus = &"Music"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_6d6h5")
