@@ -12,7 +12,6 @@ func fade_in(audio_player_to_fade: AudioStreamPlayer, duration: float) -> void:
 	audio_player = audio_player_to_fade
 	audio_player.volume_db = -80
 	music_bus_volume = AudioServer.get_bus_volume_db(MUSIC_BUS_ID)
-	audio_player.play()
 	fade_duration = duration
 	elapsed_time = 0
 	set_process(true)
