@@ -7,7 +7,8 @@ func _on_continue_button_pressed():
 	get_tree().paused = false
 	visible = false
 
-
+func _on_quit_button_pressed():
+	get_tree().quit()
 
 func _on_music_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(MUSIC_BUS_ID, linear_to_db(value))
@@ -16,3 +17,4 @@ func _on_music_slider_value_changed(value):
 func _on_sfx_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(SFX_BUS_ID, linear_to_db(value))
 	AudioServer.set_bus_mute(SFX_BUS_ID, value < 0.05)
+

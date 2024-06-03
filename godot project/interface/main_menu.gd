@@ -9,7 +9,7 @@ func _ready() -> void:
 	var AudioManager = preload("res://audio.gd")
 	audio_manager = AudioManager.new()
 	add_child(audio_manager)
-	audio_manager.fade_in(main_menu_music, 6.0)
+	audio_manager.fade_in(main_menu_music, 4.0)
 
 func _on_new_game_button_pressed():
 	get_tree().change_scene_to_file("res://levels/level_1/level_scene.tscn")

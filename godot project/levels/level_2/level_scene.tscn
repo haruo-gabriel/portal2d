@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://nejou4ncohws"]
+[gd_scene load_steps=11 format=3 uid="uid://nejou4ncohws"]
 
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_3su11"]
 [ext_resource type="Script" path="res://levels/level_scene.gd" id="1_8mwy2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://byybmlwajwfcr" path="res://characters/moving_enemy/moving_enemy.tscn" id="5_g6sfx"]
 [ext_resource type="PackedScene" uid="uid://b754jenc4foku" path="res://interface/hud.tscn" id="7_bqe4l"]
 [ext_resource type="PackedScene" uid="uid://cq8lpg21erc5l" path="res://interface/pause.tscn" id="8_5d8gg"]
+[ext_resource type="PackedScene" uid="uid://brlldqfwpgvlw" path="res://interface/ending_credits.tscn" id="8_yww80"]
 
 [node name="LevelScene" type="Node2D"]
 script = ExtResource("1_8mwy2")
@@ -55,6 +56,7 @@ rest_angle = 3.142
 
 [node name="LevelTransition" parent="." instance=ExtResource("4_h8n1u")]
 position = Vector2(3424, -528)
+target_scene = ExtResource("8_yww80")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

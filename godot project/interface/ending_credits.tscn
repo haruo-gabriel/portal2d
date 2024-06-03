@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://brlldqfwpgvlw"]
+
+[ext_resource type="Script" path="res://interface/ending_credits.gd" id="1_mmjqx"]
+[ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/main_menu.wav" id="2_a1iot"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ijkpe"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_dntry"]
+
+[node name="EndingCredits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mmjqx")
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_a1iot")
+volume_db = -80.0
+bus = &"Music"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0196078, 0.0196078, 0.0196078, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = -77.0
+offset_right = 194.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Thanks" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Thank you for playing Portal 2D!"
+label_settings = SubResource("LabelSettings_ijkpe")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Credits" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "This project wouldn't have been possible without:
+Corsinha
+Gabriel
+Letícia
+Haruo
+Fred
+Gabriela
+and the entire USPGameDev training team!"
+label_settings = SubResource("LabelSettings_dntry")
+horizontal_alignment = 1
+vertical_alignment = 1
