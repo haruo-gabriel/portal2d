@@ -1,14 +1,15 @@
 [gd_scene load_steps=33 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://characters/player/scripts/player.gd" id="1_cp1xu"]
+[ext_resource type="Texture2D" uid="uid://bwimkqbiru1kc" path="res://characters/player/sprites/2.png" id="2_vbw3x"]
 [ext_resource type="Script" path="res://characters/player/scripts/player_sprite.gd" id="3_ugign"]
-[ext_resource type="Texture2D" uid="uid://ry4yxc770xfx" path="res://characters/player/sprites/fall.png" id="4_vuwt8"]
-[ext_resource type="Texture2D" uid="uid://5bx0vwbt3eow" path="res://characters/player/sprites/idle.png" id="5_plhcd"]
+[ext_resource type="Texture2D" uid="uid://dh08tq27s63p8" path="res://characters/player/sprites/mage.arm.png" id="4_66upc"]
+[ext_resource type="Texture2D" uid="uid://ubgxvcitjxsv" path="res://characters/player/sprites/1.png" id="6_jja5x"]
 [ext_resource type="Texture2D" uid="uid://dbe3cjsvgxcg" path="res://characters/player/sprites/idle crouch.png" id="6_k707m"]
 [ext_resource type="Script" path="res://characters/player/scripts/gun_sprite.gd" id="7_hqwtu"]
-[ext_resource type="Texture2D" uid="uid://c4rrv52itc5b1" path="res://characters/player/sprites/jump.png" id="7_oduw5"]
-[ext_resource type="Texture2D" uid="uid://bnsio32wsnc1g" path="res://characters/player/sprites/walk.png" id="8_3qtfq"]
+[ext_resource type="Texture2D" uid="uid://dmpooingwrkft" path="res://characters/player/sprites/4.png" id="9_jijm2"]
 [ext_resource type="Texture2D" uid="uid://dg0ekhbkfqyvs" path="res://characters/player/sprites/walk crouch.png" id="9_qfl83"]
+[ext_resource type="Texture2D" uid="uid://gv685pvywtv7" path="res://characters/player/sprites/3.png" id="10_qsna6"]
 [ext_resource type="AudioStream" uid="uid://0xgvkejwr6sd" path="res://portals/sfx/portal_gunshot.wav" id="11_i1l3k"]
 [ext_resource type="AudioStream" uid="uid://bqw5qqkbamemo" path="res://characters/player/sfx/hit_taken.wav" id="12_tmsxg"]
 [ext_resource type="AudioStream" uid="uid://bv04vmd4bbrv0" path="res://characters/player/sfx/jump.wav" id="17_30li2"]
@@ -23,10 +24,8 @@
 [ext_resource type="Script" path="res://characters/player/states/jumping.gd" id="30_e0dd0"]
 [ext_resource type="Script" path="res://characters/player/states/falling.gd" id="31_jnq8s"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_66yal"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbok6"]
-size = Vector2(16, 23)
+size = Vector2(12, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bv35t"]
 size = Vector2(16, 15)
@@ -45,7 +44,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_vuwt8")]
+"values": [ExtResource("6_jja5x")]
 }
 
 [sub_resource type="Animation" id="Animation_d0u0g"]
@@ -59,10 +58,10 @@ tracks/0/path = NodePath("MainSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_plhcd"), ExtResource("5_plhcd"), ExtResource("5_plhcd")]
+"values": [ExtResource("6_jja5x")]
 }
 
 [sub_resource type="Animation" id="Animation_8ukh0"]
@@ -84,7 +83,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_v0ljn"]
 resource_name = "Jump"
-length = 0.5
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -92,15 +91,15 @@ tracks/0/path = NodePath("MainSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_oduw5"), ExtResource("7_oduw5"), ExtResource("7_oduw5")]
+"values": [ExtResource("6_jja5x")]
 }
 
 [sub_resource type="Animation" id="Animation_l52iv"]
 resource_name = "Walk"
-length = 0.6
+length = 0.3
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -109,10 +108,10 @@ tracks/0/path = NodePath("MainSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
+"times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("8_3qtfq"), ExtResource("8_3qtfq"), ExtResource("8_3qtfq")]
+"values": [ExtResource("10_qsna6"), ExtResource("2_vbw3x"), ExtResource("9_jijm2")]
 }
 
 [sub_resource type="Animation" id="Animation_6phk5"]
@@ -154,20 +153,19 @@ offset = Vector2(2.08165e-12, 2.08165e-12)
 position_smoothing_enabled = true
 
 [node name="MainSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("player")]
-position = Vector2(-2.38419e-07, -11.5)
-texture = ExtResource("9_qfl83")
+position = Vector2(2.08165e-12, -12)
+texture = ExtResource("9_jijm2")
 script = ExtResource("3_ugign")
 player = NodePath("..")
 
 [node name="GunSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("player")]
-position = Vector2(-2.38419e-07, -16.685)
-scale = Vector2(22, 1.37)
-texture = SubResource("PlaceholderTexture2D_66yal")
+position = Vector2(8, -8)
+texture = ExtResource("4_66upc")
 script = ExtResource("7_hqwtu")
 player = NodePath("..")
 
 [node name="MainHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-2.08165e-12, -12)
+position = Vector2(2, -12)
 shape = SubResource("RectangleShape2D_nbok6")
 
 [node name="CrouchedHitbox" type="CollisionShape2D" parent="."]
