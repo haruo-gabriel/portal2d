@@ -35,5 +35,5 @@ func physics_update(delta: float) -> void:
 		turret.angle = get_new_angle(angle)
 	
 	if abs(fmod(turret.angle - angle, TAU)) < .1:
-		for i in range(1):
+		for i in range(turret.fire_count):
 			turret.shoot(target.global_position + Vector2(0, -10))

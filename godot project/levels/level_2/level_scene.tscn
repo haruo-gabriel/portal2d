@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://byybmlwajwfcr" path="res://characters/moving_enemy/moving_enemy.tscn" id="5_g6sfx"]
 [ext_resource type="PackedScene" uid="uid://b754jenc4foku" path="res://interface/hud.tscn" id="7_bqe4l"]
 [ext_resource type="PackedScene" uid="uid://cq8lpg21erc5l" path="res://interface/pause.tscn" id="8_5d8gg"]
-[ext_resource type="PackedScene" uid="uid://brlldqfwpgvlw" path="res://interface/ending_credits.tscn" id="8_yww80"]
+[ext_resource type="PackedScene" path="res://interface/ending_credits.tscn" id="8_yww80"]
 
 [node name="LevelScene" type="Node2D"]
 script = ExtResource("1_8mwy2")
@@ -37,6 +37,7 @@ position = Vector2(0, 0)
 [node name="Turret1" parent="." instance=ExtResource("3_2m1ke")]
 position = Vector2(1168, 0)
 rest_angle = 3.142
+open_cooldown = 0
 
 [node name="Turret2" parent="." instance=ExtResource("3_2m1ke")]
 position = Vector2(1168, -352)

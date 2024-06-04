@@ -20,11 +20,15 @@ extends StaticBody2D
 @export var rotation_speed: float = .01
 @export var open_cooldown: int = 60
 
-
+@export var laser_mass: float = 1
+@export var fire_count: int = 1
 
 var LASER_SCENE: Resource = preload("res://characters/laser/laser.tscn")
 
 var angle: float = 0.0
+
+func fmod2(x: float, y: float) -> float:
+	return x - floor(x / y) * y
 
 func can_see(target: Vector2) -> bool:
 
@@ -47,7 +51,7 @@ func shoot(target: Vector2) -> void:
 	laser.velocity = laser.velocity.rotated((randf() * 2 - 1) / 30)
 	laser.velocity *= .6 + randf() * .8
 	
-	laser.mass = 1
+	laser.mass = laser_mass
 
 	get_parent().add_child(laser)
 	
@@ -61,8 +65,16 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 
+	var angle2 = min(fmod2(angle, TAU), TAU - fmod2(angle, TAU))
+	var condition: bool = fmod(angle2, PI) > PI / 2
+	
 	head_sprite.rotation = angle
 	head_shape.rotation = angle
+	
+	head_sprite.flip_h = condition
+
+	if condition:
+		head_sprite.rotate(PI)
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	
