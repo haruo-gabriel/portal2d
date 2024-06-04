@@ -150,4 +150,7 @@ func _on_laser_hit(laser: Laser) -> void:
 
 
 func player_death():
+	
+	Portals.clear()
+	
 	get_tree().reload_current_scene()

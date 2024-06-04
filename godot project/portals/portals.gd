@@ -26,6 +26,10 @@ func create_portal_instance(type: PortalsConstants.PortalType, position: Vector2
 	
 	add_child(new_portal)
 
+func clear() -> void:
+	
+	remove_portal(PortalsConstants.PortalType.PORTAL_TYPE_ORANGE)
+	remove_portal(PortalsConstants.PortalType.PORTAL_TYPE_BLUE)
 
 func remove_portal(type: PortalsConstants.PortalType) -> void:
 	# If Portal is already instantiated, uninstantiate it
