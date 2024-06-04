@@ -7,4 +7,8 @@ func _ready() -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	rotation = player.angle
+	
+	if player.direction:
+		flip_h = player.direction < 0
+	
+	rotation = player.angle + PI * (1 if flip_h else 0)

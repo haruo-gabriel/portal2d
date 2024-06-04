@@ -153,13 +153,13 @@ offset = Vector2(2.08165e-12, 2.08165e-12)
 position_smoothing_enabled = true
 
 [node name="MainSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("player")]
-position = Vector2(2.08165e-12, -12)
-texture = ExtResource("9_jijm2")
+position = Vector2(0, -12)
+texture = ExtResource("2_vbw3x")
 script = ExtResource("3_ugign")
 player = NodePath("..")
 
 [node name="GunSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("player")]
-position = Vector2(8, -8)
+position = Vector2(-2.08165e-12, -10)
 texture = ExtResource("4_66upc")
 script = ExtResource("7_hqwtu")
 player = NodePath("..")
