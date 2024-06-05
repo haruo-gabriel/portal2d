@@ -8,7 +8,7 @@ var normal: Vector2
 
 var cooldown: int = 0
 
-const _TELEPORT_COOLDOWN: int = 5
+const _TELEPORT_COOLDOWN: int = 10
 const _POSITION_OFFSET_CONSTANT: Vector2 = Vector2(5, 5)
 
 func _get_other_portal() -> Portal:
