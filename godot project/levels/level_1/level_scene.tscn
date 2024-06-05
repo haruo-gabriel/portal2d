@@ -56,8 +56,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Player" parent="." instance=ExtResource("2_i7aku")]
+[node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_i7aku")]
 position = Vector2(0, 0)
+tile_map = NodePath("../TileMap")
 
 [node name="FollowCam" type="Camera2D" parent="Player"]
 limit_left = -768

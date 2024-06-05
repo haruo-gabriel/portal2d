@@ -5,7 +5,6 @@ extends Node
 @export var player: Player
 
 @onready var raycast: RayCast2D = player.get_node("RayCast2D")
-@onready var tile_map: TileMap = player.get_parent().get_node("TileMap")
 
 # Portal size in pixels
 const PORTAL_SIZE_P: float = GameConstants.PORTAL_SIZE * GameConstants.TILE_SIZE
@@ -26,7 +25,7 @@ func _to_coord(pos: Vector2) -> Vector2i:
 
 func _is_valid_point(pos: Vector2) -> bool:
 	
-	if tile_map.get_cell_tile_data(layer, _to_coord(pos)) == null:
+	if player.tile_map.get_cell_tile_data(layer, _to_coord(pos)) == null:
 		return false
 	
 	if other_portal == null:
@@ -68,11 +67,11 @@ func get_portal(type: PortalsConstants.PortalType) -> Array:
 	if hit == Vector2.ZERO or hit == null or normal == null:
 		return Array()
 	
-	for child in tile_map.get_tree().get_nodes_in_group("Portal"):
+	for child in player.tile_map.get_tree().get_nodes_in_group("Portal"):
 		if child.type != type:
 			other_portal = child
 
-	hit -= tile_map.position
+	hit -= player.tile_map.position
 	hit -= normal
 
 	if not _is_valid_point(hit):
@@ -95,6 +94,6 @@ func get_portal(type: PortalsConstants.PortalType) -> Array:
 
 func _ready() -> void:
 	
-	for i in range(tile_map.get_layers_count()):
-		if tile_map.get_layer_name(i) == "Portal":
+	for i in range(player.tile_map.get_layers_count()):
+		if player.tile_map.get_layer_name(i) == "Portal":
 			layer = i

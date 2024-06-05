@@ -14,8 +14,9 @@
 [node name="LevelScene" type="Node2D"]
 script = ExtResource("1_8mwy2")
 
-[node name="Player" parent="." instance=ExtResource("2_trbgv")]
+[node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_trbgv")]
 position = Vector2(0, 0)
+tile_map = NodePath("../TileMap")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
