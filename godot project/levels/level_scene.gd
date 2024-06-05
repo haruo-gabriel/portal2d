@@ -1,6 +1,10 @@
 extends Node2D
 
 @onready var level_music = $LevelMusic
+
+@onready var hud: Control = $CanvasLayer/HUD
+@onready var pause: Control = $CanvasLayer/Pause
+
 var audio_manager = null
 
 func _ready() -> void:
@@ -9,8 +13,13 @@ func _ready() -> void:
 	add_child(audio_manager)
 	audio_manager.fade_in(level_music, 1.0)
 
-func _unhandled_input(event):
+func _process(_delta: float) -> void:
+	
+	hud.visible = not pause.visible
+
+func _unhandled_input(event: InputEvent) -> void:
+
 	if event.is_action_pressed("ui_cancel"):
-		%HUD.visible = false
-		%Pause.visible = true
+		hud.visible = false
+		pause.visible = true
 		get_tree().paused = true
