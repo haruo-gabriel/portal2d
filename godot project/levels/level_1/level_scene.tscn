@@ -76,8 +76,9 @@ target_scene = ExtResource("4_lbfwy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("6_xax1y")]
+[node name="HUD" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("6_xax1y")]
 unique_name_in_owner = true
+player = NodePath("../../Player")
 metadata/_edit_use_anchors_ = true
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource("6_vrxgd")]

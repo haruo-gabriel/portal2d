@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b754jenc4foku"]
+[gd_scene load_steps=3 format=3 uid="uid://b754jenc4foku"]
 
 [ext_resource type="Script" path="res://interface/scenes/hud/hud.gd" id="1_adxet"]
+[ext_resource type="Script" path="res://interface/scenes/hud/progress_bar.gd" id="2_4x8oq"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -12,11 +13,13 @@ grow_vertical = 2
 script = ExtResource("1_adxet")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = 91.0
-offset_top = 30.0
-offset_right = 400.0
-offset_bottom = 72.0
+offset_left = 34.0
+offset_top = 23.0
+offset_right = 155.0
+offset_bottom = 40.0
 step = 1.0
-value = 10.0
+value = 50.0
 show_percentage = false
+script = ExtResource("2_4x8oq")

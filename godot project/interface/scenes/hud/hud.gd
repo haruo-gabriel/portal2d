@@ -4,7 +4,7 @@ extends Control
 @export var player: Player
 
 func _ready() -> void:
-	pass
+	$ProgressBar.player = player
 
 func _process(delta: float) -> void:
 	pass
