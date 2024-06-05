@@ -16,7 +16,6 @@
 script = ExtResource("1_8mwy2")
 
 [node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_trbgv")]
-position = Vector2(1378, -218)
 tile_map = NodePath("../TileMap")
 metadata/_edit_group_ = true
 
@@ -61,7 +60,7 @@ fire_count = 2
 damage = 4.0
 
 [node name="MovingEnemy1" parent="." instance=ExtResource("5_g6sfx")]
-position = Vector2(1200, -768)
+position = Vector2(1199, -741)
 can_fall = true
 
 [node name="MovingEnemy2" parent="." instance=ExtResource("5_g6sfx")]

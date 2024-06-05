@@ -63,7 +63,6 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_i7aku")]
-position = Vector2(1362, -402)
 tile_map = NodePath("../TileMap")
 metadata/_edit_group_ = true
 

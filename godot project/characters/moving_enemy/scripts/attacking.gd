@@ -1,9 +1,9 @@
 
 extends MovingEnemyState
 
-const ATTACK_DELAY: int = 12
-const ATTACK_DURATION: int = 20
-const POST_ATTACK_DELAY: int = 10
+const ATTACK_DELAY: int = 60 * .4
+const ATTACK_DURATION: int = 60 * .3
+const POST_ATTACK_DELAY: int = 60 * .2
 
 const REACH: int = 50
 
@@ -19,7 +19,7 @@ func enter() -> void:
 	post_attack_delay = POST_ATTACK_DELAY
 
 	enemy.animation.play("attack")
-	enemy.animation.seek(.7, true)
+	enemy.animation.seek(0, true)
 	
 	enemy.velocity.x = sign(enemy.velocity.x)
 

@@ -34,6 +34,7 @@ func flip_nodes() -> void:
 
 	can_see_floor.position *= -1
 	sprite.flip_h = not sprite.flip_h
+	sprite.offset.x *= -1
 	
 	player_caster.target_position *= -1
 	player_caster2.target_position *= -1
