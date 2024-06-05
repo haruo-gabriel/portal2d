@@ -22,6 +22,7 @@ extends StaticBody2D
 
 @export var laser_mass: float = 1
 @export var fire_count: int = 1
+@export var damage: float = 10.0
 
 var LASER_SCENE: Resource = preload("res://characters/laser/laser.tscn")
 
@@ -51,6 +52,7 @@ func shoot(target: Vector2) -> void:
 	laser.velocity = laser.velocity.rotated((randf() * 2 - 1) / 30)
 	laser.velocity *= .6 + randf() * .8
 	
+	laser.damage = damage
 	laser.mass = laser_mass
 
 	get_parent().add_child(laser)

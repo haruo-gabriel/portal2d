@@ -9,6 +9,7 @@ var life_time: int
 var mass: float = 1
 var max_distance: float = 1000 # Maximum distance from starting position
 var max_life_time: int = 1000 # In game ticks
+var damage: float = 1.0
 
 func _ready() -> void:
 	life_time = max_life_time

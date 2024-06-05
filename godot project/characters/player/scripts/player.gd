@@ -135,6 +135,12 @@ func die() -> void:
 	
 	get_tree().reload_current_scene()
 
+func _ready() -> void:
+
+	health.max_health = PlayerConstants.MAX_HP
+	health.regeneration = PlayerConstants.REGENERATION
+	health.health = health.max_health
+
 func _process(_delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
@@ -168,13 +174,13 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-
 func _on_laser_hit(laser: Laser) -> void:
 
-	health.take_damage(2)
+	health.take_damage(laser.damage)
 
-	position += laser.velocity * laser.mass / 2000
-	velocity += laser.velocity * laser.mass / 2000
+	var diff: float = laser.velocity.angle() - velocity.angle()
+
+	velocity += laser.velocity * laser.mass / 500
 	
 	hit_taken_sfx.play()
 

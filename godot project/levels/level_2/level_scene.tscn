@@ -38,22 +38,33 @@ layer_2/tile_data = PackedInt32Array(-458718, 196608, 3, -458717, 196608, 3, -45
 [node name="Turret1" parent="." instance=ExtResource("3_2m1ke")]
 position = Vector2(1168, 0)
 rest_angle = 3.142
-open_cooldown = 0
+rotation_speed = 0.02
+open_cooldown = 10
 
 [node name="Turret2" parent="." instance=ExtResource("3_2m1ke")]
-position = Vector2(1168, -352)
+position = Vector2(1197, -352)
 rest_angle = 3.142
+minimum_angle = -0.01
+maximum_angle = 0.1
+rotation_speed = 0.04
+open_cooldown = 0
+laser_mass = 8.0
+fire_count = 2
 
 [node name="Turret3" parent="." instance=ExtResource("3_2m1ke")]
 position = Vector2(2272, -560)
 rest_angle = 3.142
+rotation_speed = 0.015
+laser_mass = 3.0
+fire_count = 2
+damage = 4.0
 
 [node name="MovingEnemy1" parent="." instance=ExtResource("5_g6sfx")]
 position = Vector2(1200, -768)
 can_fall = true
 
 [node name="MovingEnemy2" parent="." instance=ExtResource("5_g6sfx")]
-position = Vector2(1712, -192)
+position = Vector2(1713, -179)
 can_fall = true
 
 [node name="LevelTransition" parent="." instance=ExtResource("4_h8n1u")]

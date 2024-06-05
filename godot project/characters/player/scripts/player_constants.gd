@@ -30,5 +30,5 @@ const MAX_X_SPEED: float = 600.0 # In absolute value
 const JUMP_BUFFER_TIME: int = 10
 
 
-const MAX_HP: float = 100.0
-const REGENERATION: float = 1.0
+const MAX_HP: float = 1000.0
+const REGENERATION: float = 10.0
