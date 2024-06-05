@@ -29,6 +29,7 @@ func physics_update(delta: float) -> void:
 	player.velocity.y += GameConstants.GRAVITY * delta
 
 	if not player.direction:
+		player.velocity.x = move_toward(player.velocity.x, 0, PlayerConstants.IN_AIR_DRAG)
 		return
 
 	var step: float = PlayerConstants.HORIZONTAL_ACCELERATION * PlayerConstants.IN_AIR_MULTIPLIER
@@ -38,4 +39,3 @@ func physics_update(delta: float) -> void:
 		new_speed = sign(new_speed) * max(abs(new_speed), abs(player.velocity.x))
 
 	player.velocity.x = move_toward(player.velocity.x, new_speed, step)
-
