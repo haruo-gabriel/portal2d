@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://crkl8tssufrs4"]
 
-[ext_resource type="Script" path="res://interface/main_menu.gd" id="1_8dfm2"]
+[ext_resource type="Script" path="res://interface/scenes/main_menu/main_menu.gd" id="1_8dfm2"]
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="2_5a2tj"]
-[ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/main_menu.wav" id="2_jbvjj"]
+[ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/scenes/main_menu/main_menu.wav" id="2_jbvjj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p5n8y"]
 font_size = 64

@@ -182,18 +182,23 @@ hit_from_inside = true
 [node name="PortalGunshotSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_i1l3k")
 volume_db = 12.0
+bus = &"SFX"
 
 [node name="HitTakenSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_tmsxg")
+bus = &"SFX"
 
 [node name="JumpingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_30li2")
+bus = &"SFX"
 
 [node name="LandingOnGrassSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_sietw")
+bus = &"SFX"
 
 [node name="LandingOnRockSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_7h58e")
+bus = &"SFX"
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("25_a7xhi")

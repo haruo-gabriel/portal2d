@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://brlldqfwpgvlw"]
 
-[ext_resource type="Script" path="res://interface/ending_credits.gd" id="1_mmjqx"]
-[ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/main_menu.wav" id="2_a1iot"]
+[ext_resource type="Script" path="res://interface/scenes/ending_credits/ending_credits.gd" id="1_x3m3b"]
+[ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/scenes/main_menu/main_menu.wav" id="2_s55jm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ijkpe"]
 font_size = 32
@@ -15,11 +15,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mmjqx")
+script = ExtResource("1_x3m3b")
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_a1iot")
-volume_db = -80.0
+stream = ExtResource("2_s55jm")
+autoplay = true
 bus = &"Music"
 
 [node name="ColorRect" type="ColorRect" parent="."]
