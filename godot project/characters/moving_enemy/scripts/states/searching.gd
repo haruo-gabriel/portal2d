@@ -38,6 +38,8 @@ func try_chase() -> void:
 
 func physics_update(delta: float) -> void:
 
+	enemy.animation.play("search")
+
 	if enemy.velocity:
 		enemy.velocity = enemy.velocity.normalized() * SEARCH_SPEED
 	else:

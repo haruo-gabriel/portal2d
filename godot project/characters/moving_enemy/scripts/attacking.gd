@@ -1,9 +1,9 @@
 
 extends MovingEnemyState
 
-const ATTACK_DELAY: int = 10
-const ATTACK_DURATION: int = 30
-const POST_ATTACK_DELAY: int = 60
+const ATTACK_DELAY: int = 12
+const ATTACK_DURATION: int = 20
+const POST_ATTACK_DELAY: int = 10
 
 const REACH: int = 50
 
@@ -19,6 +19,7 @@ func enter() -> void:
 	post_attack_delay = POST_ATTACK_DELAY
 
 	enemy.animation.play("attack")
+	enemy.animation.seek(.7, true)
 	
 	enemy.velocity.x = sign(enemy.velocity.x)
 
@@ -47,5 +48,5 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("MovingEnemyTarget"):
 		return
 	
-	body.health.take_damage(100)
+	body.health.take_damage(enemy.damage)
 

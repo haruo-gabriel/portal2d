@@ -29,11 +29,12 @@ func basic_action(delta: float) -> void:
 
 func physics_update(delta: float) -> void:
 	
-	basic_action(delta)
 	
 	if can_see(enemy.attack_caster):
 		transitioned.emit(self, "attacking")
 		return
+
+	basic_action(delta)
 	
 	if can_see(enemy.player_caster):
 		last_seen = LAST_SEEN_TIME

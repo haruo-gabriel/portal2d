@@ -16,8 +16,9 @@
 script = ExtResource("1_8mwy2")
 
 [node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_trbgv")]
-position = Vector2(0, 0)
+position = Vector2(1378, -218)
 tile_map = NodePath("../TileMap")
+metadata/_edit_group_ = true
 
 [node name="FollowCam" type="Camera2D" parent="Player" node_paths=PackedStringArray("tile_map")]
 position_smoothing_enabled = true

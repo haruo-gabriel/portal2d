@@ -3,7 +3,8 @@ class_name MovingEnemy
 extends CharacterBody2D
 
 @export var can_fall: bool = false
- 
+@export var damage: float = 1000 
+
 @onready var can_see_floor: RayCast2D = $FloorCaster
 
 @onready var player_caster: RayCast2D = $PlayerCaster

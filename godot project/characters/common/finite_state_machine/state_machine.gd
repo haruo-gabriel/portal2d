@@ -49,15 +49,20 @@ func _ready() -> void:
 		state.entity = entity
 		state.start()
 
-	current_state = initial_state
-	initial_state.enter()
-
 func _process(delta: float) -> void:
+
+	if current_state == null:
+		current_state = initial_state
+		initial_state.enter()
 
 	if current_state != null:
 		current_state.update(delta)
 
 func _physics_process(delta: float) -> void:
+
+	if current_state == null:
+		current_state = initial_state
+		initial_state.enter()
 
 	if current_state != null:
 		current_state.physics_update(delta)
