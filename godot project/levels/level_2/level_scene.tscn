@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://nejou4ncohws"]
+[gd_scene load_steps=12 format=3 uid="uid://nejou4ncohws"]
 
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_3su11"]
 [ext_resource type="Script" path="res://levels/level_scene.gd" id="1_8mwy2"]
 [ext_resource type="AudioStream" uid="uid://ddfued18shs8d" path="res://levels/level_1/level1.wav" id="1_rwgve"]
 [ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://characters/player/player.tscn" id="2_trbgv"]
+[ext_resource type="Script" path="res://follow_cam.gd" id="3_1me6m"]
 [ext_resource type="PackedScene" uid="uid://b7pirrmmj56br" path="res://characters/turret/turret.tscn" id="3_2m1ke"]
 [ext_resource type="PackedScene" uid="uid://b5pd4lm1s4pue" path="res://levels/level_transition.tscn" id="4_h8n1u"]
 [ext_resource type="PackedScene" uid="uid://byybmlwajwfcr" path="res://characters/moving_enemy/moving_enemy.tscn" id="5_g6sfx"]
@@ -18,8 +19,10 @@ script = ExtResource("1_8mwy2")
 position = Vector2(0, 0)
 tile_map = NodePath("../TileMap")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="FollowCam" type="Camera2D" parent="Player" node_paths=PackedStringArray("tile_map")]
 position_smoothing_enabled = true
+script = ExtResource("3_1me6m")
+tile_map = NodePath("../../TileMap")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_3su11")

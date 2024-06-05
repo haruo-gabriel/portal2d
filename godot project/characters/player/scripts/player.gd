@@ -108,6 +108,33 @@ func get_test_speed(delta: float) -> Vector2:
 	
 	return test_speed
 
+func is_in_bounds() -> bool:
+
+	var rect: Rect2i = tile_map.get_used_rect()
+	var tile_size: int = tile_map.rendering_quadrant_size
+	
+	var top_left: Vector2i = rect.position * tile_size
+	
+	if global_position.x < top_left.x:
+		return false
+
+	if global_position.y < top_left.y:
+		return false
+
+	if global_position.x > top_left.x + rect.size.x * tile_size:
+		return false
+	
+	if global_position.y > top_left.y + rect.size.y * tile_size:
+		return false
+
+	return true
+
+func die() -> void:
+	
+	Portals.clear()
+	
+	get_tree().reload_current_scene()
+
 func _process(_delta: float) -> void:
 
 	direction = Input.get_axis("move_left", "move_right")
@@ -129,6 +156,9 @@ func _process(_delta: float) -> void:
 		portal_gunshot_sfx.play()
 	
 	set_angle()
+	
+	if not is_in_bounds():
+		die()
 
 func _physics_process(delta: float) -> void:
 	
@@ -150,9 +180,5 @@ func _on_laser_hit(laser: Laser) -> void:
 
 	laser.queue_free()
 
-
-func player_death():
-	
-	Portals.clear()
-	
-	get_tree().reload_current_scene()
+func _on_health_died() -> void:
+	die()
