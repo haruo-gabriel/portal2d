@@ -50,11 +50,10 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "Thank you for playing Portal 2D!"
+text = "Thank you for playing Portal2D !"
 label_settings = SubResource("LabelSettings_ijkpe")
 horizontal_alignment = 1
 vertical_alignment = 1
-uppercase = true
 
 [node name="Credits" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -71,3 +70,10 @@ and the entire USPGameDev training team!"
 label_settings = SubResource("LabelSettings_dntry")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Go to main menu"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

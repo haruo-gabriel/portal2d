@@ -8,7 +8,10 @@ func _on_continue_button_pressed():
 	visible = false
 
 func _on_quit_button_pressed():
-	get_tree().quit()
+	#get_tree().quit()
+	get_tree().paused = false
+	visible = false
+	get_tree().change_scene_to_file("res://interface/scenes/main_menu/main_menu.tscn")
 
 func _on_music_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(MUSIC_BUS_ID, linear_to_db(value))
