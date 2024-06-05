@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://byybmlwajwfcr"]
 
 [ext_resource type="Script" path="res://characters/moving_enemy/scripts/moving_enemy.gd" id="1_m57l0"]
-[ext_resource type="Texture2D" uid="uid://cgo8xf01k4asg" path="res://characters/moving_enemy/sprites/NightBorne/NightBorne.png" id="2_ebw13"]
+[ext_resource type="Texture2D" uid="uid://cgo8xf01k4asg" path="res://characters/moving_enemy/sprites/NightBorne/NightBorne.png" id="2_iuo6y"]
 [ext_resource type="Script" path="res://characters/moving_enemy/scripts/states/state_machine.gd" id="3_0kfwn"]
 [ext_resource type="Script" path="res://characters/moving_enemy/scripts/states/searching.gd" id="4_8dwqt"]
 [ext_resource type="Script" path="res://characters/moving_enemy/scripts/states/chasing.gd" id="5_l61f2"]
@@ -92,7 +92,7 @@ script = ExtResource("1_m57l0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.08165e-12, -10)
-texture = ExtResource("2_ebw13")
+texture = ExtResource("2_iuo6y")
 hframes = 23
 vframes = 5
 

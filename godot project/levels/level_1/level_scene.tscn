@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://45cxitl1b5uh"]
+[gd_scene load_steps=16 format=3 uid="uid://45cxitl1b5uh"]
 
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_6d6h5"]
 [ext_resource type="Script" path="res://levels/level_scene.gd" id="1_chgl5"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" path="res://interface/follow_cam.gd" id="5_8bj3i"]
 [ext_resource type="PackedScene" uid="uid://cq8lpg21erc5l" path="res://interface/pause.tscn" id="6_vrxgd"]
 [ext_resource type="PackedScene" uid="uid://b754jenc4foku" path="res://interface/scenes/hud/hud.tscn" id="6_xax1y"]
+[ext_resource type="Texture2D" uid="uid://d1dlpvojon67h" path="res://levels/level_1/background/1.png" id="10_cwe01"]
+[ext_resource type="Script" path="res://levels/level_1/ParallaxBackground.gd" id="10_d54cc"]
+[ext_resource type="Texture2D" uid="uid://ce2j4to0h352n" path="res://levels/level_1/background/2.png" id="11_iydqg"]
+[ext_resource type="Texture2D" uid="uid://cptou570pr8bm" path="res://levels/level_1/background/3.png" id="12_gsy82"]
+[ext_resource type="Texture2D" uid="uid://44w3sl1dxpsj" path="res://levels/level_1/background/4.png" id="14_rkapw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vgya4"]
 font_size = 8
@@ -58,6 +63,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_i7aku")]
+position = Vector2(1362, -402)
 tile_map = NodePath("../TileMap")
 metadata/_edit_group_ = true
 
@@ -84,3 +90,56 @@ metadata/_edit_use_anchors_ = true
 [node name="Pause" parent="CanvasLayer" instance=ExtResource("6_vrxgd")]
 unique_name_in_owner = true
 visible = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." node_paths=PackedStringArray("player")]
+scroll_ignore_camera_zoom = true
+script = ExtResource("10_d54cc")
+player = NodePath("../Player")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 2.08165e-12)
+motion_mirroring = Vector2(1152, 2.08165e-12)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_right = 1152.0
+offset_bottom = 324.0
+scale = Vector2(1, 1.4)
+texture = ExtResource("10_cwe01")
+stretch_mode = 1
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.7, 2.08165e-12)
+motion_mirroring = Vector2(1152, 2.08165e-12)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+offset_right = 1152.0
+offset_bottom = 324.0
+scale = Vector2(1, 1.4)
+texture = ExtResource("11_iydqg")
+stretch_mode = 1
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1, 2.08165e-12)
+motion_mirroring = Vector2(1152, 2.08165e-12)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer3"]
+offset_right = 1152.0
+offset_bottom = 324.0
+scale = Vector2(1, 1.4)
+texture = ExtResource("12_gsy82")
+stretch_mode = 1
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.2, 2.08165e-12)
+motion_mirroring = Vector2(1152, 2.08165e-12)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer4"]
+offset_right = 1152.0
+offset_bottom = 324.0
+scale = Vector2(1, 1.4)
+texture = ExtResource("14_rkapw")
+stretch_mode = 1
