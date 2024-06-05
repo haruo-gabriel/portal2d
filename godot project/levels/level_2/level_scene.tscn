@@ -4,11 +4,11 @@
 [ext_resource type="Script" path="res://levels/level_scene.gd" id="1_8mwy2"]
 [ext_resource type="AudioStream" uid="uid://ddfued18shs8d" path="res://levels/level_1/level1.wav" id="1_rwgve"]
 [ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://characters/player/player.tscn" id="2_trbgv"]
-[ext_resource type="Script" path="res://follow_cam.gd" id="3_1me6m"]
+[ext_resource type="Script" path="res://interface/follow_cam.gd" id="3_1me6m"]
 [ext_resource type="PackedScene" uid="uid://b7pirrmmj56br" path="res://characters/turret/turret.tscn" id="3_2m1ke"]
 [ext_resource type="PackedScene" uid="uid://b5pd4lm1s4pue" path="res://levels/level_transition.tscn" id="4_h8n1u"]
 [ext_resource type="PackedScene" uid="uid://byybmlwajwfcr" path="res://characters/moving_enemy/moving_enemy.tscn" id="5_g6sfx"]
-[ext_resource type="PackedScene" uid="uid://b754jenc4foku" path="res://interface/hud.tscn" id="7_bqe4l"]
+[ext_resource type="PackedScene" uid="uid://b754jenc4foku" path="res://interface/scenes/hud/hud.tscn" id="7_bqe4l"]
 [ext_resource type="PackedScene" uid="uid://cq8lpg21erc5l" path="res://interface/pause.tscn" id="8_5d8gg"]
 [ext_resource type="PackedScene" path="res://interface/ending_credits.tscn" id="8_yww80"]
 

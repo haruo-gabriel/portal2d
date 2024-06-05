@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_w1d4u"]
 [ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://characters/player/player.tscn" id="2_qkb2h"]
 [ext_resource type="PackedScene" uid="uid://b7pirrmmj56br" path="res://characters/turret/turret.tscn" id="3_5hl13"]
-[ext_resource type="Script" path="res://follow_cam.gd" id="4_dro2u"]
+[ext_resource type="Script" path="res://interface/follow_cam.gd" id="4_dro2u"]
 [ext_resource type="PackedScene" uid="uid://byybmlwajwfcr" path="res://characters/moving_enemy/moving_enemy.tscn" id="4_wb3jp"]
 
 [node name="LevelScene" type="Node2D"]
