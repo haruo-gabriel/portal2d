@@ -59,6 +59,13 @@ autowrap_mode = 2
 [node name="Player" parent="." instance=ExtResource("2_i7aku")]
 position = Vector2(0, 0)
 
+[node name="FollowCam" type="Camera2D" parent="Player"]
+limit_left = -768
+limit_top = -1136
+limit_right = 4320
+limit_bottom = 272
+position_smoothing_enabled = true
+
 [node name="LevelTransition" parent="." instance=ExtResource("3_l48s3")]
 position = Vector2(4096, -640)
 target_scene = ExtResource("4_lbfwy")

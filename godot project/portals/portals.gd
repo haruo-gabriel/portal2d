@@ -33,6 +33,10 @@ func clear() -> void:
 
 func remove_portal(type: PortalsConstants.PortalType) -> void:
 	# If Portal is already instantiated, uninstantiate it
+	
+	if portal_map[type] == null:
+		return
+	
 	portal_map[type].queue_free()
 	portal_map[type] = null
 

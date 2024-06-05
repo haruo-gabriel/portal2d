@@ -147,11 +147,6 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_cp1xu")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -12)
-offset = Vector2(2.08165e-12, 2.08165e-12)
-position_smoothing_enabled = true
-
 [node name="MainSprite" type="Sprite2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(0, -12)
 texture = ExtResource("2_vbw3x")
