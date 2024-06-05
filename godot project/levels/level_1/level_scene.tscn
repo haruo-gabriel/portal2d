@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://45cxitl1b5uh"]
+[gd_scene load_steps=11 format=3 uid="uid://45cxitl1b5uh"]
 
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_6d6h5"]
 [ext_resource type="Script" path="res://levels/level_scene.gd" id="1_chgl5"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://ddfued18shs8d" path="res://levels/level_1/level1.wav" id="2_wed8u"]
 [ext_resource type="PackedScene" uid="uid://b5pd4lm1s4pue" path="res://levels/level_transition.tscn" id="3_l48s3"]
 [ext_resource type="PackedScene" uid="uid://nejou4ncohws" path="res://levels/level_2/level_scene.tscn" id="4_lbfwy"]
+[ext_resource type="Script" path="res://follow_cam.gd" id="5_8bj3i"]
 [ext_resource type="PackedScene" uid="uid://cq8lpg21erc5l" path="res://interface/pause.tscn" id="6_vrxgd"]
 [ext_resource type="PackedScene" uid="uid://b754jenc4foku" path="res://interface/hud.tscn" id="6_xax1y"]
 
@@ -57,15 +58,18 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_i7aku")]
-position = Vector2(0, 0)
+position = Vector2(10, -18)
 tile_map = NodePath("../TileMap")
+metadata/_edit_group_ = true
 
-[node name="FollowCam" type="Camera2D" parent="Player"]
+[node name="FollowCam" type="Camera2D" parent="Player" node_paths=PackedStringArray("tile_map")]
 limit_left = -768
 limit_top = -1136
 limit_right = 4320
 limit_bottom = 272
 position_smoothing_enabled = true
+script = ExtResource("5_8bj3i")
+tile_map = NodePath("../../TileMap")
 
 [node name="LevelTransition" parent="." instance=ExtResource("3_l48s3")]
 position = Vector2(4096, -640)
