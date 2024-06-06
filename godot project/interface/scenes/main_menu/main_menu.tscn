@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://crkl8tssufrs4"]
+[gd_scene load_steps=8 format=3 uid="uid://crkl8tssufrs4"]
 
 [ext_resource type="Script" path="res://interface/scenes/main_menu/main_menu.gd" id="1_8dfm2"]
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="2_5a2tj"]
 [ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/scenes/main_menu/main_menu.wav" id="2_jbvjj"]
 [ext_resource type="PackedScene" uid="uid://df7a20uu8faop" path="res://cutscenes/initial_cutscene.tscn" id="2_qikr5"]
 [ext_resource type="PackedScene" uid="uid://cjxs6gi33dml8" path="res://interface/scenes/screen_transition/screen_transition.tscn" id="4_fdtj1"]
+[ext_resource type="Theme" uid="uid://d0yr5jj0rvlni" path="res://interface/new_theme.tres" id="5_57351"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p5n8y"]
 font_size = 64
@@ -53,9 +54,11 @@ offset_right = 135.0
 offset_bottom = 79.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("5_57351")
 text = "Portal2D"
 label_settings = SubResource("LabelSettings_p5n8y")
 horizontal_alignment = 1
@@ -63,11 +66,13 @@ horizontal_alignment = 1
 [node name="NewGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("5_57351")
 text = "New Game :D"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("5_57351")
 text = "Exit Game :,("
 flat = true
 

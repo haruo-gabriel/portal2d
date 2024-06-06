@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cq8lpg21erc5l"]
+[gd_scene load_steps=4 format=3 uid="uid://cq8lpg21erc5l"]
 
 [ext_resource type="Script" path="res://interface/scenes/pause/pause.gd" id="1_lcqse"]
+[ext_resource type="Theme" uid="uid://d0yr5jj0rvlni" path="res://interface/new_theme.tres" id="2_eife8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_r4ed4"]
 font_size = 64
@@ -37,9 +38,12 @@ offset_right = 178.0
 offset_bottom = 106.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_eife8")
 text = "PAUSE"
 label_settings = SubResource("LabelSettings_r4ed4")
 horizontal_alignment = 1
@@ -51,24 +55,30 @@ columns = 2
 
 [node name="Music" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_eife8")
 text = "Music"
 
 [node name="MusicSlider" type="HSlider" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
+size_flags_vertical = 3
+theme = ExtResource("2_eife8")
 max_value = 1.0
 step = 0.05
 value = 1.0
 
 [node name="SoundEffects" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_eife8")
 text = "Sound Effects"
 
 [node name="SFXSlider" type="HSlider" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
+size_flags_vertical = 3
+theme = ExtResource("2_eife8")
 max_value = 0.5
 step = 0.05
 value = 0.5
@@ -76,12 +86,16 @@ value = 0.5
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_eife8")
 text = "Continue"
 flat = true
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_eife8")
 text = "Quit"
 flat = true
 

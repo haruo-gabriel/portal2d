@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://45cxitl1b5uh"]
+[gd_scene load_steps=18 format=3 uid="uid://45cxitl1b5uh"]
 
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_6d6h5"]
 [ext_resource type="Script" path="res://levels/level_scene.gd" id="1_chgl5"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://ddfued18shs8d" path="res://levels/level_1/level1.wav" id="2_wed8u"]
 [ext_resource type="PackedScene" uid="uid://b5pd4lm1s4pue" path="res://levels/level_transition.tscn" id="3_l48s3"]
 [ext_resource type="PackedScene" uid="uid://nejou4ncohws" path="res://levels/level_2/level_scene.tscn" id="4_lbfwy"]
+[ext_resource type="Theme" uid="uid://d0yr5jj0rvlni" path="res://interface/new_theme.tres" id="4_o4pio"]
 [ext_resource type="Script" path="res://interface/follow_cam.gd" id="5_8bj3i"]
 [ext_resource type="PackedScene" uid="uid://cq8lpg21erc5l" path="res://interface/scenes/pause/pause.tscn" id="6_vrxgd"]
 [ext_resource type="PackedScene" uid="uid://b754jenc4foku" path="res://interface/scenes/hud/hud.tscn" id="6_xax1y"]
@@ -17,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://44w3sl1dxpsj" path="res://levels/level_1/background/4.png" id="14_rkapw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vgya4"]
-font_size = 8
 shadow_color = Color(0, 0, 0, 0.537255)
 
 [node name="LevelScene" type="Node2D" node_paths=PackedStringArray("level_music", "hud", "pause")]
@@ -48,6 +48,7 @@ offset_left = 1824.0
 offset_top = -448.0
 offset_right = 1968.0
 offset_bottom = -368.0
+theme = ExtResource("4_o4pio")
 text = "Press the left and right buttons of the mouse to shoot portals on the red surfaces. "
 label_settings = SubResource("LabelSettings_vgya4")
 horizontal_alignment = 1
@@ -59,6 +60,7 @@ offset_left = 48.0
 offset_top = -128.0
 offset_right = 208.0
 offset_bottom = -48.0
+theme = ExtResource("4_o4pio")
 text = "Press A and D to move left and right, Spacebar to jump and Shift to crouch.
 
 Have fun!"

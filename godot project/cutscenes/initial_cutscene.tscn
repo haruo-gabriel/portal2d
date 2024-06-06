@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://df7a20uu8faop"]
+[gd_scene load_steps=4 format=3 uid="uid://df7a20uu8faop"]
 
 [ext_resource type="Script" path="res://cutscenes/cutscene.gd" id="1_lbhjm"]
 [ext_resource type="PackedScene" uid="uid://45cxitl1b5uh" path="res://levels/level_1/level_scene.tscn" id="2_6wg3r"]
+[ext_resource type="Theme" uid="uid://d0yr5jj0rvlni" path="res://interface/new_theme.tres" id="3_i773h"]
 
 [node name="Cutscene" type="Control"]
 layout_mode = 3
@@ -44,6 +45,7 @@ offset_right = 256.0
 offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_i773h")
 text = "In the vast lands of Chronogate, the high society of mages bend the fabric of space-time, unwittingly inviting enemies from a distant future."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -79,6 +81,7 @@ offset_right = 256.0
 offset_bottom = 168.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_i773h")
 text = "As the skies above Chronogate darkened with the arrival of futuristic foes, a young mage finds himself inexplicably transported to a distant and unfamiliar land."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -114,6 +117,7 @@ offset_right = 256.0
 offset_bottom = 168.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_i773h")
 text = "Now, he mus navigate this new and perilous reality, harnessing both ancient magic and futuristic technology to find a way back and confront the advanced threats now plaguing Chronogate."
 horizontal_alignment = 1
 vertical_alignment = 1
