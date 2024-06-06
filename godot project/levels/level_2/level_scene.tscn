@@ -95,3 +95,5 @@ target_scene = ExtResource("8_tdesj")
 [node name="Pause" parent="PauseLayer" instance=ExtResource("8_5d8gg")]
 unique_name_in_owner = true
 visible = false
+
+[connection signal="transitioned" from="LevelTransition" to="Player" method="_on_level_transition_transitioned"]

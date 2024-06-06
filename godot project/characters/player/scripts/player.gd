@@ -27,6 +27,8 @@ var jumped: bool = false
 var is_falling: bool = false
 var is_crouching: bool = false
 
+var controlable: bool = true
+
 func shoot(type: PortalsConstants.PortalType) -> void:
 	
 	var result: Array = portal_caster.get_portal(type)
@@ -140,12 +142,14 @@ func _ready() -> void:
 	health.max_health = PlayerConstants.MAX_HP
 	health.regeneration = PlayerConstants.REGENERATION
 	health.health = health.max_health
+	
+	controlable = true
 
 func _process(_delta: float) -> void:
 
-	direction = Input.get_axis("move_left", "move_right")
+	direction = Input.get_axis("move_left", "move_right") if controlable else 0
 
-	var try_crouch = Input.is_action_pressed("crouch")
+	var try_crouch = controlable and Input.is_action_pressed("crouch")
 
 	if try_crouch and not is_crouching:
 		toggle_crouch(true)
@@ -153,11 +157,11 @@ func _process(_delta: float) -> void:
 	if not try_crouch and is_crouching:
 		toggle_crouch(false)
 
-	if Input.is_action_just_pressed("shoot_portal1"):
+	if controlable and Input.is_action_just_pressed("shoot_portal1"):
 		shoot(PortalsConstants.PortalType.PORTAL_TYPE_BLUE)
 		portal_gunshot_sfx.play()
 		
-	if Input.is_action_just_pressed("shoot_portal2"):
+	if controlable and Input.is_action_just_pressed("shoot_portal2"):
 		shoot(PortalsConstants.PortalType.PORTAL_TYPE_ORANGE)
 		portal_gunshot_sfx.play()
 	
@@ -188,3 +192,6 @@ func _on_laser_hit(laser: Laser) -> void:
 
 func _on_health_died() -> void:
 	die()
+
+func _on_level_transition_transitioned() -> void:
+	controlable = false

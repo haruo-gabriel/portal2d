@@ -150,3 +150,5 @@ offset_bottom = 324.0
 scale = Vector2(1, 1.4)
 texture = ExtResource("14_rkapw")
 stretch_mode = 1
+
+[connection signal="transitioned" from="LevelTransition" to="Player" method="_on_level_transition_transitioned"]
