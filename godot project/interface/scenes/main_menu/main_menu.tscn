@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://crkl8tssufrs4"]
+[gd_scene load_steps=8 format=3 uid="uid://crkl8tssufrs4"]
 
 [ext_resource type="Script" path="res://interface/scenes/main_menu/main_menu.gd" id="1_8dfm2"]
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="2_5a2tj"]
 [ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/scenes/main_menu/main_menu.wav" id="2_jbvjj"]
+[ext_resource type="PackedScene" uid="uid://45cxitl1b5uh" path="res://levels/level_1/level_scene.tscn" id="2_wpis4"]
+[ext_resource type="PackedScene" uid="uid://brlldqfwpgvlw" path="res://interface/scenes/ending_credits/ending_credits.tscn" id="3_2ospb"]
+[ext_resource type="PackedScene" uid="uid://cjxs6gi33dml8" path="res://interface/scenes/screen_transition/screen_transition.tscn" id="4_fdtj1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p5n8y"]
 font_size = 64
@@ -15,6 +18,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8dfm2")
+new_game_scene = ExtResource("2_wpis4")
+credits_scene = ExtResource("3_2ospb")
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -74,6 +79,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Go to credits"
 flat = true
+
+[node name="ScreenTransition" parent="." instance=ExtResource("4_fdtj1")]
 
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

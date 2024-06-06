@@ -3,18 +3,11 @@
 [ext_resource type="Script" path="res://interface/scenes/hud/hud.gd" id="1_adxet"]
 [ext_resource type="Script" path="res://interface/scenes/hud/progress_bar.gd" id="2_4x8oq"]
 
-[node name="HUD" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_adxet")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(1, 0, 0, 1)
-layout_mode = 0
 offset_left = 34.0
 offset_top = 23.0
 offset_right = 155.0

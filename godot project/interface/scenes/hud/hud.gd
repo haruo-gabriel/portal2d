@@ -1,10 +1,7 @@
 
-extends Control
+extends CanvasLayer
 
 @export var player: Player
 
 func _ready() -> void:
 	$ProgressBar.player = player
-
-func _process(delta: float) -> void:
-	pass

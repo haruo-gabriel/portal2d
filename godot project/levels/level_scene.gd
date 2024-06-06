@@ -1,9 +1,8 @@
 extends Node2D
 
-@onready var level_music = $LevelMusic
-
-@onready var hud: Control = $CanvasLayer/HUD
-@onready var pause: Control = $CanvasLayer/Pause
+@export var level_music: AudioStreamPlayer
+@export var hud: CanvasLayer
+@export var pause: Control
 
 var audio_manager = null
 

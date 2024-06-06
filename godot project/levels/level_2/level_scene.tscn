@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://nejou4ncohws"]
+[gd_scene load_steps=13 format=3 uid="uid://nejou4ncohws"]
 
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_3su11"]
 [ext_resource type="Script" path="res://levels/level_scene.gd" id="1_8mwy2"]
@@ -11,9 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://b754jenc4foku" path="res://interface/scenes/hud/hud.tscn" id="7_bqe4l"]
 [ext_resource type="PackedScene" uid="uid://cq8lpg21erc5l" path="res://interface/scenes/pause/pause.tscn" id="8_5d8gg"]
 [ext_resource type="PackedScene" uid="uid://brlldqfwpgvlw" path="res://interface/scenes/ending_credits/ending_credits.tscn" id="8_tdesj"]
+[ext_resource type="PackedScene" uid="uid://cjxs6gi33dml8" path="res://interface/scenes/screen_transition/screen_transition.tscn" id="10_aaxj0"]
 
-[node name="LevelScene" type="Node2D"]
+[node name="LevelScene" type="Node2D" node_paths=PackedStringArray("level_music", "hud", "pause")]
 script = ExtResource("1_8mwy2")
+level_music = NodePath("LevelMusic")
+hud = NodePath("HUD")
+pause = NodePath("PauseLayer/Pause")
 
 [node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_trbgv")]
 tile_map = NodePath("../TileMap")
@@ -67,9 +71,9 @@ can_fall = true
 position = Vector2(1713, -179)
 can_fall = true
 
-[node name="LevelTransition" parent="." instance=ExtResource("4_h8n1u")]
+[node name="LevelTransition" parent="." node_paths=PackedStringArray("screen_transition") instance=ExtResource("4_h8n1u")]
 position = Vector2(3424, -528)
-target_scene = ExtResource("8_tdesj")
+screen_transition = NodePath("../ScreenTransition")
 
 [node name="LevelMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -77,13 +81,16 @@ stream = ExtResource("1_rwgve")
 autoplay = true
 bus = &"Music"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HUD" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("7_bqe4l")]
+[node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_bqe4l")]
 unique_name_in_owner = true
-player = NodePath("../../Player")
+player = NodePath("../Player")
 metadata/_edit_use_anchors_ = true
 
-[node name="Pause" parent="CanvasLayer" instance=ExtResource("8_5d8gg")]
+[node name="ScreenTransition" parent="." instance=ExtResource("10_aaxj0")]
+target_scene = ExtResource("8_tdesj")
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" parent="PauseLayer" instance=ExtResource("8_5d8gg")]
 unique_name_in_owner = true
 visible = false
