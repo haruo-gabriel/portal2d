@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://interface/scenes/main_menu/main_menu.gd" id="1_8dfm2"]
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="2_5a2tj"]
 [ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/scenes/main_menu/main_menu.wav" id="2_jbvjj"]
-[ext_resource type="PackedScene" uid="uid://45cxitl1b5uh" path="res://levels/level_1/level_scene.tscn" id="2_wpis4"]
+[ext_resource type="PackedScene" uid="uid://bgvt25bgwna3p" path="res://cutscenes/initial_cutscene.tscn" id="2_qikr5"]
 [ext_resource type="PackedScene" uid="uid://brlldqfwpgvlw" path="res://interface/scenes/ending_credits/ending_credits.tscn" id="3_2ospb"]
 [ext_resource type="PackedScene" uid="uid://cjxs6gi33dml8" path="res://interface/scenes/screen_transition/screen_transition.tscn" id="4_fdtj1"]
 
@@ -18,7 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8dfm2")
-new_game_scene = ExtResource("2_wpis4")
+new_game_scene = ExtResource("2_qikr5")
 credits_scene = ExtResource("3_2ospb")
 
 [node name="Node2D" type="Node2D" parent="."]

@@ -2,6 +2,7 @@ extends Control
 
 @export var default_screen_time := 6.0
 @export var fade_duration := 2.0
+@export var target_scene: PackedScene
 
 
 func _ready():
@@ -12,6 +13,8 @@ func _ready():
 		await fade_frame(frame, 1.0, fade_duration)
 		await get_tree().create_timer(default_screen_time).timeout
 		await fade_frame(frame, 0.0, fade_duration)
+	
+	get_tree().change_scene_to_packed(target_scene)
 
 
 func fade_frame(frame: Control, final_alpha: float, duraton: float) -> void:
