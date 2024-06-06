@@ -15,18 +15,24 @@ run/main_scene="res://interface/scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.png"
 
+[audio]
+
+buses/default_bus_layout="res://audio/default_bus_layout.tres"
+
 [autoload]
 
 GameConstants="*res://characters/common/game_constants.gd"
 PlayerConstants="*res://characters/player/scripts/player_constants.gd"
 PortalsConstants="*res://portals/portals_constants.gd"
 Portals="*res://portals/portals.gd"
+AudioManager="*res://audio/audio_manager.gd"
 
 [display]
 
 window/size/viewport_width=768
 window/size/viewport_height=432
 window/size/mode=2
+window/size/initial_position_type=2
 window/stretch/mode="viewport"
 
 [input]

@@ -1,20 +1,14 @@
 extends Control
 
-#@onready var MUSIC_BUS_ID = AudioServer.get_bus_index("Music")
-#@onready var SFX_BUS_ID = AudioServer.get_bus_index("SFX")
+
 @export var new_game_scene: PackedScene
 @export var credits_scene: PackedScene
-@onready var main_menu_music = $MainMenuMusic
-var audio_manager = null
 
 func _ready() -> void:
-	var AudioManager = preload("res://audio.gd")
-	audio_manager = AudioManager.new()
-	add_child(audio_manager)
-	audio_manager.fade_in(main_menu_music, 4.0)
-
+	AudioManager.fade_in($MainMenuMusic, 4.0, true)
 
 func _on_new_game_button_pressed():
+	await AudioManager.fade_out($MainMenuMusic, 1.0)
 	$ScreenTransition.transition(new_game_scene)
 
 

@@ -1,13 +1,11 @@
 extends Control
 
 @onready var main_menu_music = $MainMenuMusic
-var audio_manager = null
+@export var target_scene: PackedScene 
 
 func _ready() -> void:
-	var AudioManager = preload("res://audio.gd")
-	audio_manager = AudioManager.new()
-	add_child(audio_manager)
-	audio_manager.fade_in(main_menu_music, 4.0)
+	AudioManager.fade_in($MainMenuMusic, 1.0, true)
 
-func _on_button_pressed():
-	get_tree().change_scene_to_file("res://interface/scenes/main_menu/main_menu.tscn")
+func _on_main_menu_button_pressed():
+	await AudioManager.fade_out($MainMenuMusic, 2.0)
+	get_tree().change_scene_to_packed(target_scene)
