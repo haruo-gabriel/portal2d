@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://brlldqfwpgvlw"]
 
 [ext_resource type="Script" path="res://interface/scenes/ending_credits/ending_credits.gd" id="1_x3m3b"]
-[ext_resource type="PackedScene" uid="uid://crkl8tssufrs4" path="res://interface/scenes/main_menu/main_menu.tscn" id="2_m1xfg"]
+[ext_resource type="PackedScene" uid="uid://crkl8tssufrs4" path="res://interface/scenes/main_menu/main_menu.tscn" id="2_o26y6"]
 [ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/scenes/main_menu/main_menu.wav" id="2_s55jm"]
 [ext_resource type="PackedScene" uid="uid://cjxs6gi33dml8" path="res://interface/scenes/screen_transition/screen_transition.tscn" id="3_5n0my"]
 
@@ -10,7 +10,7 @@ font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_dntry"]
 
-[node name="EndingCredits" type="Control"]
+[node name="EndingCredits" type="Control" node_paths=PackedStringArray("menu_music")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +18,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x3m3b")
-target_scene = ExtResource("2_m1xfg")
+target_scene = ExtResource("2_o26y6")
+menu_music = NodePath("MainMenuMusic")
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_s55jm")
@@ -73,11 +74,12 @@ label_settings = SubResource("LabelSettings_dntry")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MainMenuButton" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Go to main menu"
+text = "Exit
+"
 
 [node name="ScreenTransition" parent="." instance=ExtResource("3_5n0my")]
 
-[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

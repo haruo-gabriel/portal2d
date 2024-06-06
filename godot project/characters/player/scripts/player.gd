@@ -12,7 +12,7 @@ extends CharacterBody2D
 
 @onready var health: Health = $Health
 
-@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+#@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 # SFX resourcesv variables
 @onready var portal_gunshot_sfx = $PortalGunshotSFX

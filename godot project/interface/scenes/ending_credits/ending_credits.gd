@@ -1,11 +1,16 @@
 extends Control
 
-@onready var main_menu_music = $MainMenuMusic
-@export var target_scene: PackedScene 
+
+@export var target_scene: PackedScene
+@export var menu_music: AudioStreamPlayer
+
 
 func _ready() -> void:
-	AudioManager.fade_in($MainMenuMusic, 1.0, true)
+	await AudioManager.fade_in(menu_music, 3.0, true)
 
-func _on_main_menu_button_pressed():
-	await AudioManager.fade_out($MainMenuMusic, 2.0)
-	get_tree().change_scene_to_packed(target_scene)
+
+func _on_exit_button_pressed():
+	#get_tree().change_scene_to_packed(target_scene)
+	await AudioManager.fade_out(menu_music, 1.0)
+	#$ScreenTransition.transition(target_scene)
+	get_tree().quit()
