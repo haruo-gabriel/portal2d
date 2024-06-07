@@ -20,7 +20,6 @@ hud = NodePath("HUD")
 pause = NodePath("PauseLayer/Pause")
 
 [node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_trbgv")]
-position = Vector2(3175, -595)
 tile_map = NodePath("../TileMap")
 metadata/_edit_group_ = true
 
