@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://interface/scenes/main_menu/main_menu.gd" id="1_8dfm2"]
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="2_5a2tj"]
 [ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/scenes/main_menu/main_menu.wav" id="2_jbvjj"]
-[ext_resource type="PackedScene" path="res://cutscenes/initial_cutscene.tscn" id="2_qikr5"]
+[ext_resource type="PackedScene" uid="uid://df7a20uu8faop" path="res://cutscenes/initial_cutscene.tscn" id="2_qikr5"]
 [ext_resource type="PackedScene" uid="uid://cjxs6gi33dml8" path="res://interface/scenes/screen_transition/screen_transition.tscn" id="4_fdtj1"]
-[ext_resource type="Theme" path="res://interface/new_theme.tres" id="5_57351"]
+[ext_resource type="Theme" uid="uid://d0yr5jj0rvlni" path="res://interface/new_theme.tres" id="5_57351"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p5n8y"]
 font_size = 64
