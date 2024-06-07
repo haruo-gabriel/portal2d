@@ -7,6 +7,7 @@ extends Node2D
 var audio_manager = null
 
 func _ready() -> void:
+	
 	AudioManager.fade_in(level_music, 1.0, true)
 	Portals.clear()
 

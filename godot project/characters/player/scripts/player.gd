@@ -167,7 +167,7 @@ func _process(_delta: float) -> void:
 	
 	set_angle()
 	
-	if not is_in_bounds():
+	if not is_in_bounds() and controlable:
 		die()
 
 func _physics_process(delta: float) -> void:

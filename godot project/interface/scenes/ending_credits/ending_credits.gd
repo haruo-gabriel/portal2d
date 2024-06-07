@@ -9,8 +9,8 @@ func _ready() -> void:
 	await AudioManager.fade_in(menu_music, 3.0, true)
 
 
-func _on_exit_button_pressed():
-	#get_tree().change_scene_to_packed(target_scene)
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_packed(target_scene)
 	await AudioManager.fade_out(menu_music, 1.0)
-	#$ScreenTransition.transition(target_scene)
+	$ScreenTransition.transition(target_scene)
 	get_tree().quit()
