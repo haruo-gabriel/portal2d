@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://nejou4ncohws"]
+[gd_scene load_steps=14 format=3 uid="uid://nejou4ncohws"]
 
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_3su11"]
 [ext_resource type="Script" path="res://levels/level_scene.gd" id="1_8mwy2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://wgnluw24avir" path="res://characters/player/player.tscn" id="2_trbgv"]
 [ext_resource type="Script" path="res://interface/follow_cam.gd" id="3_1me6m"]
 [ext_resource type="PackedScene" uid="uid://b7pirrmmj56br" path="res://characters/turret/turret.tscn" id="3_2m1ke"]
+[ext_resource type="AudioStream" uid="uid://biyao66eq4utc" path="res://characters/player/sfx/landing_on_rock.wav" id="3_hu76j"]
 [ext_resource type="PackedScene" uid="uid://b5pd4lm1s4pue" path="res://levels/level_transition.tscn" id="4_h8n1u"]
 [ext_resource type="PackedScene" uid="uid://byybmlwajwfcr" path="res://characters/moving_enemy/moving_enemy.tscn" id="5_g6sfx"]
 [ext_resource type="PackedScene" uid="uid://b754jenc4foku" path="res://interface/scenes/hud/hud.tscn" id="7_bqe4l"]
@@ -19,9 +20,10 @@ level_music = NodePath("LevelMusic")
 hud = NodePath("HUD")
 pause = NodePath("PauseLayer/Pause")
 
-[node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_trbgv")]
+[node name="Player" parent="." node_paths=PackedStringArray("tile_map", "landing_sound") instance=ExtResource("2_trbgv")]
 position = Vector2(0, 0)
 tile_map = NodePath("../TileMap")
+landing_sound = NodePath("../LandingOnRockSFX")
 metadata/_edit_group_ = true
 
 [node name="FollowCam" type="Camera2D" parent="Player" node_paths=PackedStringArray("tile_map")]
@@ -91,6 +93,11 @@ process_mode = 3
 stream = ExtResource("1_rwgve")
 autoplay = true
 bus = &"Music"
+
+[node name="LandingOnRockSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hu76j")
+volume_db = 12.0
+bus = &"SFX"
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_bqe4l")]
 unique_name_in_owner = true

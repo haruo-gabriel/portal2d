@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://45cxitl1b5uh"]
+[gd_scene load_steps=19 format=3 uid="uid://45cxitl1b5uh"]
 
 [ext_resource type="TileSet" uid="uid://bxf11dynbrbke" path="res://levels/level_1/tile_set.tres" id="1_6d6h5"]
 [ext_resource type="Script" path="res://levels/level_scene.gd" id="1_chgl5"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://nejou4ncohws" path="res://levels/level_2/level_scene.tscn" id="4_lbfwy"]
 [ext_resource type="Theme" uid="uid://d0yr5jj0rvlni" path="res://interface/new_theme.tres" id="4_o4pio"]
 [ext_resource type="Script" path="res://interface/follow_cam.gd" id="5_8bj3i"]
+[ext_resource type="AudioStream" uid="uid://bx1dnpks7gri4" path="res://characters/player/sfx/landing_on_grass.wav" id="6_kty2w"]
 [ext_resource type="PackedScene" uid="uid://cq8lpg21erc5l" path="res://interface/scenes/pause/pause.tscn" id="6_vrxgd"]
 [ext_resource type="PackedScene" uid="uid://b754jenc4foku" path="res://interface/scenes/hud/hud.tscn" id="6_xax1y"]
 [ext_resource type="PackedScene" uid="uid://cjxs6gi33dml8" path="res://interface/scenes/screen_transition/screen_transition.tscn" id="8_e3ohk"]
@@ -31,6 +32,11 @@ process_mode = 3
 stream = ExtResource("2_wed8u")
 autoplay = true
 bus = &"Music"
+
+[node name="LandingOnGrassSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_kty2w")
+volume_db = 6.0
+bus = &"SFX"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_6d6h5")
@@ -69,8 +75,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_i7aku")]
+[node name="Player" parent="." node_paths=PackedStringArray("tile_map", "landing_sound") instance=ExtResource("2_i7aku")]
 tile_map = NodePath("../TileMap")
+landing_sound = NodePath("../LandingOnGrassSFX")
 metadata/_edit_group_ = true
 
 [node name="FollowCam" type="Camera2D" parent="Player" node_paths=PackedStringArray("tile_map")]

@@ -3,6 +3,7 @@ class_name Player
 extends CharacterBody2D
 
 @export var tile_map: TileMap
+@export var landing_sound: AudioStreamPlayer
 
 @onready var main_hitbox: CollisionShape2D = $MainHitbox
 @onready var crouched_hitbox: CollisionShape2D = $CrouchedHitbox

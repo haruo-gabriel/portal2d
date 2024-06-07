@@ -2,10 +2,7 @@
 class_name PlayerFalling
 extends PlayerInAir
 
-# SFX resources
-@onready var landing_on_grass_sfx = $"../../LandingOnGrassSFX"
-@onready var landing_on_rock_sfx = $"../../LandingOnRockSFX"
-
+var level: int = 1
 
 func _ready() -> void:
 	animation_name = "Fall"
@@ -17,7 +14,8 @@ func enter() -> void:
 	animation.try_play(animation_name)
 
 func exit() -> void:
-	landing_on_grass_sfx.play()
+	
+	player.landing_sound.play()
 	
 	player.is_falling = false
 

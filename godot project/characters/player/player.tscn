@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://wgnluw24avir"]
+[gd_scene load_steps=31 format=3 uid="uid://wgnluw24avir"]
 
 [ext_resource type="Script" path="res://characters/player/scripts/player.gd" id="1_cp1xu"]
 [ext_resource type="Texture2D" uid="uid://bwimkqbiru1kc" path="res://characters/player/sprites/2.png" id="2_vbw3x"]
@@ -13,8 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://0xgvkejwr6sd" path="res://portals/sfx/portal_gunshot.wav" id="11_i1l3k"]
 [ext_resource type="AudioStream" uid="uid://bqw5qqkbamemo" path="res://characters/player/sfx/hit_taken.wav" id="12_tmsxg"]
 [ext_resource type="AudioStream" uid="uid://bv04vmd4bbrv0" path="res://characters/player/sfx/jump.wav" id="17_30li2"]
-[ext_resource type="AudioStream" uid="uid://bx1dnpks7gri4" path="res://characters/player/sfx/landing_on_grass.wav" id="19_sietw"]
-[ext_resource type="AudioStream" uid="uid://biyao66eq4utc" path="res://characters/player/sfx/landing_on_rock.wav" id="22_7h58e"]
 [ext_resource type="Script" path="res://characters/player/scripts/animation_player.gd" id="22_j0vq1"]
 [ext_resource type="Script" path="res://characters/common/health.gd" id="25_a7xhi"]
 [ext_resource type="Script" path="res://characters/player/scripts/portal_caster.gd" id="26_tat2q"]
@@ -190,14 +188,6 @@ bus = &"SFX"
 
 [node name="JumpingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_30li2")
-bus = &"SFX"
-
-[node name="LandingOnGrassSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("19_sietw")
-bus = &"SFX"
-
-[node name="LandingOnRockSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("22_7h58e")
 bus = &"SFX"
 
 [node name="Health" type="Node" parent="."]
