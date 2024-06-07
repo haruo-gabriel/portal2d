@@ -74,7 +74,7 @@ func toggle_crouch(to_crouch: bool) -> void:
 
 func try_jump() -> void:
 	
-	if Input.is_action_just_pressed("jump"):
+	if controlable and Input.is_action_just_pressed("jump"):
 		last_jumped = PlayerConstants.JUMP_BUFFER_TIME
 
 	if last_jumped and is_on_floor():
