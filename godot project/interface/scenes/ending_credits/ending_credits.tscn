@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://brlldqfwpgvlw"]
+[gd_scene load_steps=6 format=3 uid="uid://brlldqfwpgvlw"]
 
 [ext_resource type="Script" path="res://interface/scenes/ending_credits/ending_credits.gd" id="1_x3m3b"]
 [ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/scenes/main_menu/main_menu.wav" id="2_s55jm"]
+[ext_resource type="Theme" uid="uid://d0yr5jj0rvlni" path="res://interface/new_theme.tres" id="3_bquo3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ijkpe"]
 font_size = 32
@@ -45,6 +46,7 @@ offset_right = 194.0
 offset_bottom = 77.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_bquo3")
 alignment = 1
 
 [node name="Thanks" type="Label" parent="VBoxContainer"]
@@ -72,9 +74,9 @@ label_settings = SubResource("LabelSettings_dntry")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Go to main menu"
+text = "Exit"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

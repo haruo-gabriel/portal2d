@@ -1,7 +1,7 @@
 extends Control
 
 
-@export var target_scene: PackedScene
+#@export var target_scene: PackedScene
 @export var menu_music: AudioStreamPlayer
 
 
