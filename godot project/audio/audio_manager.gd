@@ -39,4 +39,6 @@ func fade_out(audio_stream: AudioStreamPlayer, duration: float):
 	var tween: Tween = create_tween()
 	tween.tween_property(audio_stream, "volume_db", -80, duration)
 	await tween.finished
-	audio_stream.playing = false
+	
+	if audio_stream != null:
+		audio_stream.playing = false

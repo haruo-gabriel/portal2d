@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://brlldqfwpgvlw"]
+[gd_scene load_steps=8 format=3 uid="uid://brlldqfwpgvlw"]
 
 [ext_resource type="Script" path="res://interface/scenes/ending_credits/ending_credits.gd" id="1_x3m3b"]
 [ext_resource type="AudioStream" uid="uid://dcc7x2s6uq6fg" path="res://interface/scenes/main_menu/main_menu.wav" id="2_s55jm"]
-[ext_resource type="Theme" uid="uid://d0yr5jj0rvlni" path="res://interface/new_theme.tres" id="3_bquo3"]
+[ext_resource type="Theme" uid="uid://d0yr5jj0rvlni" path="res://interface/new_theme.tres" id="4_3sw6m"]
+[ext_resource type="PackedScene" uid="uid://cjxs6gi33dml8" path="res://interface/scenes/screen_transition/screen_transition.tscn" id="5_xmhvm"]
+[ext_resource type="PackedScene" uid="uid://crkl8tssufrs4" path="res://interface/scenes/main_menu/main_menu.tscn" id="6_r1hnj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ijkpe"]
 font_size = 32
@@ -21,7 +23,6 @@ menu_music = NodePath("MainMenuMusic")
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_s55jm")
-autoplay = true
 bus = &"Music"
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -46,13 +47,13 @@ offset_right = 194.0
 offset_bottom = 77.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_bquo3")
 alignment = 1
 
 [node name="Thanks" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+theme = ExtResource("4_3sw6m")
 text = "Thank you for playing Portal2D !"
 label_settings = SubResource("LabelSettings_ijkpe")
 horizontal_alignment = 1
@@ -62,6 +63,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+theme = ExtResource("4_3sw6m")
 text = "This project wouldn't have been possible without:
 Corsinha
 Gabriel
@@ -77,6 +79,11 @@ vertical_alignment = 1
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Exit"
+theme = ExtResource("4_3sw6m")
+text = "Exit
+"
+
+[node name="ScreenTransition" parent="." instance=ExtResource("5_xmhvm")]
+target_scene = ExtResource("6_r1hnj")
 
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
